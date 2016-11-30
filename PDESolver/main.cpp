@@ -1,46 +1,106 @@
 #include <ctime>
 #include <iostream>
+#include <cmath>
+#include <fstream>
+#include "time.h"
+#include<string>
 using namespace std;
 
-void fillVec(double[], int, string);
+ofstream ofile;
 
-int main()
-{
-    //Defining variables
-    int n;
-    cout << "Dimension of matrix:";
-    cin >> n;
-    double a[n-1], b[n], c[n-1], vecu[n], vecf[n];
-
-    //Assigning random numbers to vector elements (other than zero, making the tridiagonal matrix unsolvable)
-    srand((unsigned)time(NULL));
-    fillVec(b,n,"b");
-    fillVec(a,n-1,"a");
-    fillVec(c,n-1,"c");
-    fillVec(vecf,n,"f");
-
-    //Forwards substitution
-    for (int k=1; k<=n; k++) {
-        b[k] = b[k] - (a[k-1]*c[k-1])/b[k-1];
-        vecf[k] = vecf[k] - (a[k-1]*vecf[k-1])/b[k-1];
+void GaussElim(int a,double b[], int b_value, int c,double d[], int n, double v[]){
+    //Forward Substitution
+    double m;
+    //double v[n+1];// = new double[n+1];
+    for (int k=2; k<=n; k++) {
+        m = a/b[k-1];
+        b[k] = b_value - m*c;
+        d[k] = d[k] - m*d[k-1];
     }
 
-    //Backwards substitution
-    vecu[n] = b[n];
-    double temp;
-    cout << "u" << endl;
-    for (int k=n-1; k>=0; k--) {
-        temp = c[k]*vecu[k+1];
-        vecu[k] = 1.0/b[k]*(vecf[k] - temp);
-        cout << vecu[k] << endl;
+    //Backward Substitution
+    v[n]= d[n]/b[n];
+    cout << "|||||| x[n]" << v[n] << endl;
+    for (int k= n-1; k>0; k--) {
+        v[k] = (1.0/b[k])*(d[k] - c*v[k+1]);
     }
-    return 0;
+
+    v[0] = 0;
+    v[n+1] = 0;
 }
 
-void fillVec(double arr[], int n, string nb)  {
-    cout << nb << endl;
-    for (int i=0; i<n; i++) {
-        arr[i] = rand()%100 + 1;
-        cout << arr[i] << endl;
+void function(int n, double b_i[]){
+    double c, h_squared, x_i[n+1];
+    h = 1/(n+1);
+    dx = 1./10;
+    dt = dx*dx*0.25;
+    //double  b_i[n+1];// = new double[n+1];
+    for (int k=0;k<=n+1; k++)  {
+            c = 100*exp(-10*x_i[k]); //riktig funksjon
+            b_i[k] = D*c; //100*exp(-10*x_i[k]);
     }
+    //delete [] x_i;
+}
+
+void forward_Euler() {
+}
+
+void backwards_Euler() {
+}
+
+void crank_Nicholson() {
+
+}
+
+int main(){
+
+    //Declaring variables
+    int n, a_value, b_value, c_value;
+
+    cout << "Number of gridpoints: ";
+    cin >> n;
+    //cout << "Filename to write result too: ";
+    //cin >> outfilename;
+    double h, a[n], b[n], c[n], points[n+1];
+
+    a_value = -alpha;
+    b_value = 1+alpha;
+    c_value = -alpha;
+    h = 1.0/(n+1);
+    //making the vectors
+    for (int k=0; k<=n; k++){
+        b[k] = b_value;
+    }
+
+    for (int k=0; k<=n+1; k++){
+        points[k] = k*h;
+    }
+
+    double f[n+1];
+    double v[n+1];
+
+    function(n, f);
+
+    clock_t start, finish;
+    start = clock();
+
+    GaussElim(a_value,b, b_value,c_value, f,n,v);
+
+    finish =clock();
+    double t = ((finish-start));
+    double seconds = t/CLOCKS_PER_SEC;
+    string outfilename;
+
+    cout << "Please enter a file name to write: ";
+    cin >> outfilename;
+
+    ofile.open(outfilename);
+    int i;
+    ofile << "x:  " <<"computed_derivative" << "n = "<< n << "runtime: "<< seconds << endl;
+    for (i=0; i<=n+1; i++){
+        ofile << points[i] << "   " << v[i] << "\n";
+    }
+    ofile.close();
+    return 0;
+
 }
