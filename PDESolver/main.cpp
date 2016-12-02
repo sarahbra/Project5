@@ -4,32 +4,34 @@
 #include <fstream>
 #include "time.h"
 #include<string>
+#include<armadillo>
 using namespace std;
+using namespace arma;
 
 ofstream ofile;
 
-void GaussElim(int a,double b[], int b_value, int c,double d[], int n, double v[]){
+void GaussElim(int a,double b(), int b_value, int c, double u(), int n, double v()){
     //Forward Substitution
     double m;
     //double v[n+1];// = new double[n+1];
     for (int k=2; k<=n; k++) {
-        m = a/b[k-1];
-        b[k] = b_value - m*c;
-        d[k] = d[k] - m*d[k-1];
+        m = a/b(k-1);
+        b(k) = b_value - m*c;
+        u(k) = u(k) - m*u(k-1);
     }
 
     //Backward Substitution
-    v[n]= d[n]/b[n];
-    cout << "|||||| x[n]" << v[n] << endl;
+    v(n)= u(n)/b(n);
+    cout << "|||||| x[n]" << v(n) << endl;
     for (int k= n-1; k>0; k--) {
-        v[k] = (1.0/b[k])*(d[k] - c*v[k+1]);
+        v(k) = (1.0/b(k))*(d(k) - c*v(k+1));
     }
 
-    v[0] = 0;
-    v[n+1] = 0;
+    v(0) = 0;
+    v(n+1) = 0;
 }
 
-void function(int n, double ** u_i[], double dx, double i){
+void function(double ** u_i[], double dx, double i){
     for (int k=0;k<=i+1; k++) {
             u_i(i) = sin(pi*dx*i);
     }
@@ -38,16 +40,33 @@ void function(int n, double ** u_i[], double dx, double i){
 void forward_Euler(double alpha) {
     a_value = c_value = alpha;
     b_value = 1 - 2*alpha;
+
+    //making the vectors
+    for (int k=0; k<=n; k++){
+        b[k] = b_value;
+    }
+
+
 }
 
 void backwards_Euler(double alpha) {
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
+
+    //making the vectors
+    for (int k=0; k<=n; k++){
+        b[k] = b_value;
+    }
 }
 
 void crank_Nicholson(double alpha) {
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
+
+    //making the vectors
+    for (int k=0; k<=n; k++){
+        b[k] = b_value;
+    }
 }
 
 int main(){
@@ -59,21 +78,16 @@ int main(){
     cin >> n;
     //cout << "Filename to write result too: ";
     //cin >> outfilename;
-    double h, a[n], b[n], c[n], points[n+1];
+    double alpha, dx, dt, a[n], b[n], c[n];
 
-    //making the vectors
-    for (int k=0; k<=n; k++){
-        b[k] = b_value;
-    }
+    dx = 1/10;
+    dt = 1/100;
+    alpha = dt/(dx*dx);
 
-    for (int k=0; k<=n+1; k++){
-        points[k] = k*h;
-    }
-
-    double f[n+1];
+    double u_i[n+1];
     double v[n+1];
 
-    function(n, f);
+    function(u_i, dx, n);
 
     clock_t start, finish;
     start = clock();
