@@ -29,27 +29,25 @@ void GaussElim(int a,double b[], int b_value, int c,double d[], int n, double v[
     v[n+1] = 0;
 }
 
-void function(int n, double b_i[]){
-    double c, h_squared, x_i[n+1];
-    h = 1/(n+1);
-    dx = 1./10;
-    dt = dx*dx*0.25;
-    //double  b_i[n+1];// = new double[n+1];
-    for (int k=0;k<=n+1; k++)  {
-            c = 100*exp(-10*x_i[k]); //riktig funksjon
-            b_i[k] = D*c; //100*exp(-10*x_i[k]);
+void function(int n, double ** u_i[], double dx, double i){
+    for (int k=0;k<=i+1; k++) {
+            u_i(i) = sin(pi*dx*i);
     }
-    //delete [] x_i;
 }
 
-void forward_Euler() {
+void forward_Euler(double alpha) {
+    a_value = c_value = alpha;
+    b_value = 1 - 2*alpha;
 }
 
-void backwards_Euler() {
+void backwards_Euler(double alpha) {
+    a_value = c_value = -alpha;
+    b_value = 1 + 2*alpha;
 }
 
-void crank_Nicholson() {
-
+void crank_Nicholson(double alpha) {
+    a_value = c_value = -alpha;
+    b_value = 2 + 2*alpha;
 }
 
 int main(){
@@ -63,10 +61,6 @@ int main(){
     //cin >> outfilename;
     double h, a[n], b[n], c[n], points[n+1];
 
-    a_value = -alpha;
-    b_value = 1+alpha;
-    c_value = -alpha;
-    h = 1.0/(n+1);
     //making the vectors
     for (int k=0; k<=n; k++){
         b[k] = b_value;
