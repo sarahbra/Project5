@@ -10,10 +10,9 @@ using namespace arma;
 
 ofstream ofile;
 
-void GaussElim(int a,double b(), int b_value, int c, double u(), int n, double v()){
+void GaussElim(int a,double ** b(), int b_value, int c, double ** u(), int n, double v()){
     //Forward Substitution
     double m;
-    //double v[n+1];// = new double[n+1];
     for (int k=2; k<=n; k++) {
         m = a/b(k-1);
         b(k) = b_value - m*c;
@@ -37,35 +36,36 @@ void function(double ** u_i[], double dx, double i){
     }
 }
 
-void forward_Euler(double alpha) {
+void forward_Euler(double alpha, double dx, double dt) {
     a_value = c_value = alpha;
     b_value = 1 - 2*alpha;
 
     //making the vectors
     for (int k=0; k<=n; k++){
-        b[k] = b_value;
+        b(k) = b_value;
     }
-
-
 }
 
-void backwards_Euler(double alpha) {
+void backwards_Euler(double alpha, double dx, double dt) {
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
 
     //making the vectors
     for (int k=0; k<=n; k++){
-        b[k] = b_value;
+        b(k) = b_value;
     }
 }
 
-void crank_Nicholson(double alpha) {
+void crank_Nicholson(double alpha, double dt, vec u_i) {
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
 
     //making the vectors
     for (int k=0; k<=n; k++){
-        b[k] = b_value;
+        b(k) = b_value;
+
+    GaussElim(a_value,b, b_value,c_value,f,n,v);
+
     }
 }
 
@@ -78,21 +78,20 @@ int main(){
     cin >> n;
     //cout << "Filename to write result too: ";
     //cin >> outfilename;
-    double alpha, dx, dt, a[n], b[n], c[n];
+    double alpha, dx, dt;
+    vec a(n), b(n), c(n);
 
     dx = 1/10;
-    dt = 1/100;
+    dt = dx*dx*0.25;
     alpha = dt/(dx*dx);
 
-    double u_i[n+1];
-    double v[n+1];
+    vec u_i(n+1);
+    vec v(n+1);
 
     function(u_i, dx, n);
 
     clock_t start, finish;
     start = clock();
-
-    GaussElim(a_value,b, b_value,c_value, f,n,v);
 
     finish =clock();
     double t = ((finish-start));
