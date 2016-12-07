@@ -10,13 +10,7 @@ using namespace arma;
 
 ofstream ofile;
 
-<<<<<<< HEAD
-void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec v()){
-=======
-
 void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
-
->>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
     //Forward Substitution
     double m;
     for (int k=2; k<=n; k++) {
@@ -54,30 +48,13 @@ void printtofile(int t, vec u, int n ){
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx) {
-    double a_value, c_value, b_value;
-    a_value = c_value = alpha;
-    b_value = 1 - 2*alpha;
-<<<<<<< HEAD
-    vec b(n);
     vec u(n+1);
     vec unew(n+1);
-=======
-    double test;
-    vec u(n+1);
-    vec unew(n+1);
-    vec b(n+1);
-    vec x = zeros<vec>(n+1);
->>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
-
     u(0) = unew(0) = u(n) = unew(n) = 0.0;
-    b(0) = b(0) = b_value;
 
     //making the vectors
     for (int k=1; k<n; k++){
-        b(k) = b_value;
-        test = func(dx, k);
-        u(k) = test;
-
+        u(k) = func(dx, k);
         unew(k) = 0;
     }
 
@@ -119,18 +96,15 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
         for (int i=0; i <= n; i++) {
             v(i) = u(i);
         }
+        printtofile(t,u,n);
     }
 }
 
 void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
-<<<<<<< HEAD
-=======
     vec b(n+1);
->>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
-    vec b(n);
 
     vec u(n+1);
     vec v(n+1);
@@ -138,16 +112,13 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
     //making the vectors
     for (int k=1; k<n; k++){
         b(k) = b_value;
-        u(k) = function(dx,k);
+        u(k) = func(dx,k);
     }
 
-<<<<<<< HEAD
     b(0) = b(n) = b_value;
     u(0) = u(n) = 0.0;
-=======
-    //GaussElim(a_value,b, b_value,c_value,u,n,v);
->>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
 
+    //GaussElim(a_value,b, b_value,c_value,u,n,v);
     for (int t=1; t<=t_steps; t++) {
         for (int i=1; i<n; i++) {
             v(i) = alpha*u(i-1) + (2-2*alpha)*u(i) + alpha*u(i+1);
@@ -155,47 +126,36 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
         v(0) = v(n) = 0;
         GaussElim(a_value,b, b_value,c_value,n+1,v,u);
         u(0) = u(n) = 0.0;
+        printtofile(t,u,n);
     }
 }
 
 int main(){
-<<<<<<< HEAD
-    cout << "Number of gridpoints: ";
-    cin >> n;
-    //cout << "Filename to write result too: ";
-    //cin >> outfilename;
-    double alpha, dx, dt;
-
-    dx = 1.0/10;
-=======
-
     //Declaring variables
-    int n, a_value, b_value, c_value;
+    int n;
 
     //cout << "Number of gridpoints: ";
     //cin >> n;
     //cout << "Filename to write result too: ";
     //cin >> outfilename;
-    double alpha, dx, dt;
-    string outfilename;
+    double alpha, dx, dt, t_steps;
+    char* outfilename;
     outfilename = "test.txt";
-    n = 100;
+    n = 10;
     dx = 0.1;
->>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
-    dt = dx*dx*0.25;
-    t_steps = n^2;
+    dt = dx*dx*0.5;
+    t_steps = n*n;
     alpha = dt/(dx*dx);
     ofile.open(outfilename);
     clock_t start, finish;
     start = clock();
 
-    forward_Euler(n, 10, alpha, dx);
+    //forward_Euler(n, t_steps, alpha, dx);
+    backwards_Euler(n,t_steps,alpha,dx);
 
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
-
-
 
     ofile.close();
     return 0;
