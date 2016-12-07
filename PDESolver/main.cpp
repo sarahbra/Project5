@@ -10,7 +10,7 @@ using namespace arma;
 
 ofstream ofile;
 
-void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec v(n)){
+void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec v()){
     //Forward Substitution
     double m;
     for (int k=2; k<=n; k++) {
@@ -23,7 +23,7 @@ void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec 
     v(n)= u(n)/b(n);
     cout << "|||||| x[n]" << v(n) << endl;
     for (int k= n-1; k>0; k--) {
-        v(k) = (1.0/b(k))*(d(k) - c*v(k+1));
+        v(k) = (1.0/b(k))*(u(k) - c*v(k+1));
     }
 
     v(0) = 0;
@@ -39,16 +39,15 @@ void forward_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = alpha;
     b_value = 1 - 2*alpha;
-    vec u(n);
-    vec unew(n);
-    vec x = zeros<vec>(n);
+    vec b(n);
+    vec u(n+1);
+    vec unew(n+1);
 
     u(0) = unew(0) = u(n) = unew(n) = 0.0;
     b(0) = b(n) = b_value;
 
     //making the vectors
     for (int k=1; k<n; k++){
-        x(k)=k*dx;
         b(k) = b_value;
         u(k) = function(dx,i);
         unew(k) = 0;
@@ -81,7 +80,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     u(n) = v(n) = u(0) = v(0) = 0.0;
 
     for (int t=1; t<=t_steps; t++) {
-        GaussElim(a_value, b, b_value, c_value, n, u, v);
+        GaussElim(a_value, b, b_value, c_value, n, v, u);
         u(0) = 0.0;
         u(n) = 0.0;
         for (int i=0; i <= n; i++) {
@@ -91,31 +90,43 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
 }
 
 void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
+    double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
+    vec b(n);
+
+    vec u(n+1);
+    vec v(n+1);
 
     //making the vectors
-    for (int k=0; k<=n; k++){
+    for (int k=1; k<n; k++){
         b(k) = b_value;
+        u(k) = function(dx,k);
+    }
 
-    GaussElim(a_value,b, b_value,c_value,u,n,v);
+    b(0) = b(n) = b_value;
+    u(0) = u(n) = 0.0;
 
+    for (int t=1; t<=t_steps; t++) {
+        for (int i=1; i<n; i++) {
+            v(i) = alpha*u(i-1) + (2-2*alpha)*u(i) + alpha*u(i+1);
+        }
+        v(0) = v(n) = 0;
+        GaussElim(a_value,b, b_value,c_value,n+1,v,u);
+        u(0) = u(n) = 0.0;
     }
 }
 
 int main(){
-
-    //Declaring variables
-    int n, a_value, b_value, c_value;
-
     cout << "Number of gridpoints: ";
     cin >> n;
     //cout << "Filename to write result too: ";
     //cin >> outfilename;
     double alpha, dx, dt;
 
-    dx = 1/10;
+    dx = 1.0/10;
     dt = dx*dx*0.25;
+    t_steps = n^2;
     alpha = dt/(dx*dx);
 
     clock_t start, finish;
@@ -137,5 +148,4 @@ int main(){
     }
     ofile.close();
     return 0;
-
 }
