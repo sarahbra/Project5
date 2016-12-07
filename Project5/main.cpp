@@ -20,7 +20,6 @@ void GaussElim(int a,double b[], int b_value, int c,double d[], int n, double v[
 
     //Backward Substitution
     v[n]= d[n]/b[n];
-    cout << "|||||| x[n]" << v[n] << endl;
     for (int k= n-1; k>0; k--) {
         v[k] = (1.0/b[k])*(d[k] - c*v[k+1]);
     }
