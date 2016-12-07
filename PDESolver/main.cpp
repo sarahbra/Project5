@@ -73,7 +73,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
 
-    vec b(n);
+    vec b(n+1);
 
     vec u(n+1);
     vec v(n+1);
