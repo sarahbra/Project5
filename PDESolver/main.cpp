@@ -39,7 +39,7 @@ double func(double dx, double step){
 
 void printtofile(int t, vec u, int n ){
     ofile << t << ",";
-    for (int i=0; i<=n+1; i++){
+    for (int i=0; i<=n; i++){
         ofile << u(i) << ",";
     }
     ofile << endl;
@@ -69,7 +69,10 @@ void forward_Euler(int n, int t_steps, double alpha, double dx) {
     for (int t=1; t<t_steps; t++) {
         for (int i=1; i<n; i++) {
             unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+
         }
+        u = unew;
+        printtofile(t, u, n);
     }
 }
 
