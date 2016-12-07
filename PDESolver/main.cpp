@@ -10,7 +10,6 @@ using namespace arma;
 
 ofstream ofile;
 
-
 void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 
     //Forward Substitution
@@ -57,14 +56,12 @@ void forward_Euler(int n, int t_steps, double alpha, double dx) {
     vec u(n+1);
     vec unew(n+1);
     vec b(n+1);
-    vec x = zeros<vec>(n+1);
 
     u(0) = unew(0) = u(n) = unew(n) = 0.0;
     b(0) = b(0) = b_value;
 
     //making the vectors
     for (int k=1; k<n; k++){
-        x(k)=k*dx;
         b(k) = b_value;
         test = func(dx, k);
         u(k) = test;
@@ -130,9 +127,6 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
 
 int main(){
 
-    //Declaring variables
-    int n, a_value, b_value, c_value;
-
     //cout << "Number of gridpoints: ";
     //cin >> n;
     //cout << "Filename to write result too: ";
@@ -153,8 +147,6 @@ int main(){
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
-
-
 
     ofile.close();
     return 0;
