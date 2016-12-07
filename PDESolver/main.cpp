@@ -10,7 +10,7 @@ using namespace arma;
 
 ofstream ofile;
 
-void GaussElim(int a,double ** b(), int b_value, int c, double ** u(), int n, double v()){
+void GaussElim(int a, double ** b(), int b_value, int c, int n, vec u(n), vec v(n)){
     //Forward Substitution
     double m;
     for (int k=2; k<=n; k++) {
@@ -30,23 +30,37 @@ void GaussElim(int a,double ** b(), int b_value, int c, double ** u(), int n, do
     v(n+1) = 0;
 }
 
-void function(double ** u_i[], double dx, double i){
-    for (int k=0;k<=i+1; k++) {
-            u_i(i) = sin(pi*dx*i);
-    }
+double function(double dx, double step){
+    u_i(i) = sin(pi*dx*step);
 }
 
-void forward_Euler(double alpha, double dx, double dt) {
+void forward_Euler(int n, int t_steps, double alpha, double dx) {
+    int a_value, c_value, b_value;
     a_value = c_value = alpha;
     b_value = 1 - 2*alpha;
+    vec u(n);
+    vec unew(n);
+    vec x = zeros<vec>(n);
+
+    u(0) = unew(0) = u(n) = unew(n) = 0.0;
+    b(0) = b(n) = b_value;
 
     //making the vectors
-    for (int k=0; k<=n; k++){
+    for (int k=1; k<n; k++){
         b(k) = b_value;
+        u(i) = func(x);
+        unew(i) = 0;
+    }
+
+    for (int t=1; t<t_steps; t++) {
+        for (int i=1; i<n; i++) {
+            GaussElim(a_value, b, b_value, c_value, n, u, unew);
+            unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+        }
     }
 }
 
-void backwards_Euler(double alpha, double dx, double dt) {
+void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
 
@@ -56,7 +70,7 @@ void backwards_Euler(double alpha, double dx, double dt) {
     }
 }
 
-void crank_Nicholson(double alpha, double dt, vec u_i) {
+void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
 
@@ -64,7 +78,7 @@ void crank_Nicholson(double alpha, double dt, vec u_i) {
     for (int k=0; k<=n; k++){
         b(k) = b_value;
 
-    GaussElim(a_value,b, b_value,c_value,f,n,v);
+    GaussElim(a_value,b, b_value,c_value,u,n,v);
 
     }
 }
@@ -79,16 +93,10 @@ int main(){
     //cout << "Filename to write result too: ";
     //cin >> outfilename;
     double alpha, dx, dt;
-    vec a(n), b(n), c(n);
 
     dx = 1/10;
     dt = dx*dx*0.25;
     alpha = dt/(dx*dx);
-
-    vec u_i(n+1);
-    vec v(n+1);
-
-    function(u_i, dx, n);
 
     clock_t start, finish;
     start = clock();
