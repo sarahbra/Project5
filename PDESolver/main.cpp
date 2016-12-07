@@ -10,7 +10,9 @@ using namespace arma;
 
 ofstream ofile;
 
-void GaussElim(int a, vec b, int b_value, int c, int n, vec u, vec v){
+
+void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
+
     //Forward Substitution
     double m;
     for (int k=2; k<=n; k++) {
@@ -30,6 +32,7 @@ void GaussElim(int a, vec b, int b_value, int c, int n, vec u, vec v){
     v(n+1) = 0;
 }
 
+
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
@@ -43,6 +46,7 @@ void printtofile(int t, vec u, int n ){
         ofile << u(i) << ",";
     }
     ofile << endl;
+
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx) {
@@ -60,9 +64,11 @@ void forward_Euler(int n, int t_steps, double alpha, double dx) {
 
     //making the vectors
     for (int k=1; k<n; k++){
+        x(k)=k*dx;
         b(k) = b_value;
         test = func(dx, k);
         u(k) = test;
+
         unew(k) = 0;
     }
 
@@ -80,10 +86,30 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
-    vec b(n+1);
+
+    vec b(n);
+
+    vec u(n+1);
+    vec v(n+1);
+
+
     //making the vectors
     for (int k=0; k<=n; k++){
         b(k) = b_value;
+    }
+    for (int k=1; k<n; k++) {
+        v(k) = u(k) = func(dx,k);
+    }
+    //Implementing boundary conditions
+    u(n) = v(n) = u(0) = v(0) = 0.0;
+
+    for (int t=1; t<=t_steps; t++) {
+        GaussElim(a_value, b, b_value, c_value, n, u, v);
+        u(0) = 0.0;
+        u(n) = 0.0;
+        for (int i=0; i <= n; i++) {
+            v(i) = u(i);
+        }
     }
 }
 
