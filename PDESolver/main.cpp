@@ -10,7 +10,13 @@ using namespace arma;
 
 ofstream ofile;
 
+<<<<<<< HEAD
 void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec v()){
+=======
+
+void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
+
+>>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
     //Forward Substitution
     double m;
     for (int k=2; k<=n; k++) {
@@ -30,33 +36,58 @@ void GaussElim(double a, vec b(), double b_value, double c, int n, vec u(), vec 
     v(n+1) = 0;
 }
 
-double function(double dx, double step){
-    u_i = sin(pi*dx*step);
-    return u_i;
+
+double func(double dx, double step){
+    //double u_i;
+    double pi  =3.141592653589793238463;
+    return sin(pi*dx*step);
+
+}
+
+void printtofile(int t, vec u, int n ){
+    ofile << t << ",";
+    for (int i=0; i<=n; i++){
+        ofile << u(i) << ",";
+    }
+    ofile << endl;
+
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = alpha;
     b_value = 1 - 2*alpha;
+<<<<<<< HEAD
     vec b(n);
     vec u(n+1);
     vec unew(n+1);
+=======
+    double test;
+    vec u(n+1);
+    vec unew(n+1);
+    vec b(n+1);
+    vec x = zeros<vec>(n+1);
+>>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
 
     u(0) = unew(0) = u(n) = unew(n) = 0.0;
-    b(0) = b(n) = b_value;
+    b(0) = b(0) = b_value;
 
     //making the vectors
     for (int k=1; k<n; k++){
         b(k) = b_value;
-        u(k) = function(dx,i);
+        test = func(dx, k);
+        u(k) = test;
+
         unew(k) = 0;
     }
 
     for (int t=1; t<t_steps; t++) {
         for (int i=1; i<n; i++) {
             unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+
         }
+        u = unew;
+        printtofile(t, u, n);
     }
 }
 
@@ -64,17 +95,19 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
+
     vec b(n);
 
     vec u(n+1);
     vec v(n+1);
+
 
     //making the vectors
     for (int k=0; k<=n; k++){
         b(k) = b_value;
     }
     for (int k=1; k<n; k++) {
-        v(i) = u(i) = function(dx,i);
+        v(k) = u(k) = func(dx,k);
     }
     //Implementing boundary conditions
     u(n) = v(n) = u(0) = v(0) = 0.0;
@@ -91,6 +124,10 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
 
 void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
+<<<<<<< HEAD
+=======
+    vec b(n+1);
+>>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
     a_value = c_value = -alpha;
     b_value = 2 + 2*alpha;
     vec b(n);
@@ -104,8 +141,12 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
         u(k) = function(dx,k);
     }
 
+<<<<<<< HEAD
     b(0) = b(n) = b_value;
     u(0) = u(n) = 0.0;
+=======
+    //GaussElim(a_value,b, b_value,c_value,u,n,v);
+>>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
 
     for (int t=1; t<=t_steps; t++) {
         for (int i=1; i<n; i++) {
@@ -118,6 +159,7 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
 }
 
 int main(){
+<<<<<<< HEAD
     cout << "Number of gridpoints: ";
     cin >> n;
     //cout << "Filename to write result too: ";
@@ -125,27 +167,36 @@ int main(){
     double alpha, dx, dt;
 
     dx = 1.0/10;
+=======
+
+    //Declaring variables
+    int n, a_value, b_value, c_value;
+
+    //cout << "Number of gridpoints: ";
+    //cin >> n;
+    //cout << "Filename to write result too: ";
+    //cin >> outfilename;
+    double alpha, dx, dt;
+    string outfilename;
+    outfilename = "test.txt";
+    n = 100;
+    dx = 0.1;
+>>>>>>> 93ca40a5c0b7aa92a916b6689df95cde1206c383
     dt = dx*dx*0.25;
     t_steps = n^2;
     alpha = dt/(dx*dx);
-
+    ofile.open(outfilename);
     clock_t start, finish;
     start = clock();
+
+    forward_Euler(n, 10, alpha, dx);
 
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
-    string outfilename;
 
-    cout << "Please enter a file name to write: ";
-    cin >> outfilename;
 
-    ofile.open(outfilename);
-    int i;
-    ofile << "x:  " <<"computed_derivative" << "n = "<< n << "runtime: "<< seconds << endl;
-    for (i=0; i<=n+1; i++){
-        ofile << points[i] << "   " << v[i] << "\n";
-    }
+
     ofile.close();
     return 0;
 }
