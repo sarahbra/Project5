@@ -41,9 +41,9 @@ double func(double dx, double step){
 void printtofile(vec t, mat u, int n, double t_steps){
     for (int i=0; i<=t_steps; i++){
         ofile << t(i) << ",";
-        for (int j=0; j<=n; j++) {
+        for (int j=0; j<n; j++) {
             ofile << u(i,j) << ",";
-            if (i==j==n) {
+            if ((i==n) && (j==n)) {
                 ofile << u(i,j) << endl;
             }
         }
@@ -54,7 +54,7 @@ mat backwards_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
-    mat u_t = zeros<mat>(n+1, n+1);
+    mat u_t = zeros<mat>(t_steps+1, n+1);
 
     vec b(n+1);
     vec u(n+1);
@@ -71,10 +71,11 @@ mat backwards_Euler(int n, int t_steps, double alpha, double dx) {
     //Implementing boundary conditions
     u(n) = v(n) = u(0) = v(0) = 0.0;
 
-    for (int t=1; t<=t_steps; t++) {
+    for (int t=1; t<t_steps; t++) {
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
         for (int i=1; i<n;i++) {
             u_t(t,i) = v(i);
+            cout << u_t(t,i) << endl;
         }
     }
     return u_t;
@@ -82,12 +83,12 @@ mat backwards_Euler(int n, int t_steps, double alpha, double dx) {
 
 //Found by separation of variables (solving for x while keeping t and y constant and vice versa)
 mat analytic_Solution (double dx, double dt, double n, double t_steps) {
-    mat u = zeros<mat>(n+1,n+1);
-    for (int t=1;t<=t_steps;t++) {
+    mat u = zeros<mat>(t_steps+1,n+1);
+    for (int t=1;t<t_steps;t++) {
         for (int i=1;i<n;i++) {
-            for (int j=1; j<n;j++) {
+            for (int j=1;j<n;j++) {
                 double pi = 3.141592653589793238463;
-                u(i,j) = 20*sin(pi*dx*i)*sin(pi*dx*j)*exp(-2*pi*pi*dt*t);
+                u(i,j) = 20*sin(pi*dx*i)*sin(pi*dx*j);//*exp(-2*pi*pi*dt*t);
             }
         }
     }
@@ -113,8 +114,8 @@ int main(){
 
     time(0) = 0.0;
 
-    mat u_xyt = zeros<mat>(n+1, n+1);
-    mat u_analytic = zeros<mat>(n+1,n+1);
+    mat u_xyt = zeros<mat>(t_steps+1, n+1);
+    mat u_analytic = zeros<mat>(t_steps+1,n+1);
 
     ofile.open(outfilename);
     clock_t start, finish;
