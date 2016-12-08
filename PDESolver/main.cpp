@@ -10,8 +10,16 @@ using namespace arma;
 
 ofstream ofile;
 
+void printtofile(int t, vec u, int n ){
+    ofile << t << ",";
+    for (int i=0; i<=n; i++){
+        ofile << u(i) << ",";
+    }
+    ofile << endl;
 
-void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
+}
+
+vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 
     //Forward Substitution
     double m;
@@ -27,27 +35,21 @@ void GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
     for (int k= n-1; k>0; k--) {
         v(k) = (1.0/b(k))*(u(k) - c*v(k+1));
     }
-
     v(0) = 0;
-    v(n+1) = 0;
+    v(n) = 0;
+    return v;
+
 }
 
 
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
-    return sin(pi*dx*step);
+    return 20*sin(pi*dx*step);
 
 }
 
-void printtofile(int t, vec u, int n ){
-    ofile << t << ",";
-    for (int i=0; i<=n; i++){
-        ofile << u(i) << ",";
-    }
-    ofile << endl;
 
-}
 
 void forward_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
@@ -87,29 +89,29 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
 
-    vec b(n);
+    vec b(n+1);
 
     vec u(n+1);
     vec v(n+1);
-
 
     //making the vectors
     for (int k=0; k<=n; k++){
         b(k) = b_value;
     }
     for (int k=1; k<n; k++) {
-        v(k) = u(k) = func(dx,k);
+        u(k) = v(k) =func(dx,k);
     }
     //Implementing boundary conditions
     u(n) = v(n) = u(0) = v(0) = 0.0;
 
-    for (int t=1; t<=t_steps; t++) {
-        GaussElim(a_value, b, b_value, c_value, n, u, v);
+    for (int t=1; t<t_steps; t++) {
+        u = GaussElim(a_value, b, b_value, c_value, n, u, v);
         u(0) = 0.0;
         u(n) = 0.0;
-        for (int i=0; i <= n; i++) {
-            v(i) = u(i);
-        }
+        //for (int i=1; i <n; i++) {
+        //    u(i) = v(i);
+        //}
+    printtofile(t, u, n);
     }
 }
 
@@ -140,7 +142,7 @@ int main(){
     double alpha, dx, dt;
     string outfilename;
     outfilename = "test.txt";
-    n = 100;
+    n = 10;
     dx = 0.1;
     dt = dx*dx*0.25;
     alpha = dt/(dx*dx);
@@ -148,7 +150,7 @@ int main(){
     clock_t start, finish;
     start = clock();
 
-    forward_Euler(n, 10, alpha, dx);
+    forward_Euler(n, n*n, alpha, dx);
 
     finish =clock();
     double t = ((finish-start));
