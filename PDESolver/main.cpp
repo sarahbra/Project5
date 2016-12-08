@@ -152,11 +152,6 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
 int main(){
     //Declaring variables
     int n;
-
-    //cout << "Number of gridpoints: ";
-    //cin >> n;
-    //cout << "Filename to write result too: ";
-    //cin >> outfilename;
     double alpha, dx, dt, t_steps;
     char* outfilename;
     outfilename = "test.txt";
