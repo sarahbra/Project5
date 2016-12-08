@@ -34,17 +34,24 @@ vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
-    return sin(pi*dx*step);
+    return 20*sin(pi*dx*step);
 
 }
 
-void printtofile(int t, vec u, int n ){
+void printtofile(double t, vec u, int n ){
     ofile << t << ",";
-    for (int i=0; i<=n; i++){
+    for (int i=0; i<n; i++){
         ofile << u(i) << ",";
     }
-    ofile << endl;
+    ofile << u(n) << endl;
 
+}
+
+vec forward_step(double n, double alpha, vec u, vec unew) {
+    for (int i=1; i<n; i++) {
+        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    }
+    return unew;
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx) {
@@ -59,12 +66,12 @@ void forward_Euler(int n, int t_steps, double alpha, double dx) {
         unew(k) = 0;
     }
 
-    for (int t=1; t<t_steps; t++) {
-        for (int i=1; i<n; i++) {
-            unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    for (int t=1;t<=t_steps;t++) {
+        u = forward_step(n, alpha, u, unew);
+        if(t%10==0 || t==1) {
+            double time = t*dx*dx*0.25;
+            printtofile(time, u, n);
         }
-        u = unew;
-        printtofile(t, u, n);
     }
 }
 
@@ -90,15 +97,18 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx) {
 
     for (int t=1; t<=t_steps; t++) {
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
-        printtofile(t,v,n);
+        if (t%10==0 || t==1) {
+            double time = t*dx*dx*0.25;
+            printtofile (time,v,n);
+        }
     }
 }
 
-void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
+void crank_Nicolson(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     vec b(n+1);
     a_value = c_value = -alpha;
-    b_value = 2 + 2*alpha;
+    b_value = 1 + 2*alpha;
 
     vec u(n+1);
     vec v(n+1);
@@ -113,13 +123,29 @@ void crank_Nicholson(int n, int t_steps, double alpha, double dx) {
     u(0) = u(n) = 0.0;
 
     //GaussElim(a_value,b, b_value,c_value,u,n,v);
-    for (int t=1; t<=t_steps; t++) {
-        for (int i=1; i<n; i++) {
-            v(i) = alpha*u(i-1) + (2-2*alpha)*u(i) + alpha*u(i+1);
-        }
+    for (int t=1;t<=t_steps;t++) {
+        v = forward_step(n,alpha,u,v);
         v(0) = v(n) = 0;
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
-        printtofile(t,v,n);
+        if (t%10==0 || t==1) {
+            double time = t*dx*dx*0.25;
+            printtofile(time,v,n);
+        }
+    }
+}
+
+void analytic_Solution (double dx, double dt, double n, double t_step) {
+    vec u(n+1);
+    u(0) = u(n) = 0.0;
+    for (int t=1;t<=t_step;t++) {
+        for (int i=1;i<n;i++) {
+            double pi = 3.141592653589793238463;
+            u(i) = 20*sin(pi*dx*i)*exp(-pi*pi*dt*t);
+        }
+        if (t%10==0 || t==1) {
+            double time = t*dx*dx*0.25;
+            printtofile(time,u,n);
+        }
     }
 }
 
@@ -145,12 +171,16 @@ int main(){
 
     //forward_Euler(n,t_steps,alpha,dx);
     //backwards_Euler(n,t_steps,alpha,dx);
-    crank_Nicholson(n,t_steps,alpha,dx);
+    crank_Nicolson(n,t_steps,alpha/2,dx);
 
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
 
+    ofile.close();
+    outfilename = "analytic.txt";
+    ofile.open(outfilename);
+    analytic_Solution(dx,dt,n,t_steps);
     ofile.close();
     return 0;
 }
