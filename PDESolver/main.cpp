@@ -10,9 +10,9 @@ using namespace arma;
 
 ofstream ofile;
 
-void initializePrint(string method, int n,double dx,double dt) {
-    string outfilename;
-    outfilename = method + ".txt";
+void initializePrint(char* method, int n,double dx,double dt) {
+    char* outfilename;
+    outfilename = method;
     ofile.open(outfilename);
     ofile << method << "   " << "n= " << n << " dx= " << dx << " dt= " << dt << endl;
 }
@@ -46,11 +46,9 @@ vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
         u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
     }
 
-
     u(0) = 0;
     u(n) = 0;
     return u;
-
 }
 
 
@@ -61,9 +59,6 @@ double func(double dx, double step){
 
 }
 
-
-
-
 vec forward_step(double n, double alpha, vec u, vec unew) {
     for (int i=1; i<n; i++) {
         unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
@@ -72,7 +67,7 @@ vec forward_step(double n, double alpha, vec u, vec unew) {
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
-    string method = "forward_euler";
+    char* method = "forward_euler.txt";
     initializePrint(method, n, dx, dt);
     vec u(n+1);
     vec unew(n+1);
@@ -95,7 +90,7 @@ void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 }
 
 void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
-    string method = "backward_euler";
+    char* method = "backward_euler.txt";
     initializePrint(method, n, dx, dt);
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
@@ -117,7 +112,6 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     //Implementing boundary conditions
     u(n) = v(n) = u(0) = v(0) = 0.0;
 
-
     for (int t=1; t<=t_steps; t++) {
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
         if (t%10==0 || t==1) {
@@ -129,7 +123,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 }
 
 void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
-    string method = "crank_nicolson";
+    char* method = "crank_nicolson.txt";
     initializePrint(method, n, dx, dt);
     double a_value, c_value, b_value;
     vec b(n+1);
@@ -201,7 +195,6 @@ int main(){
     seconds = t/CLOCKS_PER_SEC;
     finalizePrint(seconds);
 
-
     start = clock();
     crank_Nicolson(n,t_steps,alpha/2,dx, dt);
 
@@ -210,7 +203,7 @@ int main(){
     seconds = t/CLOCKS_PER_SEC;
 
     finalizePrint(seconds);
-    string outfilename_ana = "analytic.txt";
+    char* outfilename_ana = "analytic.txt";
     ofile.open(outfilename_ana);
     analytic_Solution(dx,dt,n,t_steps);
     ofile.close();
