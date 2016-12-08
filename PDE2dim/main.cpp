@@ -41,7 +41,7 @@ double func(double dx, double step){
 void printtofile(vec t, mat u, int n, double t_steps){
     for (int i=0; i<=t_steps; i++){
         ofile << t(i) << ",";
-        for (int j=0; j<=n; j++) {
+        for (int j=0; j<n; j++) {
             ofile << u(i,j) << ",";
             if (i==j==n) {
                 ofile << u(i,j) << endl;
@@ -54,7 +54,7 @@ mat backwards_Euler(int n, int t_steps, double alpha, double dx) {
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
-    mat u_t = zeros<mat>(n+1, n+1);
+    mat u_t = zeros<mat>(n*n+1, n+1);
 
     vec b(n+1);
     vec u(n+1);
@@ -72,11 +72,14 @@ mat backwards_Euler(int n, int t_steps, double alpha, double dx) {
     u(n) = v(n) = u(0) = v(0) = 0.0;
 
     for (int t=1; t<=t_steps; t++) {
+        cout << t << endl;
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
         for (int i=1; i<n;i++) {
+            cout << i << "   " << t << endl;
             u_t(t,i) = v(i);
         }
     }
+    cout<<"ja"<<endl;
     return u_t;
 }
 
@@ -113,16 +116,27 @@ int main(){
 
     time(0) = 0.0;
 
-    mat u_xyt = zeros<mat>(n+1, n+1);
-    mat u_analytic = zeros<mat>(n+1,n+1);
 
+    mat u_xyt = zeros<mat>(n+1,n+1);
+    mat u_analytic = zeros<mat>(n+1,n+1);
+    cout << u_xyt(4,5)<< endl;
+    for (int i = 0; i <=n; i++){
+        int j = 0;
+
+        for (j = 0; j <=n; ++j){
+            cout<< u_xyt(i,j) << "    " << i << j  << "   ";
+        }
+        cout << endl;
+    }
     ofile.open(outfilename);
     clock_t start, finish;
     start = clock();
 
     u_xyt = backwards_Euler(n,t_steps,alpha,dx);
-    u_xyt += backwards_Euler(n,t_steps,alpha,dx);
 
+    cout << "ja2" << endl;
+    u_xyt += backwards_Euler(n,t_steps,alpha,dx);
+    cout << "ja3" << endl;
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
