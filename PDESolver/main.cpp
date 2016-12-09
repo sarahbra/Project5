@@ -11,8 +11,11 @@ using namespace arma;
 ofstream ofile;
 
 void initializePrint(char* method, int n,double dx,double dt) {
-    char* outfilename;
-    outfilename = method;
+    char outfilename[60];
+    sprintf(outfilename, "%sdt%f.txt", method, dt);
+
+
+    //outfilename = method;
     ofile.open(outfilename);
     ofile << method << "   " << "n= " << n << " dx= " << dx << " dt= " << dt << endl;
 }
@@ -67,7 +70,8 @@ vec forward_step(double n, double alpha, vec u, vec unew) {
 }
 
 void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
-    char* method = "forward_euler.txt";
+    char* method = "forward_euler";
+
     initializePrint(method, n, dx, dt);
     vec u(n+1);
     vec unew(n+1);
@@ -90,7 +94,7 @@ void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 }
 
 void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
-    char* method = "backward_euler.txt";
+    char* method = "backward_euler";
     initializePrint(method, n, dx, dt);
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
@@ -123,7 +127,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 }
 
 void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
-    char* method = "crank_nicolson.txt";
+    char* method = "crank_nicolson";
     initializePrint(method, n, dx, dt);
     double a_value, c_value, b_value;
     vec b(n+1);
@@ -172,37 +176,52 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
 int main(){
     //Declaring variables
     int n;
-    double alpha, dx, dt, t_steps;
+    double alpha, dx, t_steps, dt, final_t, t, seconds;
+    //vec dt_list();
     n = 10;
     dx = 0.1;
-    dt = dx*dx*0.25;
-    t_steps = 1000;
+    vec dt_list = {dx*dx*0.1, dx*dx*0.25, dx*dx*0.5, dx*dx*0.75, dx*dx*0.90};
+    final_t = 100;
     alpha = dt/(dx*dx);
     clock_t start, finish;
-    start = clock();
 
-    forward_Euler(n,t_steps,alpha,dx ,dt);
+    for (int i = 0; i<5 ; i++){
+        t_steps = final_t/dt_list(i);
 
-    finish =clock();
-    double t = ((finish-start));
-    double seconds = t/CLOCKS_PER_SEC;
-    finalizePrint(seconds);
+        start = clock();
+        dt = dt_list(i);
+        cout << dt;
+        forward_Euler(n,t_steps,alpha,dx ,dt);
 
-    start = clock();
-    backwards_Euler(n,t_steps,alpha,dx, dt);
-    finish = clock();
-    t = ((finish-start));
-    seconds = t/CLOCKS_PER_SEC;
-    finalizePrint(seconds);
+        finish =clock();
+        double t = ((finish-start));
+        double seconds = t/CLOCKS_PER_SEC;
+        finalizePrint(seconds);
+    }
 
-    start = clock();
-    crank_Nicolson(n,t_steps,alpha/2,dx, dt);
+    for (int i = 0; i<5; i++){
+        t_steps = final_t/dt_list(i);
+        dt = dt_list(i);
+        start = clock();
+        backwards_Euler(n,t_steps,alpha,dx, dt);
+        finish = clock();
+        t = ((finish-start));
+        seconds = t/CLOCKS_PER_SEC;
+        finalizePrint(seconds);
+    }
 
-    finish =clock();
-    t = ((finish-start));
-    seconds = t/CLOCKS_PER_SEC;
+    for(int i = 0; i<5; i++){
+        t_steps = final_t/dt_list(i);
+        dt = dt_list(i);
+        start = clock();
+        crank_Nicolson(n,t_steps,alpha/2,dx, dt);
 
-    finalizePrint(seconds);
+        finish =clock();
+        t = ((finish-start));
+        seconds = t/CLOCKS_PER_SEC;
+
+        finalizePrint(seconds);
+    }
     char* outfilename_ana = "analytic.txt";
     ofile.open(outfilename_ana);
     analytic_Solution(dx,dt,n,t_steps);
