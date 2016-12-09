@@ -73,7 +73,7 @@ int main(){
     char* outfilename;
     outfilename = "dx0.02.txt";
     n = 10;
-    dx = 0.02;
+    dx = 0.4;
     dt = dx*dx*0.25;
     t_steps = n*n*n;
     mat A = zeros<mat>(n+1,n+1);
@@ -93,7 +93,7 @@ int main(){
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
 
-    outfilename = "analytic.txt";
+    outfilename = "analytic0.4.txt";
     ofile.open(outfilename);
     analytic_Solution(dx,dt,n,t_steps);
     return 0;
