@@ -22,7 +22,7 @@ count = 0
 for line in ana.readlines():
     temp = line.split(",")
     for i in range(len(temp)-1):
-        U_ana[count][i] = 4.0/np.pi*float(temp[i+1])
+        U_ana[count][i] = float(temp[i+1])
     count+=1
 ana.close()
 

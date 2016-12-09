@@ -25,7 +25,21 @@ void printtofile(double t, mat u, int n ){
     }
 }
 
-void jakobi_solver (int n, double t_steps, double dx, double dt, mat &A_old) {
+double func(double dx, double x_step, double y_step){
+    double pi  =3.141592653589793238463;
+    return 20*sin(pi*dx*x_step)*sin(pi*dx*y_step);
+}
+
+void jakobi_solver (double dx, double dt) {
+    double n = 1.0/dx;
+    double t_steps = 1000;
+    mat A_old = zeros<mat>(n+1,n+1);
+    for (int i=1;i<n;i++) {
+        for (int j=1;j<n;j++) {
+            A_old(i,j) = func(dx,i,j);
+        }
+    }
+
     double alpha = dt/(dx*dx);
     mat A_new = zeros<mat>(n+1,n+1);
     for (int t=1;t<=t_steps;t++) {
@@ -36,7 +50,7 @@ void jakobi_solver (int n, double t_steps, double dx, double dt, mat &A_old) {
             }
         }
         A_old = A_new;
-        if((t%10==0)||(t==1)) {
+        if((t%100==0)||(t==1)) {
             double time = t*dt;
             printtofile(time, A_new,n);
         }
@@ -44,14 +58,11 @@ void jakobi_solver (int n, double t_steps, double dx, double dt, mat &A_old) {
 }
 
 
-double func(double dx, double x_step, double y_step){
-    double pi  =3.141592653589793238463;
-    return 20*sin(pi*dx*x_step)*sin(pi*dx*y_step);
-}
-
 //Found by separation of variables (solving for x while keeping t and y constant and vice versa)
-void analytic_Solution (double dx, double dt, double n, double t_steps) {
-    mat u = zeros<mat>(t_steps+1,n+1);
+void analytic_Solution (double dx, double dt) {
+    double n = 1.0/dx;
+    double t_steps = 1000;
+    mat u = zeros<mat>(n+1,n+1);
     for (int t=1;t<t_steps;t++) {
         for (int i=1;i<n;i++) {
             for (int j=1;j<n;j++) {
@@ -59,7 +70,7 @@ void analytic_Solution (double dx, double dt, double n, double t_steps) {
                 u(i,j) = 20*sin(pi*dx*i)*sin(pi*dx*j)*exp(-2*pi*pi*dt*t);
             }
         }
-        if((t%10==0)||(t==1)) {
+        if((t%100==0)||(t==1)) {
             double time = t*dt;
             printtofile(time, u,n);
         }
@@ -68,33 +79,23 @@ void analytic_Solution (double dx, double dt, double n, double t_steps) {
 
 int main(){
     //Declaring variables
-    int n;
-    double dx, dt, t_steps;
+    double dx, dt;
     char* outfilename;
-    outfilename = "test.txt";
-    n = 10;
-    dx = 0.1;
+    outfilename = "num_dt0.02.txt";
+    dx = 0.02;
     dt = dx*dx*0.25;
-    t_steps = n*n*n;
-    mat A = zeros<mat>(n+1,n+1);
-
-    for (int i=1;i<n;i++) {
-        for (int j=1;j<n;j++) {
-            A(i,j) = func(dx,i,j);
-        }
-    }
 
     clock_t start, finish;
     start = clock();
     ofile.open(outfilename);
-    jakobi_solver(n,t_steps,dx,dt,A);
+    jakobi_solver(dx,dt);
     ofile.close();
     finish =clock();
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
 
-    outfilename = "analytic.txt";
+    outfilename = "ana_dt0.02.txt";
     ofile.open(outfilename);
-    analytic_Solution(dx,dt,n,t_steps);
+    analytic_Solution(dx,dt);
     return 0;
 }
