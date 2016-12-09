@@ -57,7 +57,6 @@ void jakobi_solver (double dx, double dt) {
     }
 }
 
-
 //Found by separation of variables (solving for x while keeping t and y constant and vice versa)
 void analytic_Solution (double dx, double dt) {
     double n = 1.0/dx;

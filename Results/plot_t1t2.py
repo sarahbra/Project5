@@ -19,7 +19,7 @@ ana = open('analytic.txt')
 U_ana = np.zeros((21,11))
 count = 0
 
-for line in ana.readlines():
+for line in ana.readlines()[1:-1]:
     temp = line.split(",")
     for i in range(len(temp)-1):
         U_ana[count][i] = float(temp[i+1])
@@ -27,8 +27,8 @@ for line in ana.readlines():
 ana.close()
 
 figure()
-plot(x,U_CN[8,:], label='CN T=%.4f' %T[2])
-plot(x,U_ana[8,:], label='Analytic T=%.4f' %T[2])
+plot(x,U_CN[2,:], label='CN T=%.4f' %T[2])
+plot(x,U_ana[2,:], label='Analytic T=%.4f' %T[2])
 legend()
 title('Crank-Nicolson and closed form solution')
 xlabel('x')
@@ -54,8 +54,8 @@ for line in F_E.readlines()[1:-1]:
 F_E.close()
 
 figure()
-plot(x,U_FE[8,:], label='FE T=%.4f' %T[4])
-plot(x,U_ana[8,:], label='Analytic T=%.4f' %T[4])
+plot(x,U_FE[2,:], label='FE T=%.4f' %T[4])
+plot(x,U_ana[2,:], label='Analytic T=%.4f' %T[4])
 legend()
 title('Forward-Euler and closed form solution')
 xlabel('x')
@@ -81,8 +81,8 @@ for line in B_E.readlines()[1:-1]:
 B_E.close()
 
 figure()
-plot(x,U_BE[8,:], label='BE T=%.4f' %T[4])
-plot(x,U_ana[8,:], label='Analytic T=%.4f' %T[4])
+plot(x,U_BE[2,:], label='BE T=%.4f' %T[4])
+plot(x,U_ana[2,:], label='Analytic T=%.4f' %T[4])
 legend()
 title('Backwards-Euler and closed form solution')
 xlabel('x')

@@ -10,14 +10,14 @@ using namespace arma;
 
 ofstream ofile;
 
-void initializePrint(char* method, int n,double dx,double dt) {
+void initializePrint(char* method, int n,double dx,double dt, int time_steps) {
     char outfilename[60];
     sprintf(outfilename, "%sdt%f.txt", method, dt);
 
 
     //outfilename = method;
     ofile.open(outfilename);
-    ofile << method << "   " << "n= " << n << " dx= " << dx << " dt= " << dt << endl;
+    ofile << method << "   " << "n= " << n << " dx= " << dx << " dt= " << dt << "t_steps " << time_steps << endl;
 }
 
 void finalizePrint(double seconds){
@@ -72,7 +72,7 @@ vec forward_step(double n, double alpha, vec u, vec unew) {
 void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     char* method = "forward_euler";
 
-    initializePrint(method, n, dx, dt);
+    initializePrint(method, n, dx, dt, t_steps);
     vec u(n+1);
     vec unew(n+1);
 
@@ -87,7 +87,7 @@ void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     for (int t=1;t<=t_steps;t++) {
         u = forward_step(n, alpha, u, unew);
         if(t%10==0 || t==1) {
-            double time = t*dx*dx*0.25;
+            double time = t*dt;
             printtofile(time, u, n);
         }
     }
@@ -95,7 +95,7 @@ void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 
 void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     char* method = "backward_euler";
-    initializePrint(method, n, dx, dt);
+    initializePrint(method, n, dx, dt, t_steps);
     double a_value, c_value, b_value;
     a_value = c_value = -alpha;
     b_value = 1 + 2*alpha;
@@ -118,7 +118,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     for (int t=1; t<=t_steps; t++) {
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
         if (t%10==0 || t==1) {
-            double time = t*dx*dx*0.25;
+            double time = t*dt;
             printtofile (time,v,n);
         }
 
@@ -127,7 +127,7 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
 
 void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
     char* method = "crank_nicolson";
-    initializePrint(method, n, dx, dt);
+    initializePrint(method, n, dx, dt, t_steps);
     double a_value, c_value, b_value;
     vec b(n+1);
     a_value = c_value = -alpha;
@@ -151,7 +151,7 @@ void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
         v(0) = v(n) = 0;
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
         if (t%10==0 || t==1) {
-            double time = t*dx*dx*0.25;
+            double time = t*dt/2;
             printtofile(time,v,n);
         }
     }
@@ -166,7 +166,7 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
             u(i) = 20*sin(pi*dx*i)*exp(-pi*pi*dt*t);
         }
         if (t%10==0 || t==1) {
-            double time = t*dx*dx*0.25;
+            double time = t*dt;
             printtofile(time,u,n);
         }
     }
@@ -181,13 +181,13 @@ int main(){
     dx = 0.1;
     //dt = dx*dx*0.25;
     //t_steps = 2*n*n;
-    dt_list(0) = dx*dx*0.1;
-    dt_list(1) = dx*dx*0.25;
-    dt_list(2) = dx*dx*0.5;
-    dt_list(3) = dx*dx*0.75;
-    dt_list(4) = dx*dx*0.90;
+    dt_list(0) = dx*dx*0.01;
+    dt_list(1) = dx*dx*0.1;
+    dt_list(2) = dx*dx*0.25;
+    dt_list(3) = dx*dx*0.5;
+    dt_list(4) = dx*dx*0.6;
     final_t = 100;
-    //alpha = dt/(dx*dx);
+
     clock_t start, finish;
 
     for (int i = 0; i<5 ; i++){
@@ -207,6 +207,7 @@ int main(){
     for (int i = 0; i<5; i++){
         t_steps = final_t/dt_list(i);
         dt = dt_list(i);
+        alpha = dt/(dx*dx);
         start = clock();
         backwards_Euler(n,t_steps,alpha,dx, dt);
         finish = clock();
@@ -218,6 +219,7 @@ int main(){
     for(int i = 0; i<5; i++){
         t_steps = final_t/dt_list(i);
         dt = dt_list(i);
+        alpha = dt/(dx*dx);
         start = clock();
         crank_Nicolson(n,t_steps,alpha/2,dx, dt);
 
@@ -227,6 +229,7 @@ int main(){
 
         finalizePrint(seconds);
     }
+    dt = 0.1*0.1*0.25;
     char* outfilename_ana = "analytic.txt";
     ofile.open(outfilename_ana);
     analytic_Solution(dx,dt,n,t_steps);
