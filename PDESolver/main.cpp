@@ -176,14 +176,18 @@ int main(){
     //Declaring variables
     int n;
     double alpha, dx, t_steps, dt, final_t, t, seconds;
-    //vec dt_list();
+    vec dt_list(5);
     n = 10;
     dx = 0.1;
     //dt = dx*dx*0.25;
-    t_steps = 2*n*n;
-    vec dt_list = {dx*dx*0.1, dx*dx*0.25, dx*dx*0.5, dx*dx*0.75, dx*dx*0.90};
+    //t_steps = 2*n*n;
+    dt_list(0) = dx*dx*0.1;
+    dt_list(1) = dx*dx*0.25;
+    dt_list(2) = dx*dx*0.5;
+    dt_list(3) = dx*dx*0.75;
+    dt_list(4) = dx*dx*0.90;
     final_t = 100;
-    alpha = dt/(dx*dx);
+    //alpha = dt/(dx*dx);
     clock_t start, finish;
 
     for (int i = 0; i<5 ; i++){
@@ -191,7 +195,7 @@ int main(){
 
         start = clock();
         dt = dt_list(i);
-        cout << dt;
+        alpha = dt/(dx*dx);
         forward_Euler(n,t_steps,alpha,dx ,dt);
 
         finish =clock();
