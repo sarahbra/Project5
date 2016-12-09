@@ -56,7 +56,7 @@ void analytic_Solution (double dx, double dt, double n, double t_steps) {
         for (int i=1;i<n;i++) {
             for (int j=1;j<n;j++) {
                 double pi = 3.141592653589793238463;
-                u(i,j) = 20*sin(pi*dx*i)*sin(pi*dx*j)*exp(-2*pi*pi*dt*t);
+                u(i,j) = 20*4/pi*4/pi*sin(pi*dx*i)*sin(pi*dx*j)*exp(-2*pi*pi*dt*t);
             }
         }
         if((t%10==0)||(t==1)) {
@@ -75,7 +75,7 @@ int main(){
     n = 10;
     dx = 0.1;
     dt = dx*dx*0.25;
-    t_steps = n*n;
+    t_steps = n*n*n;
     mat A = zeros<mat>(n+1,n+1);
 
     for (int i=1;i<n;i++) {
