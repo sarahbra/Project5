@@ -183,10 +183,10 @@ int main(){
     //dt = dx*dx*0.25;
     //t_steps = 2*n*n;
     dt_list(0) = dx*dx*0.01;
-    dt_list(1) = dx*dx*0.1;
+    dt_list(1) = dx*dx*0.05;
     dt_list(2) = dx*dx*0.25;
     dt_list(3) = dx*dx*0.5;
-    dt_list(4) = dx*dx*0.6;
+    dt_list(4) = dx*dx*0.9;
     final_t = 100;
 
     clock_t start, finish;
