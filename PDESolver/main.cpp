@@ -97,7 +97,6 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     b_value = 1 + 2*alpha;
 
     vec b(n+1);
-
     vec u(n+1);
     vec v(n+1);
 
@@ -176,7 +175,7 @@ int main(){
     n = 10;
     dx = 0.1;
     dt = dx*dx*0.25;
-    t_steps = 1000;
+    t_steps = 2*n*n;
     alpha = dt/(dx*dx);
     clock_t start, finish;
     start = clock();

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #include <ctime>
 #include <iostream>
 #include <cmath>
@@ -47,7 +45,6 @@ void jakobi_solver (int n, double t_steps, double dx, double dt, mat &A_old) {
 
 
 double func(double dx, double x_step, double y_step){
-    //double u_i;
     double pi  =3.141592653589793238463;
     return 20*sin(pi*dx*x_step)*sin(pi*dx*y_step);
 }
@@ -96,9 +93,8 @@ int main(){
     double t = ((finish-start));
     double seconds = t/CLOCKS_PER_SEC;
 
-    outfilename = "analytical.txt";
+    outfilename = "analytic.txt";
     ofile.open(outfilename);
     analytic_Solution(dx,dt,n,t_steps);
     return 0;
 }
->>>>>>> 6c319e03511d21026683e102483d78f6417b12e6
