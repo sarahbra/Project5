@@ -182,7 +182,7 @@ int main(){
     dx = 0.1;
     vec dt_list = {dx*dx*0.1, dx*dx*0.25, dx*dx*0.5, dx*dx*0.75, dx*dx*0.90};
     final_t = 100;
-    alpha = dt/(dx*dx);
+
     clock_t start, finish;
 
     for (int i = 0; i<5 ; i++){
@@ -190,7 +190,7 @@ int main(){
 
         start = clock();
         dt = dt_list(i);
-        cout << dt;
+        alpha = dt/(dx*dx);
         forward_Euler(n,t_steps,alpha,dx ,dt);
 
         finish =clock();
@@ -202,6 +202,7 @@ int main(){
     for (int i = 0; i<5; i++){
         t_steps = final_t/dt_list(i);
         dt = dt_list(i);
+        alpha = dt/(dx*dx);
         start = clock();
         backwards_Euler(n,t_steps,alpha,dx, dt);
         finish = clock();
@@ -213,6 +214,7 @@ int main(){
     for(int i = 0; i<5; i++){
         t_steps = final_t/dt_list(i);
         dt = dt_list(i);
+        alpha = dt/(dx*dx);
         start = clock();
         crank_Nicolson(n,t_steps,alpha/2,dx, dt);
 
