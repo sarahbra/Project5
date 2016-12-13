@@ -82,10 +82,10 @@ int main(){
     double dx, dt;
     int n, t_steps;
     char* outfilename;
-    outfilename = "dx0.2_dt0.25.txt";
+    outfilename = "dx0.1_dt0.6.txt";
     n = 10;
-    dx = 0.2;
-    dt = dx*dx*0.25;
+    dx = 0.1;
+    dt = dx*dx*0.6;
     t_steps = n*n;
     mat A = zeros<mat>(n+1,n+1);
 
