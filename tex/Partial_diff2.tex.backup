@@ -117,7 +117,6 @@ And this is the form we choose for solving this. By looking at this equation we 
 
 Else the second term vanishes, and our solution for the new time step is wrong.
 
-
 We can implement this as a algorithm just by looping over the timesteps, for so to loop over the 
 x values where $x \in [0,1]$.
 
@@ -191,6 +190,10 @@ Dette kan vi skrive som :
 Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
 
 \subsection{Jakobi}
+For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
+\begin{equation}
+  u_{i,j}
+\end{equation}
 
 
 \section{Execution}

@@ -192,9 +192,8 @@ Where we find $V_{j+1}$ by using forward euler and then solve the matrix equatio
 \subsection{Jakobi}
 For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
 \begin{equation}
-  u_{i,j}
+  u(i,j,t+dt) = u(i,j,t) + alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t));
 \end{equation}
-
 
 \section{Execution}
 \subsection{2D- Heat Equation}
