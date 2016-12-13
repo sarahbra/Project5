@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{verbatim}
 
 %opening
 \title{Project 5 - Partial Differencial Equation}
@@ -76,8 +77,6 @@ u(1,t) = X(1)T(t) = 0
 
 If we let $T(t) = 0$ we get the trivial solution which we are not interested 
 
-
-
 \subsection{Algortihm}
 \subsubsection{Forward Euler}
 
@@ -97,8 +96,18 @@ We are also using a centered difference in space with the approximation as you c
 \label{eq:Forward_eulerScheme}
 \end{equation}
 
-And this is the equation we use to solve this. We can implement this as a algorithm jus by looping over the timesteps, for so to loop over the 
-x values where $x \in [0,1]$. 
+And this is the form we choose for solving this. By looking at this equation we also see that stability requires (eq. (\ref{eq:alpha}))
+
+\begin{equation}
+\alpha = \frac{\Delta t}{\Delta x^2} < 0.5
+\label{eq:alpha}
+\end{equation}
+
+Else the second term vanishes, and our solution for the new time step is wrong.
+
+
+We can implement this as a algorithm just by looping over the timesteps, for so to loop over the 
+x values where $x \in [0,1]$.
 
 \subsubsection{Backward Euler}
 
@@ -270,8 +279,38 @@ So the the solution becomes:
 
 
 \subsubsection{Implementation Forward Euler}
+For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
+restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward_step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
+\begin{verbatim}
+vec forward_step(double n, double alpha, vec u, vec unew) {
+    for (int i=1; i<n; i++) {
+        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    }
+    return unew;
+} 
+\end{verbatim}
 
 \subsubsection{Implementation Backward Euler}
+In the implicit Backward Euler scheme we use Gaussian elimination to advance in space and time, implemented in code below. Here, as
+\begin{verbatim}
+ //Forward Substitution
+    double m;
+    for (int k=2; k<=n; k++) {
+        m = a/b(k-1);
+        b(k) = b_value - m*c;
+        v(k) -= m*v(k-1);
+    }
+
+    //Backward Substitution
+    u(n)= v(n)/b(n);
+    for (int k= n-1; k>0; k--) {
+        u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
+    }
+
+    u(0) = 0;
+    u(n) = 0;
+\end{verbatim}
+
 
 \subsubsection{Implementation Cranc-Nicolson}
 
