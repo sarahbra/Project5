@@ -163,12 +163,7 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
     for (int t=1;t<=t_step;t++) {
         for (int i=1;i<n;i++) {
             double pi = 3.141592653589793238463;
-<<<<<<< HEAD
-
             u(i) = sin(pi*dx*i)*exp(-pi*pi*dt*t);
-=======
-            u(i) = 20*sin(pi*dx*i)*exp(-pi*pi*dt*t);
->>>>>>> a3726fe21be7049e670afa1a1832b37c74523a30
         }
         if (t%10==0 || t==1) {
             double time = t*dt;
