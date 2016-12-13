@@ -58,7 +58,7 @@ vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
-    return 20*sin(pi*dx*step);
+    return sin(pi*dx*step);
 
 }
 
@@ -151,7 +151,7 @@ void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
         v(0) = v(n) = 0;
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
         if (t%10==0 || t==1) {
-            double time = t*dt/2;
+            double time = t*dt;
             printtofile(time,v,n);
         }
     }
@@ -163,7 +163,12 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
     for (int t=1;t<=t_step;t++) {
         for (int i=1;i<n;i++) {
             double pi = 3.141592653589793238463;
+<<<<<<< HEAD
+
+            u(i) = sin(pi*dx*i)*exp(-pi*pi*dt*t);
+=======
             u(i) = 20*sin(pi*dx*i)*exp(-pi*pi*dt*t);
+>>>>>>> a3726fe21be7049e670afa1a1832b37c74523a30
         }
         if (t%10==0 || t==1) {
             double time = t*dt;
@@ -182,10 +187,10 @@ int main(){
     //dt = dx*dx*0.25;
     //t_steps = 2*n*n;
     dt_list(0) = dx*dx*0.01;
-    dt_list(1) = dx*dx*0.1;
+    dt_list(1) = dx*dx*0.05;
     dt_list(2) = dx*dx*0.25;
     dt_list(3) = dx*dx*0.5;
-    dt_list(4) = dx*dx*0.6;
+    dt_list(4) = dx*dx*0.9;
     final_t = 100;
 
     clock_t start, finish;

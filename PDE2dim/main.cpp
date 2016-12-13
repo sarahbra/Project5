@@ -27,7 +27,7 @@ void printtofile(double t, mat u, int n ){
 
 double func(double dx, double x_step, double y_step){
     double pi  =3.141592653589793238463;
-    return 20*sin(pi*dx*x_step)*sin(pi*dx*y_step);
+    return sin(pi*dx*x_step)*sin(pi*dx*y_step);
 }
 
 void jakobi_solver (double dx, double dt) {
@@ -57,6 +57,7 @@ void jakobi_solver (double dx, double dt) {
     }
 }
 
+
 //Found by separation of variables (solving for x while keeping t and y constant and vice versa)
 void analytic_Solution (double dx, double dt) {
     double n = 1.0/dx;
@@ -79,10 +80,21 @@ void analytic_Solution (double dx, double dt) {
 int main(){
     //Declaring variables
     double dx, dt;
+    int n, t_steps;
     char* outfilename;
-    outfilename = "num_dt0.02.txt";
-    dx = 0.02;
-    dt = dx*dx*0.25;
+    outfilename = "dx0.1_dt0.6.txt";
+    n = 10;
+    dx = 0.1;
+    dt = dx*dx*0.6;
+    t_steps = n*n;
+    mat A = zeros<mat>(n+1,n+1);
+
+    for (int i=1;i<n;i++) {
+        for (int j=1;j<n;j++) {
+            A(i,j) = func(dx,i,j);
+        }
+    }
+
 
     clock_t start, finish;
     start = clock();
