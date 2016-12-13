@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  13 DEC 2016 19:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  13 DEC 2016 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -408,7 +408,23 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks22
 \verbatim@in@stream=\read1
 )
-(./Partial_diff2.aux)
+(./Partial_diff2.aux
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 <
+      <<<<<< HEAD
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Label `eq:u_xt' multiply defined.
+
+)
 \openout1 = `Partial_diff2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -423,10 +439,39 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
- [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (1.35594pt too wide) detected at line 97
+Overfull \hbox (52.76863pt too wide) in paragraph at lines 25--12
+[]\OT1/cmr/m/n/10 <<<<<<< HEAD         =======          >>>>>>> 3f04260ba78313e
+343675adb45b36a52dc418121
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--12
+
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (170.77289pt too wide) detected at line 90
+\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cm
+m/m/it/10 ; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (0)\OML/cmm/
+m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 ; \
+OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/
+cmr/m/n/10 (1)\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 T\OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m/it/10 u\OT1/cmr/m/n/10
+ (0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; t\OT1/cmr/m/n/10 ) = 
+\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/
+cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m
+/it/10 u\OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 
+; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (1)\OML/cmm/m/it/10 Y\
+OT1/cmr/m/n/10 (1)\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr
+/m/n/10 ) = 0
+ []
+
+
+Overfull \hbox (1.35594pt too wide) detected at line 109
 [] \OT1/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ) \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10
  = \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 + (1 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n
 /10 2\OML/cmm/m/it/10 \OT1/cmr/m/n/10 )\OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 + 
@@ -436,7 +481,7 @@ Overfull \hbox (1.35594pt too wide) detected at line 97
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.127 \begin{bmatrix}
+l.138 \begin{bmatrix}
                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -444,7 +489,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.133 \end{bmatrix}
+l.144 \end{bmatrix}
                    
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -452,11 +497,11 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-[2]
+[3]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.166 
+l.176 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -464,7 +509,7 @@ you left one out. Proceed, with fingers crossed.
 ! Display math should end with $$.
 <to be read again> 
                    \par 
-l.166 
+l.176 
       
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
@@ -476,7 +521,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.167 \end{equation}
+l.177 \end{equation}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -485,7 +530,7 @@ or  <return>  to continue without it.
 ! You can't use `\eqno' in vertical mode.
 \endmathdisplay@a ...\df@tag \@empty \else \veqno 
                                                   \alt@tag \df@tag \fi \ifx ...
-l.167 \end{equation}
+l.177 \end{equation}
                     
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -495,7 +540,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.167 \end{equation}
+l.177 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -506,15 +551,16 @@ my insertion and my current dilemma will both disappear.
 ! Display math should end with $$.
 <to be read again> 
                    \endgroup 
-l.167 \end{equation}
+l.177 \end{equation}
                     
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
 
+[4]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.195 
+l.212 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -522,7 +568,7 @@ you left one out. Proceed, with fingers crossed.
 ! Display math should end with $$.
 <to be read again> 
                    \par 
-l.195 
+l.212 
       
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
@@ -530,7 +576,7 @@ So I shall assume that you typed `$$' both times.
 ! Undefined control sequence.
 <argument> \parital 
                     
-l.196  \frac{\parital}{\partial t}
+l.213  \frac{\parital}{\partial t}
                                   (X(x)T(t)) = \frac{\partial ^2}{\partial x...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -541,7 +587,7 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.196  \frac{\parital}{\partial t}
+l.213  \frac{\parital}{\partial t}
                                   (X(x)T(t)) = \frac{\partial ^2}{\partial x...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -549,7 +595,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 \frac  #1#2->{\begingroup #1\endgroup \@@over #2}
                                                  
-l.196  \frac{\parital}{\partial t}
+l.213  \frac{\parital}{\partial t}
                                   (X(x)T(t)) = \frac{\partial ^2}{\partial x...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -560,7 +606,7 @@ deleted material, e.g., by typing `I$}'.
 ! You can't use `\eqno' in math mode.
 \endmathdisplay@a ...\df@tag \@empty \else \veqno 
                                                   \alt@tag \df@tag \fi \ifx ...
-l.197 \end{equation}
+l.214 \end{equation}
                     
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -570,7 +616,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.197 \end{equation}
+l.214 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -581,7 +627,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.197 \end{equation}
+l.214 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -589,11 +635,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-[3]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.248 
+l.265 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -601,7 +646,7 @@ you left one out. Proceed, with fingers crossed.
 ! Display math should end with $$.
 <to be read again> 
                    \par 
-l.248 
+l.265 
       
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
@@ -609,13 +654,13 @@ So I shall assume that you typed `$$' both times.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.249  X(x) = Acos(\sqrt{
+l.266  X(x) = Acos(\sqrt{
                          \lamda x} + Bsin(\sqrt{\lambda x}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.249  X(x) = Acos(\sqrt{\lamda
+l.266  X(x) = Acos(\sqrt{\lamda
                                 x} + Bsin(\sqrt{\lambda x}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -626,7 +671,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\eqno' in math mode.
 \endmathdisplay@a ...\df@tag \@empty \else \veqno 
                                                   \alt@tag \df@tag \fi \ifx ...
-l.250 \end{equation}
+l.267 \end{equation}
                     
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -636,7 +681,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.250 \end{equation}
+l.267 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -645,7 +690,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.253 This means that $sin\lamda
+l.270 This means that $sin\lamda
                                  = 0$ This gives us the eigenvalue $\lambda ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -653,42 +698,118 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[4]
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 287--287
+[5]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.325 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.325 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.326 \end{equation}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! You can't use `\eqno' in vertical mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.326 \end{equation}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.326 \end{equation}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.326 \end{equation}
+                    
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+[6]
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 335--335
 []        \OT1/cmtt/m/n/10 unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*
 u(i+1);[] 
  []
 
-! Missing $ inserted.
+
+LaTeX Warning: Reference `Putt inn' on page 7 undefined on input line 369.
+
+[7]
+! Undefined control sequence.
+l.390 ...) = 0 \Rightarrow X''(x) + (\lambda + \my
+                                                  )X(x) = 0
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! You can't use `\eqno' in math mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.412 \end{equation}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing } inserted.
 <inserted text> 
-                $
-l.294 ...(\ref{eq:Backward_eulerScheme}) shows, b_
-                                                  value is defined as
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+                }
+l.412 \end{equation}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.295 1+2$\alpha
-                $, and a=c=-$\alpha$, v being the solution given at a previo...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-[5]
-
-LaTeX Warning: Reference `Putt inn' on page 6 undefined on input line 321.
-
-[6] (./Partial_diff2.aux)
+[8] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 1189 strings out of 494953
- 12621 string characters out of 6180976
+ 1190 strings out of 494953
+ 12643 string characters out of 6180976
  68883 words of memory out of 5000000
- 4509 multiletter control sequences out of 15000+600000
+ 4510 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  27i,10n,20p,244b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -706,10 +827,10 @@ r5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (6 pages, 182185 bytes).
+Output written on Partial_diff2.pdf (8 pages, 187507 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 91 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

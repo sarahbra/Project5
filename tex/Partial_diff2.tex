@@ -19,6 +19,8 @@
 \section{Introduction}
 
 
+
+
 \section{Theory}
 LEGG TIL TEORI PÅ 3D PDE OG BRUK LABEL eq:partDIFF3D
 VET IKKE HVOR JEG SKAL SETTE LIGNINGEN
@@ -75,9 +77,19 @@ u(1,t) = X(1)T(t) = 0
 \label{eq:initialCond}
 \end{equation}
 
-If we let $T(t) = 0$ we get the trivial solution which we are not interested 
+If we let $T(t) = 0$ we get the trivial solution, which we are not interested int.
 
-\subsection{Algortihm}
+In two dimensions the same initial conditions require
+
+\begin{equation}
+u(0,0,t) = X(0)Y(0)T(t) = 0
+u(1,0,t) = X(1)Y(0)T(t) = 0
+u(0,1,t) = X(0)Y(0)T(t) = 0
+u(1,1,t) = X(1)Y(1)T(t) = 0
+\label{eq:initialCondTwoDim}
+\end{equation}
+
+\subsection{Algorithms}
 \subsubsection{Forward Euler}
 
 In forward euler we are approximating the time derivative by:
@@ -104,7 +116,6 @@ And this is the form we choose for solving this. By looking at this equation we 
 \end{equation}
 
 Else the second term vanishes, and our solution for the new time step is wrong.
-
 
 We can implement this as a algorithm just by looping over the timesteps, for so to loop over the 
 x values where $x \in [0,1]$.
@@ -147,7 +158,6 @@ V_j = \hat{A}^{-1}V_{j_1}  = \hat{A}^{-1}(\hat{A}^{-1}V_{j_2})= ... = \hat{A}^{-
 
 To solve this matrix equation we utilize the Gaussian elimination for tridiagonal matrixes which we solved in project 1.
 
-
 \subsubsection{Crank Nicolson}
 In Cranc-Nicolson we use a time centered scheme where 
 \begin{equation}
@@ -178,6 +188,13 @@ Dette kan vi skrive som :
 \end{equation}
 
 Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
+
+\subsection{Jakobi}
+For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
+\begin{equation}
+  u_{i,j}
+\end{equation}
+
 
 \section{Execution}
 \subsection{2D- Heat Equation}
@@ -277,8 +294,39 @@ So the the solution becomes:
 
  Where we have used that $f(x) = constant = 1$
 
+\subsubsection{Error Analysis}
+To calculate the error we use taylor expansion which are defined:
+\begin{equation}
+ u_n = \frac{f^{(n)}(b)}{n!}
+\end{equation}
 
-\subsubsection{Implementation Forward Euler}
+So to calculate the error in the forward difference for u'(t) we expand it in a Taylor axpansion around $t_n$:
+\begin{equation}
+ u(t_{n+1}) = u(t_n) + u'(t_n)\Delta t + \frac{1}{2}u''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+This gives the error:
+
+\begin{equation}
+ R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+This means that the forward euler has a error in time in the first order. 
+For backwards euler we taylor expand $u(t_{n-1}$ and get:
+
+\begin{equation}
+  R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+So the same as in the Forward Euler scheme
+
+In Crank-Nicolson we use a time centered scheme so we have that:
+\begin{equation}
+ 
+\end{equation}
+
+
+\subsubsection{Forward Euler}
 For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
 restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
 \begin{verbatim}
@@ -290,7 +338,7 @@ vec forward_step(double n, double alpha, vec u, vec unew) {
 } 
 \end{verbatim}
 
-\subsubsection{Implementation Backward Euler}
+\subsubsection{Backward Euler}
 In the implicit Backward Euler scheme we use Gaussian elimination to advance in space and time, implemented in code below. Here, as eq (\ref{eq:Backward_eulerScheme}) shows, b-value is defined as
 1+2$\alpha$, and a=c=-$\alpha$, v being the solution given at a previous timestep, with the same initial condition as for the forward Euler scheme. We run the Gaussian elimination for each timestep dt until T(i) = final T.
 
@@ -313,7 +361,7 @@ In the implicit Backward Euler scheme we use Gaussian elimination to advance in 
     u(n) = 0;
 \end{verbatim}
 
-\subsubsection{Implementation Crank-Nicolson}
+\subsubsection{Crank-Nicolson}
 Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 
 \subsection{3D- Heat equation}
@@ -323,6 +371,8 @@ Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by 
 \begin{equation}
  u(x,y,t) = X(x)Y(y)T(t)
 \end{equation}
+
+With the boundary conditions $u(0,y,t) = u(1,y,t) = 0$ and $u(x,0,t) = u(x,1,t) = 0$
 So when we set this in the equation we get:
 
 \begin{equation}
@@ -337,13 +387,42 @@ So by the same logic as for 2D this becomes:
 
 If we first keep y constant and varies x we get the equation:
 \begin{equation}
- X''(x)
+ X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \Rightarrow X''(x) + (\lambda + \my)X(x) = 0
+\end{equation}
+
+And this we can solve as we did in 2D the same for when we keep x constant:
+
+\begin{equation}
+ Y''(y) + (\lambda + \mu)Y(y) = 0
+\end{equation}
+
+These two equations becomes:
+
+\begin{equation}
+ X(x) = b_nsin(n\pi x)
+\end{equation}
+\begin{equation}
+ Y(y) = c_msin(m\pi y)
+\end{equation}
+
+And the time equation then becomes:
+
+\begin{equation}
+ T(t) = d_{n,m}e^{-(m^2\pi ^2 + n^2\pi^2)t
+\end{equation}
+
+So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
+
+\begin{equation}
+ u(x,y,t) = sin(\pi x)sin(\pi y) e^{-2pi^2t}
 \end{equation}
 
 \subsection{Numeric Solution}
 
 
+
 \section{Results}
+\subsection{2D PDE}
 
 \section{Discussion}
 
