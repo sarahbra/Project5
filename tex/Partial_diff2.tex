@@ -3,6 +3,8 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.png}
+\usepackage{verbatim}
+
 %opening
 \title{Project 5 - Partial Differencial Equation}
 \author{Solveig Andrea Devold Fjeld and Sarah Rastad}
@@ -65,7 +67,7 @@ So if we set put this in the equation (\ref{eq:simpleDiff}) we get:
 \label{eq:eigValue}
 \end{equation}
 
-We see that thsi must be equal to a constant and we see that this is an eigenvalue problem. We put a minus sign infront of the eigenvalue because
+We see that this must be equal to a constant and we see that this is an eigenvalue problem. We put a minus sign infront of the eigenvalue because
 of convention.
 
 This gives uss the equations:
@@ -76,11 +78,19 @@ u(1,t) = X(1)T(t) = 0
 \label{eq:initialCond}
 \end{equation}
 
-If we let $T(t) = 0$ we get the trivial solution which we are not interested 
+If we let $T(t) = 0$ we get the trivial solution, which we are not interested int.
 
+In two dimensions the same initial conditions require
 
+\begin{equation}
+u(0,0,t) = X(0)Y(0)T(t) = 0
+u(1,0,t) = X(1)Y(0)T(t) = 0
+u(0,1,t) = X(0)Y(0)T(t) = 0
+u(1,1,t) = X(1)Y(1)T(t) = 0
+\label{eq:initialCondTwoDim}
+\end{equation}
 
-\subsection{Algortihm}
+\subsection{Algorithms}
 \subsubsection{Forward Euler}
 
 In forward euler we are approximating the time derivative by:
@@ -95,12 +105,24 @@ We are also using a centered difference in space with the approximation as you c
  gives:
  
 \begin{equation}
-\frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2} \Rightarrow u_{i,j+1} = \alpha u_{i-1,j} + (1 -2\alpha)u_{i,j} + \alpha u_{i+1,j}
-\label{eq:Forward_eulerScheme}
+\frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2} 
+\end{equation}
+\begin{equation}
+ \Rightarrow u_{i,j+1} = \alpha u_{i-1,j} + (1 -2\alpha)u_{i,j} + \alpha u_{i+1,j}
+ \label{eq:Forward_eulerScheme}
 \end{equation}
 
-And this is the equation we use to solve this. We can implement this as a algorithm jus by looping over the timesteps, for so to loop over the 
-x values where $x \in [0,1]$. 
+And this is the form we choose for solving this. By looking at this equation we also see that stability requires (eq. (\ref{eq:alpha}))
+
+\begin{equation}
+\alpha = \frac{\Delta t}{\Delta x^2} < 0.5
+\label{eq:alpha}
+\end{equation}
+
+Else the second term vanishes, and our solution for the new time step is wrong.
+
+We can implement this as a algorithm just by looping over the timesteps, for so to loop over the 
+x values where $x \in [0,1]$.
 
 \subsubsection{Backward Euler}
 
@@ -140,7 +162,6 @@ V_j = \hat{A}^{-1}V_{j_1}  = \hat{A}^{-1}(\hat{A}^{-1}V_{j_2})= ... = \hat{A}^{-
 
 To solve this matrix equation we utilize the Gaussian elimination for tridiagonal matrixes which we solved in project 1.
 
-
 \subsubsection{Crank Nicolson}
 In Cranc-Nicolson we use a time centered scheme where 
 \begin{equation}
@@ -156,7 +177,6 @@ This gives us the equation :
 This we can write as:
 \begin{equation}
  -\alpha u_{i+1,j+1} + (1+2\alpha)u_{i,j+1} - \alpha u_{i-1,j-1} =  \alpha u_{i+1,j} + (1-2\alpha)u_{i,j} + \alpha u_{i-1,j}
-
 \end{equation}
 
 This we can write as an matrix equation:
@@ -172,6 +192,13 @@ Dette kan vi skrive som :
 
 Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
 
+\subsection{Jakobi}
+For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
+\begin{equation}
+  u_{i,j}
+\end{equation}
+
+
 \section{Execution}
 \subsection{2D- Heat Equation}
 \subsubsection{Analytical solution to the 1D heat equation}
@@ -185,8 +212,7 @@ To solve the equation (\ref{eq:PartDiff}) we need to look for seperable solution
 If we set this in in the equation (\ref{eq:PartDiff}) we get:
 
 \begin{equation}
- 
- \frac{\parital}{\partial t}(X(x)T(t)) = \frac{\partial ^2}{\partial x^2}(X(x)T(t))
+  \frac{\partial }{\partial t}(X(x)T(t)) = \frac{\partial ^2}{\partial x^2}(X(x)T(t))
 \end{equation}
 
 To simplify the notation we write:
@@ -302,15 +328,43 @@ In Crank-Nicolson we use a time centered scheme so we have that:
 \end{equation}
 
 
+\subsubsection{Forward Euler}
+For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
+restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
+\begin{verbatim}
+vec forward_step(double n, double alpha, vec u, vec unew) {
+    for (int i=1; i<n; i++) {
+        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    }
+    return unew;
+} 
+\end{verbatim}
 
+\subsubsection{Backward Euler}
+In the implicit Backward Euler scheme we use Gaussian elimination to advance in space and time, implemented in code below. Here, as eq (\ref{eq:Backward_eulerScheme}) shows, b-value is defined as
+1+2$\alpha$, and a=c=-$\alpha$, v being the solution given at a previous timestep, with the same initial condition as for the forward Euler scheme. We run the Gaussian elimination for each timestep dt until T(i) = final T.
 
+\begin{verbatim}
+ Forward Substitution
+    double m;
+    for (int k=2; k<=n; k++) {
+        m = a/b(k-1);
+        b(k) = b_value - m*c;
+        v(k) -= m*v(k-1);
+    }
 
-\subsubsection{Implementation Forward Euler}
+ Backward Substitution
+    u(n)= v(n)/b(n);
+    for (int k= n-1; k>0; k--) {
+        u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
+    }
 
-\subsubsection{Implementation Backward Euler}
+    u(0) = 0;
+    u(n) = 0;
+\end{verbatim}
 
-\subsubsection{Implementation Cranc-Nicolson}
-
+\subsubsection{Crank-Nicolson}
+Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 
 \subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
@@ -365,7 +419,7 @@ So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
  u(x,y,t) = sin(\pi x)sin(\pi y) e^{-2pi^2t}
 \end{equation}
 
-
+\subsection{Numeric Solution}
 
 
 
