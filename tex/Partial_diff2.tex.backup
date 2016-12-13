@@ -281,6 +281,12 @@ Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by 
 \begin{equation}
  u(x,y,t) = X(x)Y(y)T(t)
 \end{equation}
+So when we set this in the equation we get:
+
+\begin{equation}
+ \frac{}{×} 
+\end{equation}
+
 
 \section{Results}
 
