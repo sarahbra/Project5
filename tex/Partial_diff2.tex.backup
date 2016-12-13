@@ -489,6 +489,110 @@ Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
 \end{table}
 
 \subsection{2D PDE}
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt00025_dx01_T025}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.25, T=0.25}
+    \label{fig:Num_dx0.1_dt0.0025T1}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt00025_dx01_T025}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=0.25}
+    \label{fig:Ana_dx0.1_dt0.0025T1}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt00025_dx01_T125}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.25, T=1.25}
+    \label{fig:Num_dx0.1_dt0.0025T2}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt001_dx01_T125}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=1.25}
+    \label{fig:Ana_dx0.1_dt0.0025T2}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt00025_dx02_T10}
+    \caption{Explicit solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
+    \label{fig:Num_dx0.2}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt001_dx02_T003}
+    \caption{Analytical solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
+    \label{fig:Ana_dx0.2}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt00015_dx01_T005}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.15, T=0.03}
+    \label{fig:Num_alpha0.15}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt00015_dx01_T005}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.15, T=0.03}
+    \label{fig:Ana_alpha0.15}
+  \end{center}
+
+\end{figure}
+
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt0006_dx01_T0006}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.6, T=0.006}
+    \label{fig:Num_feil1}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt0006_dx01_T0006}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.6, T=0.006}
+    \label{fig:Ana_feil1}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt0006_dx01_T06}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.6, T=0.6}
+    \label{fig:Num_feil2}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt0.006_dx0.1_T0.6}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=0.6}
+    \label{fig:Ana_feil2}
+  \end{center}
+
+\end{figure}
 
 \section{Discussion}
 
