@@ -1,8 +1,8 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
-\documentclass{article}
 \usepackage{amsmath}
-
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
 %opening
 \title{Project 5 - Partial Differencial Equation}
 \author{Solveig Andrea Devold Fjeld and Sarah Rastad}
@@ -370,6 +370,45 @@ So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
 
 
 \section{Results}
+\begin{figure}
+  \includegraphics[scale=0.5]{Time_evolution}
+    \caption{The time evolution for the analytical solution}
+    \label{fig:time_evo}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.5]{numerical_analytcal_T0025}
+    \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.0025$}
+    \label{fig:NumAna0025}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.5]{numerical_analytcal_T065}
+    \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.65$}
+    \label{fig:NumAna065}
+\end{figure}
+
+In figure (\ref{fig:time_evo}) we see the time evolution for the analytical solution which we used to get the time points to analyze the numerical 
+calculations.
+In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical calculations against the analytical for two times $t_1 = 0.025$
+and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
+calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
+
+
+\begin{table}
+\centering
+\caption{Table with the relative error of the different schemes calculating it by using the max value and $\epsilon =|1-u_{num}/u_{anałytical}|$ }
+\label{tab:RelError}
+\begin{tabular}{|l|l|l|}
+\hline
+ & $t_1=0.025$ & $t_2=0.065$ \\ \hline
+Forward Euler & $0.000023$ & $0.026$ \\ \hline
+Backward Euler & $0.000631$ & $0.4227$ \\ \hline
+Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
+\end{tabular}
+\end{table}
+
+
 \subsection{2D PDE}
 
 \section{Discussion}

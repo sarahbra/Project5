@@ -298,7 +298,7 @@ So the same as in the Forward Euler scheme
 
 In Crank-Nicolson we use a time centered scheme so we have that:
 \begin{equation}
- \frac{u_}{×}
+ 
 \end{equation}
 
 
@@ -371,6 +371,20 @@ So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
 
 \section{Results}
 
+\begin{figure}
+  \includegraphics{numerical_analytcal_T0.025.png}
+  \caption{The three schemes with the analytical solutiion for when T = 0.025 and dt = 0.0025}
+  \label{fig:NumAna0.0}
+\end{figure}
+
+\begin{figure}
+  \includegraphics{numerical_analytcal_T0.65}
+  \caption{A boat.}
+  \label{fig:boat1}
+\end{figure}
+
+
+\subsection{2D PDE}
 
 \section{Discussion}
 
