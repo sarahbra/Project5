@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{verbatim}
 
 %opening
 \title{Project 5 - Partial Differencial Equation}
@@ -270,6 +271,16 @@ So the the solution becomes:
 
 
 \subsubsection{Implementation Forward Euler}
+For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
+restrictions for the explicit scheme. We then call the forward_step method (see below) for a given number of timesteps, each run increasing the timeframe T by dt.
+\begin{verbatim}
+vec forward_step(double n, double alpha, vec u, vec unew) {
+    for (int i=1; i<n; i++) {
+        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    }
+    return unew;
+} 
+\end{verbatim}
 
 \subsubsection{Implementation Backward Euler}
 

@@ -17,6 +17,7 @@
 
 \section{Introduction}
 
+
 \section{Theory}
 LEGG TIL TEORI PÅ 3D PDE OG BRUK LABEL eq:partDIFF3D
 VET IKKE HVOR JEG SKAL SETTE LIGNINGEN
@@ -284,8 +285,20 @@ Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by 
 So when we set this in the equation we get:
 
 \begin{equation}
- \frac{}{×} 
+ \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = \frac{T'(t)}{T(t)} 
 \end{equation}
+
+So by the same logic as for 2D this becomes:
+
+\begin{equation}
+ \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = -\lambda
+\end{equation}
+
+If we first keep y constant and varies x we get the equation:
+\begin{equation}
+ X''(x)
+\end{equation}
+
 
 
 \section{Results}
