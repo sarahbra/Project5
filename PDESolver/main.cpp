@@ -58,7 +58,7 @@ vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
-    return 20*sin(pi*dx*step);
+    return sin(pi*dx*step);
 
 }
 
@@ -151,7 +151,7 @@ void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
         v(0) = v(n) = 0;
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
         if (t%10==0 || t==1) {
-            double time = t*dt/2;
+            double time = t*dt;
             printtofile(time,v,n);
         }
     }
@@ -164,7 +164,7 @@ void analytic_Solution (double dx, double dt, double n, double t_step) {
         for (int i=1;i<n;i++) {
             double pi = 3.141592653589793238463;
 
-            u(i) = 20*4/pi*sin(pi*dx*i)*exp(-pi*pi*dt*t);
+            u(i) = sin(pi*dx*i)*exp(-pi*pi*dt*t);
         }
         if (t%10==0 || t==1) {
             double time = t*dt;

@@ -46,7 +46,7 @@ void jakobi_solver (int n, double t_steps, double dx, double dt, mat &A_old) {
 
 double func(double dx, double x_step, double y_step){
     double pi  =3.141592653589793238463;
-    return 2*sin(pi*dx*x_step)*sin(pi*dx*y_step);
+    return sin(pi*dx*x_step)*sin(pi*dx*y_step);
 }
 
 //Found by separation of variables (solving for x while keeping t and y constant and vice versa)
@@ -71,11 +71,11 @@ int main(){
     int n;
     double dx, dt, t_steps;
     char* outfilename;
-    outfilename = "dx0.02.txt";
+    outfilename = "dx0.1_dt0.25.txt";
     n = 10;
-    dx = 0.4;
+    dx = 0.04;
     dt = dx*dx*0.25;
-    t_steps = n*n*n;
+    t_steps = n*n;
     mat A = zeros<mat>(n+1,n+1);
 
     for (int i=1;i<n;i++) {
