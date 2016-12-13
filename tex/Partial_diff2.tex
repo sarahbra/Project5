@@ -192,10 +192,11 @@ Dette kan vi skrive som :
 
 Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
 
-\subsection{Jakobi}
+\subsection{Jacobi}
 For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
 \begin{equation}
   u(i,j,t+dt) = u(i,j,t) + alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t));
+\label{eq:jacobi}
 \end{equation}
 
 \section{Execution}
@@ -239,8 +240,9 @@ In the implicit Backward Euler scheme we use Gaussian elimination to advance in 
 Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 
 \subsection{Jacobi}
-Implementing the jacobi-algorithm is quite straight forward using the 
+Implementing the jacobi-algorithm is quite straight forward using eq.(\ref{eq:jacobi}). U(x,y,0)= A old = solution for t=0 found by separation of variables.
 \begin{verbatim}
+
 void jakobi_solver (double dx, double dt) {
     double n = 1.0/dx;
     double t_steps = 1000;
@@ -261,9 +263,6 @@ void jakobi_solver (double dx, double dt) {
             }
         }
         A_old = A_new;
-        if((t%100==0)||(t==1)) {
-            double time = t*dt;
-            printtofile(time, A_new,n);
         }
     }
 } 
@@ -490,7 +489,39 @@ Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
 \end{table}
 
 \subsection{2D PDE}
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt0.0025_dx0.1_T0.25}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.25, T=0.25}
+    \label{fig:Num_dx0.1_dt0.0025T1}
+  \end{center}
 
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt0.0025_dx0.1_T0.25}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=0.25}
+    \label{fig:Num_dx0.1_dt0.0025T1}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{num_dt0.0025_dx0.1_T1.25}
+    \caption{Explicit solution for dx=0.1, $\alpha$ = 0.25, T=1.25}
+    \label{fig:Num_dx0.1_dt0.0025T1}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt0.0025_dx0.1_T1.25}
+    \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=1.25}
+    \label{fig:Num_dx0.1_dt0.0025T1}
+  \end{center}
+
+\end{figure}
 \section{Discussion}
 
 \section{Conclusion}
