@@ -422,6 +422,23 @@ So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
 
 
 \section{Results}
+<<<<<<< HEAD
+
+\begin{figure}
+  \includegraphics{numerical_analytcal_T0.025.png}
+  \caption{The three schemes with the analytical solutiion for when T = 0.025 and dt = 0.0025}
+  \label{fig:NumAna0.0}
+\end{figure}
+
+\begin{figure}
+  \includegraphics{numerical_analytcal_T0.65}
+  \caption{A boat.}
+  \label{fig:boat1}
+\end{figure}
+
+
+=======
+>>>>>>> e8abcfec20f4e476ec5cd244c9ef672da707605d
 \subsection{2D PDE}
 
 \section{Discussion}
