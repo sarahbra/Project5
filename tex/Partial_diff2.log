@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  13 DEC 2016 20:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  13 DEC 2016 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -525,10 +525,11 @@ OT1/cmr/m/n/10 (1)\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr
 /m/n/10 ) = 0
  []
 
+[2]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.142 \begin{bmatrix}
+l.147 \begin{bmatrix}
                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -536,7 +537,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.148 \end{bmatrix}
+l.153 \end{bmatrix}
                    
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -544,8 +545,8 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-[2]
-Overfull \hbox (55.4913pt too wide) detected at line 199
+
+Overfull \hbox (55.4913pt too wide) detected at line 204
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j; t \OT1/cmr/m/n/10 + \
 OML/cmm/m/it/10 dt\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/c
 mm/m/it/10 i; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 alpha \OMS/cmsy/m/n/10 ^
@@ -561,13 +562,13 @@ n/10 ));
  []
 
 [3]
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 209--209
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 214--214
 []        \OT1/cmtt/m/n/10 unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*
 u(i+1);[] 
  []
 
 [4]
-Overfull \hbox (80.24629pt too wide) in paragraph at lines 260--260
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 265--265
 []                    \OT1/cmtt/m/n/10 + A_old(i-1,j) - 4*A_old(i,j) + A_old(i,
 j+1) + A_old(i,j-1));[] 
  []
@@ -576,7 +577,7 @@ j+1) + A_old(i,j-1));[]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.338 
+l.343 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -584,7 +585,7 @@ you left one out. Proceed, with fingers crossed.
 ! Display math should end with $$.
 <to be read again> 
                    \par 
-l.338 
+l.343 
       
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
@@ -592,13 +593,13 @@ So I shall assume that you typed `$$' both times.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.339  X(x) = Acos(\sqrt{
+l.344  X(x) = Acos(\sqrt{
                          \lamda x} + Bsin(\sqrt{\lambda x}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.339  X(x) = Acos(\sqrt{\lamda
+l.344  X(x) = Acos(\sqrt{\lamda
                                 x} + Bsin(\sqrt{\lambda x}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -609,7 +610,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\eqno' in math mode.
 \endmathdisplay@a ...\df@tag \@empty \else \veqno 
                                                   \alt@tag \df@tag \fi \ifx ...
-l.340 \end{equation}
+l.345 \end{equation}
                     
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -619,7 +620,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.340 \end{equation}
+l.345 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -628,7 +629,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.343 This means that $sin\lamda
+l.348 This means that $sin\lamda
                                  = 0$ This gives us the eigenvalue $\lambda ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -636,12 +637,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-LaTeX Warning: Reference `Putt inn' on page 6 undefined on input line 372.
-
 [6]
+
+LaTeX Warning: Reference `Putt inn' on page 7 undefined on input line 377.
+
 ! Undefined control sequence.
-l.393 ...) = 0 \Rightarrow X''(x) + (\lambda + \my
+l.398 ...) = 0 \Rightarrow X''(x) + (\lambda + \my
                                                   )X(x) = 0
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -652,7 +653,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\eqno' in math mode.
 \endmathdisplay@a ...\df@tag \@empty \else \veqno 
                                                   \alt@tag \df@tag \fi \ifx ...
-l.415 \end{equation}
+l.420 \end{equation}
                     
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -662,7 +663,7 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.415 \end{equation}
+l.420 \end{equation}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -671,116 +672,66 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 [7]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.451 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Display math should end with $$.
-<to be read again> 
-                   \par 
-l.451 
-      
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
+Overfull \hbox (95.02618pt too wide) detected at line 460
+\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
+/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) + []\OML/c
+mm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm
+/m/it/10 t \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/
+it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + [] []\OML/c
+mm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm
+/m/it/10 t[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/
+m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + [] []\OML
+/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/c
+mm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT1/cmr/m/n/10 (^^A\OML/cmm
+/m/it/10 t[]\OT1/cmr/m/n/10 )
+ []
 
 
-! LaTeX Error: Bad math environment delimiter.
+Overfull \hbox (95.13728pt too wide) detected at line 466
+\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
+/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) \OMS/cmsy/
+m/n/10 ^^@ []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/
+m/n/10 )^^A\OML/cmm/m/it/10 t \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 u[]\OT1/cmr/
+m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OMS/cmsy/
+m/n/10 ^^@ [] []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/c
+mr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 u[]\OT1
+/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OMS/
+cmsy/m/n/10 ^^@ [] []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\
+OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT
+1/cmr/m/n/10 (^^A\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )
+ []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.452 \end{equation}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+<Time_evolution.png, id=39, 578.16pt x 433.62pt>
+File: Time_evolution.png Graphic file (type png)
+ <use Time_evolution.png>
+Package pdftex.def Info: Time_evolution.png used on input line 499.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-! You can't use `\eqno' in vertical mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.452 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+<numerical_analytcal_T0025.png, id=41, 578.16pt x 433.62pt>
+File: numerical_analytcal_T0025.png Graphic file (type png)
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.452 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
+<use numerical_analytcal_T0025.png>
+Package pdftex.def Info: numerical_analytcal_T0025.png used on input line 505.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
-l.452 \end{equation}
-                    
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
+<numerical_analytcal_T065.png, id=42, 578.16pt x 433.62pt>
+File: numerical_analytcal_T065.png Graphic file (type png)
+
+<use numerical_analytcal_T065.png>
+Package pdftex.def Info: numerical_analytcal_T065.png used on input line 511.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 
-! LaTeX Error: File `Time_evolution' not found.
+LaTeX Warning: Command \l invalid in math mode on input line 520.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.456 ...ncludegraphics[scale=0.5]{Time_evolution}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+[8] [9 <./Time_evolution.png> <./numerical_analytcal_T0025.png>]
+
+LaTeX Warning: Command \l invalid in math mode on input line 524.
 
 
-! LaTeX Error: File `numerical_analytcal_T0025' not found.
+LaTeX Warning: Command \l invalid in math mode on input line 524.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.462 ...ics[scale=0.5]{numerical_analytcal_T0025}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: File `numerical_analytcal_T065' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.468 ...hics[scale=0.5]{numerical_analytcal_T065}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Command \l invalid in math mode on input line 477.
-
-
-LaTeX Warning: Command \l invalid in math mode on input line 481.
-
-
-LaTeX Warning: Command \l invalid in math mode on input line 481.
-
-[8] [9] (./Partial_diff2.aux)
+[10 <./numerical_analytcal_T065.png>] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -789,13 +740,13 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 2450 strings out of 494953
- 31430 string characters out of 6180976
- 94315 words of memory out of 5000000
- 5702 multiletter control sequences out of 15000+600000
+ 2461 strings out of 494953
+ 31795 string characters out of 6180977
+ 94316 words of memory out of 5000000
+ 5714 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,10n,23p,262b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,10n,23p,263b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
@@ -809,10 +760,10 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (9 pages, 183467 bytes).
+Output written on Partial_diff2.pdf (10 pages, 335072 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 100 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

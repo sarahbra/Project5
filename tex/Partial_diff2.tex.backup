@@ -91,6 +91,11 @@ u(1,1,t) = X(1)Y(1)T(t) = 0
 \end{equation}
 
 \subsection{Algorithms}
+For solving PDE's we have to different kind of algorithms we have explicit and implicit. An example of an explicit algorithm is Forward Euler.
+What defines an explicit algorithm is that it takes basis in the forward timestep when differentiating and is therefore straightforward to program.
+While the implicit scheme we calculate the differencial by using the previous timestep so it becomes a series of matrix equations which can be solved 
+using for example Gaussian elimination or LU-decomposition. Examples of implicit schemes are backward Euler and Crank-Nicolson.
+
 \subsubsection{Forward Euler}
 
 In forward euler we are approximating the time derivative by:
@@ -199,8 +204,80 @@ For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are giv
 \end{equation}
 
 \section{Execution}
-\subsection{2D- Heat Equation}
-\subsubsection{Analytical solution to the 1D heat equation}
+
+\subsubsection{Forward Euler}
+For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
+restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
+\begin{verbatim}
+vec forward_step(double n, double alpha, vec u, vec unew) {
+    for (int i=1; i<n; i++) {
+        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
+    }
+    return unew;
+} 
+\end{verbatim}
+
+\subsubsection{Backward Euler}
+In the implicit Backward Euler scheme we use Gaussian elimination to advance in space and time, implemented in code below. Here, as eq (\ref{eq:Backward_eulerScheme}) shows, b-value is defined as
+1+2$\alpha$, and a=c=-$\alpha$, v being the solution given at a previous timestep, with the same initial condition as for the forward Euler scheme. We run the Gaussian elimination for each timestep dt until T(i) = final T.
+
+\begin{verbatim}
+ Forward Substitution
+    double m;
+    for (int k=2; k<=n; k++) {
+        m = a/b(k-1);
+        b(k) = b_value - m*c;
+        v(k) -= m*v(k-1);
+    }
+
+ Backward Substitution
+    u(n)= v(n)/b(n);
+    for (int k= n-1; k>0; k--) {
+        u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
+    }
+
+    u(0) = 0;
+    u(n) = 0;
+\end{verbatim}
+
+\subsubsection{Crank-Nicolson}
+Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
+
+\subsection{Jacobi}
+Implementing the jacobi-algorithm is quite straight forward using the 
+\begin{verbatim}
+void jakobi_solver (double dx, double dt) {
+    double n = 1.0/dx;
+    double t_steps = 1000;
+    mat A_old = zeros<mat>(n+1,n+1);
+    for (int i=1;i<n;i++) {
+        for (int j=1;j<n;j++) {
+            A_old(i,j) = func(dx,i,j);
+        }
+    }
+
+    double alpha = dt/(dx*dx);
+    mat A_new = zeros<mat>(n+1,n+1);
+    for (int t=1;t<=t_steps;t++) {
+        for (int i=1;i<n;i++) {
+            for (int j=1;j<n;j++) {
+                A_new(i,j) = A_old(i,j) + alpha*(A_old(i+1,j)
+                    + A_old(i-1,j) - 4*A_old(i,j) + A_old(i,j+1) + A_old(i,j-1));
+            }
+        }
+        A_old = A_new;
+        if((t%100==0)||(t==1)) {
+            double time = t*dt;
+            printtofile(time, A_new,n);
+        }
+    }
+} 
+\end{verbatim}
+
+
+\section{Results}
+\subsection{Closed form solutions}
+\subsubsection{Solution to the 1D heat equation}
 To solve the equation (\ref{eq:PartDiff}) we need to look for seperable solutions on the form:
 
 \begin{equation}
@@ -281,7 +358,7 @@ The solution for $T(t)$ is then given by:
  T'(t) = -n^2*\pi ^2 T(t)
 \end{equation}
 
-Which is welknown 
+Which is well known as 
 
 \begin{equation}
  T(t) = c_ne^{-(n*pi)^2t}
@@ -294,78 +371,8 @@ So the the solution becomes:
  \end{equation}
 
  Where we have used that $f(x) = constant = 1$
-
-\subsubsection{Error Analysis}
-To calculate the error we use taylor expansion which are defined:
-\begin{equation}
- u_n = \frac{f^{(n)}(b)}{n!}
-\end{equation}
-
-So to calculate the error in the forward difference for u'(t) we expand it in a Taylor axpansion around $t_n$:
-\begin{equation}
- u(t_{n+1}) = u(t_n) + u'(t_n)\Delta t + \frac{1}{2}u''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^3)
-\end{equation}
-
-This gives the error:
-
-\begin{equation}
- R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
-\end{equation}
-
-This means that the forward euler has a error in time in the first order. 
-For backwards euler we taylor expand $u(t_{n-1}$ and get:
-
-\begin{equation}
-  R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
-\end{equation}
-
-So the same as in the Forward Euler scheme
-
-In Crank-Nicolson we use a time centered scheme so we have that:
-\begin{equation}
  
-\end{equation}
-
-
-\subsubsection{Forward Euler}
-For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
-restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
-\begin{verbatim}
-vec forward_step(double n, double alpha, vec u, vec unew) {
-    for (int i=1; i<n; i++) {
-        unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*u(i+1);
-    }
-    return unew;
-} 
-\end{verbatim}
-
-\subsubsection{Backward Euler}
-In the implicit Backward Euler scheme we use Gaussian elimination to advance in space and time, implemented in code below. Here, as eq (\ref{eq:Backward_eulerScheme}) shows, b-value is defined as
-1+2$\alpha$, and a=c=-$\alpha$, v being the solution given at a previous timestep, with the same initial condition as for the forward Euler scheme. We run the Gaussian elimination for each timestep dt until T(i) = final T.
-
-\begin{verbatim}
- Forward Substitution
-    double m;
-    for (int k=2; k<=n; k++) {
-        m = a/b(k-1);
-        b(k) = b_value - m*c;
-        v(k) -= m*v(k-1);
-    }
-
- Backward Substitution
-    u(n)= v(n)/b(n);
-    for (int k= n-1; k>0; k--) {
-        u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
-    }
-
-    u(0) = 0;
-    u(n) = 0;
-\end{verbatim}
-
-\subsubsection{Crank-Nicolson}
-Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
-
-\subsection{3D- Heat equation}
+ \subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
 Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by seperable solutions:
 
@@ -418,11 +425,68 @@ So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
  u(x,y,t) = sin(\pi x)sin(\pi y) e^{-2pi^2t}
 \end{equation}
 
-\subsection{Numeric Solution}
+\subsubsection{Error Analysis}
+To calculate the error we use taylor expansion which are defined:
+\begin{equation}
+ u_n = \frac{f^{(n)}(b)}{n!}
+\end{equation}
+
+So to calculate the error in the forward difference for u'(t) we make a Taylor expansion around $t_n$:
+\begin{equation}
+ u(t_{n+1}) = u(t_n) + u'(t_n)\Delta t + \frac{1}{2}u''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+This gives the error:
+
+\begin{equation}
+ R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+This means that the forward euler has an error in time in the first order. 
+For backwards euler we taylor expand $u(t_{n-1}$ and get:
+
+\begin{equation}
+  R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+So the same as in the Forward Euler scheme
+
+In Crank-Nicolson we use a time centered scheme so we have to taylor expand $u_{n+ 1/2}$ and $u_{n-1/2}$ and combine these. 
+
+\begin{equation}
+u(t_{n+1/2}) = u(t_n) + \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 + \\
+\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 + \\
+\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
+\end{equation}
+and
+\begin{equation}
+ u(t_{n-1/2}) = u(t_n) - \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 - \\
+\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 - \\
+\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
+\end{equation}
+
+If we subtract the last from the first we get the error:
+\begin{equation}
+ R = \frac{1}{24}u'''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^4)
+\end{equation}
+
+But to get the full error we have to take in consideration the standard arithmetic mean wich is:
+
+\begin{equation}
+ \frac{1}{2}(u(t_{n+1/2}) + u(t_{n - 1/2}) 
+\end{equation}
+This have the error term:
+\begin{equation}
+ R = \frac{1}{8}u''(t_n)\Delta + \frac{1}{384}u''''(t_n)\Delta t^4 + \mathcal{O}(\Delta t^6)
+\end{equation}
+
+If we add these to we get the total error in the time as:
+\begin{equation}
+ R = (\frac{}{×}
+\end{equation}
 
 
 
-\section{Results}
 \begin{figure}
   \includegraphics[scale=0.5]{Time_evolution}
     \caption{The time evolution for the analytical solution}
@@ -447,7 +511,6 @@ In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical 
 and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
 calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
 
-
 \begin{table}
 \centering
 \caption{Table with the relative error of the different schemes calculating it by using the max value and $\epsilon =|1-u_{num}/u_{anałytical}|$ }
@@ -460,7 +523,6 @@ Backward Euler & $0.000631$ & $0.4227$ \\ \hline
 Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
 \end{tabular}
 \end{table}
-
 
 \subsection{2D PDE}
 

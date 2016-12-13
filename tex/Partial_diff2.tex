@@ -91,6 +91,11 @@ u(1,1,t) = X(1)Y(1)T(t) = 0
 \end{equation}
 
 \subsection{Algorithms}
+For solving PDE's we have to different kind of algorithms we have explicit and implicit. An example of an explicit algorithm is Forward Euler.
+What defines an explicit algorithm is that it takes basis in the forward timestep when differentiating and is therefore straightforward to program.
+While the implicit scheme we calculate the differencial by using the previous timestep so it becomes a series of matrix equations which can be solved 
+using for example Gaussian elimination or LU-decomposition. Examples of implicit schemes are backward Euler and Crank-Nicolson.
+
 \subsubsection{Forward Euler}
 
 In forward euler we are approximating the time derivative by:
@@ -446,10 +451,48 @@ For backwards euler we taylor expand $u(t_{n-1}$ and get:
 
 So the same as in the Forward Euler scheme
 
-In Crank-Nicolson we use a time centered scheme so we have that:
+In Crank-Nicolson we use a time centered scheme so we have to taylor expand $u_{n+ 1/2}$ and $u_{n-1/2}$ and combine these. 
+
 \begin{equation}
- 
+u(t_{n+1/2}) = u(t_n) + \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 + \\
+\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 + \\
+\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
 \end{equation}
+and
+\begin{equation}
+ u(t_{n-1/2}) = u(t_n) - \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 - \\
+\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 - \\
+\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
+\end{equation}
+
+If we subtract the last from the first we get the error:
+\begin{equation}
+ R = \frac{1}{24}u'''(t_{n+1/2})\Delta t^2 + \mathcal{O}(\Delta t^4)
+\end{equation}
+
+But to get the full error we have to take in consideration the standard arithmetic mean wich is:
+
+\begin{equation}
+ \frac{1}{2}(u(t_{n+1/2}) + u(t_{n - 1/2}) 
+\end{equation}
+This have the error term:
+\begin{equation}
+ R = \frac{1}{8}u''(t_{n+1/2})\Delta + \frac{1}{384}u''''(t_n)\Delta t^4 + \mathcal{O}(\Delta t^6)
+\end{equation}
+
+If we add these to we get the total error in the time as:
+\begin{equation}
+ R = (\frac{1}{24} u'''(t_{n+1/2}) + \frac{1}{8}u''(t_n)) \Delta t^2 + \mathcal{O}\Delta t^4 
+\end{equation}
+So the error in the Crank-Nicolson scheme is $\Delta t^2$
+
+And the error in spatial differencial for all three is equal to by usin taylor expansion:
+\begin{equation}
+ R_x = \frac{1}{12}u''''(x_n) \Delta x^2 + \mathcal{O}(\Delta x^4)
+\end{equation}
+
+So the error on the x is of the second order.
+
 
 
 \begin{figure}
