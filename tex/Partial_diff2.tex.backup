@@ -1,0 +1,291 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{amsmath}
+
+%opening
+\title{Project 5 - Partial Differencial Equation}
+\author{Solveig Andrea Devold Fjeld and Sarah Rastad}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Introduction}
+
+\section{Theory}
+LEGG TIL TEORI PÅ 3D PDE OG BRUK LABEL eq:partDIFF3D
+VET IKKE HVOR JEG SKAL SETTE LIGNINGEN
+\begin{equation}
+u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2}.
+\label{eq:u_xx}
+\end{equation}
+
+\subsection{Equation}
+In this project we are solving the partial differencial equation:
+\begin{equation}
+  \frac{\partial^2 u(x,t)}{\partial x^2} =\frac{\partial u(x,t)}{\partial t}, t> 0, x\in [0,1]
+  \label{eq:PartDiff}
+\end{equation}
+
+which can also be written
+
+\begin{equation}
+ u_{xx}=u_t
+ \label{eq:simpleDiff}
+\end{equation}
+
+This partial differencial equation can be seen as the temperature gradient in a rod of lenght $L$. This equation can be seen as being dimensionless
+since there are no constant multiplied to the equation and x goes from zero to one.
+
+To solve this equation we are looking for a solution by seperating the variables:
+\begin{equation}
+u(x,t) = X(x)T(t)
+\label{eq:seperating}
+\end{equation}
+
+If we take the partiall derivatives of this expression we get:
+
+\begin{equation}
+u_{xx} = X''(x)T(t) ,and u_t = X(x)T'(t)
+\label{eq:deriv}
+\end{equation}
+
+So if we set put this in the equation (\ref{eq:simpleDiff}) we get:
+
+\begin{equation}
+\frac{T'(t)}{T(t)} = \frac{X''(x)}{X(x)} = constant = -\lambda
+\label{eq:eigValue}
+\end{equation}
+
+We see that thsi must be equal to a constant and we see that this is an eigenvalue problem. We put a minus sign infront of the eigenvalue because
+of convention.
+
+This gives uss the equations:
+
+\begin{equation}
+u(0,t) = X(0)T(t) = 0 
+u(1,t) = X(1)T(t) = 0
+\label{eq:initialCond}
+\end{equation}
+
+If we let $T(t) = 0$ we get the trivial solution which we are not interested 
+
+
+
+\subsection{Algortihm}
+\subsubsection{Forward Euler}
+
+In forward euler we are approximating the time derivative by:
+\begin{equation}
+u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}
+\label{eq:forward_euler}
+\end{equation}
+
+This is an explicit scheme because it finds the current time step by looking at the (LES MER PÅ FORSKJELLEN AV IMPLICIT OG EXPLICIT)
+
+We are also using a centered difference in space with the approximation as you can see in equation (\ref{eq:u_xx}). So setting these to equtions equal to eachother
+ gives:
+ 
+\begin{equation}
+\frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2} \Rightarrow u_{i,j+1} = \alpha u_{i-1,j} + (1 -2\alpha)u_{i,j} + \alpha u_{i+1,j}
+\label{eq:Forward_eulerScheme}
+\end{equation}
+
+And this is the equation we use to solve this. We can implement this as a algorithm jus by looping over the timesteps, for so to loop over the 
+x values where $x \in [0,1]$. 
+
+\subsubsection{Backward Euler}
+
+This is an implicit scheme where we approximating the time derivative by:
+\begin{equation}
+u_t\approx \frac{u(x,t)-u(x,t-\Delta t)}{\Delta t}=\frac{u(x_i,t_j)-u(x_i,t_j-\Delta t)}{\Delta t}
+\label{eq:bacward_Euler}
+\end{equation}
+
+And by setting $u_t$ = $u_xx$ we get the equation:
+\begin{equation}
+u_{i,j-1} = \alpha u_{i-1,j} + (1-2\alpha)u_{i,j} - \alpha u_{j+1,i}
+\label{eq:Backward_eulerScheme}
+\end{equation}
+We then introduce the matrix:
+
+\begin{bmatrix}
+    1 + 2\alpha & -\alpha & 0 & 0 & \dots  & 0 \\
+    -\alpha & 1 + 2\alpha & -\alpha & 0& \dots  & 0 \\
+    0 & -\alpha & 1 + 2\alpha & -\alpha & \dots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & &\vdots &\\
+    0 & 0 & 0 & \dots  & & 1 + 2\alpha
+\end{bmatrix}
+
+Then we see that we can formulate this as a matrix multiplication problem:
+
+\begin{equation}
+\hat{A}V_j = V_{j-i}
+\end{equation}
+
+Which means we can rewrite our differential equation problem to:
+
+\begin{equation}
+V_j = \hat{A}^{-1}V_{j_1}  = \hat{A}^{-1}(\hat{A}^{-1}V_{j_2})= ... = \hat{A}^{-j}V_0
+\label{matrix}
+\end{equation}
+
+To solve this matrix equation we utilize the Gaussian elimination for tridiagonal matrixes which we solved in project 1.
+
+
+\subsubsection{Crank Nicolson}
+In Cranc-Nicolson we use a time centered scheme where 
+\begin{equation}
+u(x_i, t_{j+1/2}) \approx 
+\end{equation}
+
+This gives us the equation :
+
+\begin{equation}
+ \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{1}{2}(\frac{u_{i+1,j+1} - 2u_{i,j+1} + 2u_{i-1,j+1}}{(\Delta x)^2} + \frac{u_{i+1,j} - 2u_{i,j}+u_{i-1,j}}{(\Delta x)^2}
+\end{equation}
+
+This we can write as:
+\begin{equation}
+ -\alpha u_{i+1,j+1} + (1+2\alpha)u_{i,j+1} - \alpha u_{i-1,j-1} =  \alpha u_{i+1,j} + (1-2\alpha)u_{i,j} + \alpha u_{i-1,j}
+
+\end{equation}
+
+This we can write as an matrix equation:
+
+\begin{equation}
+ \hat{A}V_{j+1} = \hat{B}V_{i}
+\end{equation}
+
+Dette kan vi skrive som :
+\begin{equation}
+ \hat{A}V_{j+1} = b_{j}
+\end{equation}
+
+Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
+
+\section{Execution}
+\subsection{2D- Heat Equation}
+\subsubsection{Analytical solution to the 1D heat equation}
+To solve the equation (\ref{eq:PartDiff}) we need to look for seperable solutions on the form:
+
+\begin{equation}
+ u(x,t) = X(x)T(t)
+ \label{eq:u_xt}
+\end{equation}
+
+If we set this in in the equation (\ref{eq:PartDiff}) we get:
+
+\begin{equation}
+ 
+ \frac{\parital}{\partial t}(X(x)T(t)) = \frac{\partial ^2}{\partial x^2}(X(x)T(t))
+\end{equation}
+
+To simplify the notation we write:
+\begin{equation}
+ T'(t)X(x) = T(t)X''(x)
+\end{equation}
+
+Which we can write:
+\begin{equation}
+ \frac{T'(t)}{T(t)} = \frac{X''(x)}{X(x)}
+\end{equation}
+
+We see that each side depends on a different variable R.H.S depends on $x$ and L.H.S depends on $t$, so therefor this mus be equal to a constant.
+This is because if we change one and keep the other fixed the value must be the same. This constant we set to $-\lambda$ by convention so the equations
+to solve becomes:
+
+\begin{equation}
+ X''(x) + \lambda X(x) = 0
+\end{equation}
+
+\begin{equation}
+ T'(t) + \lambda T(t) = 0
+\end{equation}
+
+With the boundary conditions:
+\begin{equation}
+ u(0,t) = X(0)T(t) = 0
+\end{equation}
+
+\begin{equation}
+ u(1,t) = X(1)T(t) = 0
+\end{equation}
+
+From these boundary conditions we see that it must be $X(0) = X(1) = 0$ because if $T(t)=0$ we would only get the triviall solutions which we are not interested in.
+
+So we solve the $X(x)$ equation first.
+
+This is a equation which we have solved nmany times before. First we have the case $\lambda < 0$ which gives the solution:
+
+\begin{equation}
+ X(x) = Ae^{\sqrt{k}x} + Be^{-\sqrt{k}x}, \lambda=-k
+\end{equation}
+
+if we set in the boundary conditions we get that $X(0) = A+B$ and then $X(1) = Ae^{\sqrt{k}} - Ae^{\sqrt{k}} = A(e^{2*\sqrt{k}}$ and since k must
+be positive this gives that $A=B=0$ which is the trivial solution which we are not interested in.
+
+When $\lambda = 0 $ this gives $A=B=0$ which also is the trivial solutions.
+
+The last possibility is the harmonic equation which is:
+
+\begin{equation}
+
+ X(x) = Acos(\sqrt{\lamda x} + Bsin(\sqrt{\lambda x}
+\end{equation}
+
+And with our boundary conditions it gives $X(0) = A = 0$ and $X(1) = Bsin(\sqrt{\lambda}) = 0$
+This means that $sin\lamda = 0$ This gives us the eigenvalue $\lambda = (n\pi)^2$ for any positive integer.
+This gives the solution:
+
+\begin{equation}
+ X(x) = b_nsin(n\pi x)
+\end{equation}
+
+The solution for $T(t)$ is then given by:
+
+\begin{equation}
+ T'(t) = -n^2*\pi ^2 T(t)
+\end{equation}
+
+Which is welknown 
+
+\begin{equation}
+ T(t) = c_ne^{-(n*pi)^2t}
+\end{equation}
+
+So the the solution becomes:
+
+\begin{equation}
+ u(x,t) \approx f(x)*sin(x)e^{-(\pi^2t)}
+ \end{equation}
+
+ Where we have used that $f(x) = constant = 1$
+
+
+\subsubsection{Implementation Forward Euler}
+
+\subsubsection{Implementation Backward Euler}
+
+\subsubsection{Implementation Cranc-Nicolson}
+
+\subsection{3D- Heat equation}
+\subsubsection{Analytical Solution}
+Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by seperable solutions:
+
+\begin{equation}
+ u(x,y,t) = X(x)Y(y)T(t)
+\end{equation}
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\end{document}
