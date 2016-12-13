@@ -17,6 +17,9 @@
 
 \section{Introduction}
 
+
+
+
 \section{Theory}
 LEGG TIL TEORI PÅ 3D PDE OG BRUK LABEL eq:partDIFF3D
 VET IKKE HVOR JEG SKAL SETTE LIGNINGEN
@@ -267,12 +270,47 @@ So the the solution becomes:
 
  Where we have used that $f(x) = constant = 1$
 
+\subsubsection{Error Analysis}
+To calculate the error we use taylor expansion which are defined:
+\begin{equation}
+ u_n = \frac{f^{(n)}(b)}{n!}
+\end{equation}
+
+So to calculate the error in the forward difference for u'(t) we expand it in a Taylor axpansion around $t_n$:
+\begin{equation}
+ u(t_{n+1}) = u(t_n) + u'(t_n)\Delta t + \frac{1}{2}u''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+This gives the error:
+
+\begin{equation}
+ R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+This means that the forward euler has a error in time in the first order. 
+For backwards euler we taylor expand $u(t_{n-1}$ and get:
+
+\begin{equation}
+  R = \frac{1}{2}u''(t_n)\Delta t + \mathcal{O}\Delta t^2
+\end{equation}
+
+So the same as in the Forward Euler scheme
+
+In Crank-Nicolson we use a time centered scheme so we have that:
+\begin{equation}
+ \frac{u_}{×}
+\end{equation}
+
+
+
+
 
 \subsubsection{Implementation Forward Euler}
 
 \subsubsection{Implementation Backward Euler}
 
 \subsubsection{Implementation Cranc-Nicolson}
+
 
 \subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
@@ -281,14 +319,58 @@ Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by 
 \begin{equation}
  u(x,y,t) = X(x)Y(y)T(t)
 \end{equation}
+
+With the boundary conditions $u(0,y,t) = u(1,y,t) = 0$ and $u(x,0,t) = u(x,1,t) = 0$
 So when we set this in the equation we get:
 
 \begin{equation}
- \frac{}{×} 
+ \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = \frac{T'(t)}{T(t)} 
+\end{equation}
+
+So by the same logic as for 2D this becomes:
+
+\begin{equation}
+ \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = -\lambda
+\end{equation}
+
+If we first keep y constant and varies x we get the equation:
+\begin{equation}
+ X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \Rightarrow X''(x) + (\lambda + \my)X(x) = 0
+\end{equation}
+
+And this we can solve as we did in 2D the same for when we keep x constant:
+
+\begin{equation}
+ Y''(y) + (\lambda + \mu)Y(y) = 0
+\end{equation}
+
+These two equations becomes:
+
+\begin{equation}
+ X(x) = b_nsin(n\pi x)
+\end{equation}
+\begin{equation}
+ Y(y) = c_msin(m\pi y)
+\end{equation}
+
+And the time equation then becomes:
+
+\begin{equation}
+ T(t) = d_{n,m}e^{-(m^2\pi ^2 + n^2\pi^2)t
+\end{equation}
+
+So the equation becomes with $m=n=1$ and $b_nc_nd_{n,m} = 1$
+
+\begin{equation}
+ u(x,y,t) = sin(\pi x)sin(\pi y) e^{-2pi^2t}
 \end{equation}
 
 
+
+
+
 \section{Results}
+
 
 \section{Discussion}
 
