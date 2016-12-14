@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  13 DEC 2016 21:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  13 DEC 2016 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -731,18 +731,15 @@ LaTeX Warning: Command \l invalid in math mode on input line 524.
 
 LaTeX Warning: Command \l invalid in math mode on input line 524.
 
-[10 <./numerical_analytcal_T065.png>] (./Partial_diff2.aux)
+[10 <./numerical_analytcal_T065.png>] [11] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  2461 strings out of 494953
  31795 string characters out of 6180977
- 94316 words of memory out of 5000000
+ 94317 words of memory out of 5000000
  5714 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -760,10 +757,10 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (10 pages, 335072 bytes).
+Output written on Partial_diff2.pdf (11 pages, 336455 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

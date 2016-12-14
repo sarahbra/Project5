@@ -535,7 +535,13 @@ Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
 \subsection{2D PDE}
 
 \section{Discussion}
-
+\subsection{2D}
+We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange since it has only calculated around 10 timesteps.
+But in figure (\ref{fig:NumAna065}) we see that the one that is most correct is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
+Yo can see the relative errors in the table (\ref{tab:RelError}), for these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
+So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
+Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
+But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are  
 \section{Conclusion}
 
 \end{document}

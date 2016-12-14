@@ -37,20 +37,25 @@ void printtofile(double t, vec u, int n ){
 vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
     //Forward Substitution
     double m;
+    cout << "n: " << n << endl;
     for (int k=2; k<=n; k++) {
+        cout << "k " << k << endl;
         m = a/b(k-1);
-        b(k) = b_value - m*c;
-        v(k) -= m*v(k-1);
+        b(k) = b(k) - m*c;
+        v(k) = v(k) - m*v(k-1);
     }
 
     //Backward Substitution
     u(n)= v(n)/b(n);
+    cout << "u(n)" << u(n) << endl;
     for (int k= n-1; k>0; k--) {
         u(k) = (1.0/b(k))*(v(k) - c*u(k+1));
+        cout << "u(k)" << u(k) <<"   k " << k << endl;
+
     }
 
     u(0) = 0;
-    u(n) = 0;
+    u(n) = 1;
     return u;
 }
 
@@ -58,7 +63,8 @@ vec GaussElim(double a, vec b, double b_value, double c, int n, vec u, vec v){
 double func(double dx, double step){
     //double u_i;
     double pi  =3.141592653589793238463;
-    return sin(pi*dx*step);
+    //return sin(pi*dx*step);
+    return 0;
 
 }
 
@@ -76,7 +82,8 @@ void forward_Euler(int n, int t_steps, double alpha, double dx, double dt) {
     vec u(n+1);
     vec unew(n+1);
 
-    u(0) = unew(0) = u(n) = unew(n) = 0.0;
+    u(0) = unew(0) = 0.0;//
+    u(n) = unew(n) = 1.0;
 
     //making the vectors
     for (int k=1; k<n; k++){
@@ -113,7 +120,8 @@ void backwards_Euler(int n, int t_steps, double alpha, double dx, double dt) {
         u(k) = v(k) =func(dx,k);
     }
     //Implementing boundary conditions
-    u(n) = v(n) = u(0) = v(0) = 0.0;
+    u(n) = v(n) = 1.0;
+    u(0) = v(0) = 0.0;
 
     for (int t=1; t<=t_steps; t++) {
         v = GaussElim(a_value, b, b_value, c_value, n, u, v);
@@ -143,12 +151,14 @@ void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
     }
 
     b(0) = b(n) = b_value;
-    u(0) = u(n) = 0.0;
+    u(0) = 0.0;
+    u(n) = 1.0;
 
     //GaussElim(a_value,b, b_value,c_value,u,n,v);
     for (int t=1;t<=t_steps;t++) {
         v = forward_step(n,alpha,u,v);
-        v(0) = v(n) = 0;
+        v(0) = 0.0;
+        v(n) = 1.0;
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
         if (t%10==0 || t==1) {
             double time = t*dt;
@@ -182,11 +192,11 @@ int main(){
     //dt = dx*dx*0.25;
     //t_steps = 2*n*n;
     dt_list(0) = dx*dx*0.01;
-    dt_list(1) = dx*dx*0.05;
+    dt_list(1) = dx*dx*0.1;
     dt_list(2) = dx*dx*0.25;
-    dt_list(3) = dx*dx*0.5;
-    dt_list(4) = dx*dx*0.9;
-    final_t = 100;
+    dt_list(3) = dx*dx*0.35;
+    dt_list(4) = dx*dx*0.5;
+    final_t = 1;
 
     clock_t start, finish;
 

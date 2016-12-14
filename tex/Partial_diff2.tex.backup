@@ -467,7 +467,7 @@ and
 
 If we subtract the last from the first we get the error:
 \begin{equation}
- R = \frac{1}{24}u'''(t_n)\Delta t^2 + \mathcal{O}(\Delta t^4)
+ R = \frac{1}{24}u'''(t_{n+1/2})\Delta t^2 + \mathcal{O}(\Delta t^4)
 \end{equation}
 
 But to get the full error we have to take in consideration the standard arithmetic mean wich is:
@@ -477,13 +477,21 @@ But to get the full error we have to take in consideration the standard arithmet
 \end{equation}
 This have the error term:
 \begin{equation}
- R = \frac{1}{8}u''(t_n)\Delta + \frac{1}{384}u''''(t_n)\Delta t^4 + \mathcal{O}(\Delta t^6)
+ R = \frac{1}{8}u''(t_{n+1/2})\Delta + \frac{1}{384}u''''(t_n)\Delta t^4 + \mathcal{O}(\Delta t^6)
 \end{equation}
 
 If we add these to we get the total error in the time as:
 \begin{equation}
- R = (\frac{}{×}
+ R = (\frac{1}{24} u'''(t_{n+1/2}) + \frac{1}{8}u''(t_n)) \Delta t^2 + \mathcal{O}\Delta t^4 
 \end{equation}
+So the error in the Crank-Nicolson scheme is $\Delta t^2$
+
+And the error in spatial differencial for all three is equal to by usin taylor expansion:
+\begin{equation}
+ R_x = \frac{1}{12}u''''(x_n) \Delta x^2 + \mathcal{O}(\Delta x^4)
+\end{equation}
+
+So the error on the x is of the second order.
 
 
 
@@ -527,7 +535,11 @@ Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
 \subsection{2D PDE}
 
 \section{Discussion}
-
+\subsection{2D}
+We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange since it has only calculated around 10 timesteps.
+But in figure (\ref{fig:NumAna065}) we see that the one that are most correct is Forward Euler so Crank Nicolson and lastly Backward Euler. 
+Yo can see the relative errors in the table (\ref{tab:RelError}), for these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
+So the truncation error in Forward and Backward euler is both 
 \section{Conclusion}
 
 \end{document}
