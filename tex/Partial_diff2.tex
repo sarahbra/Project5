@@ -47,10 +47,45 @@ In this project we are solving the partial differencial equation:
   \label{eq:PartDiff}
 \end{equation}
 
-which can also be written
+We have the initial condition:
 
 \begin{equation}
- u_{xx}=u_t
+ u(x,0) = 0
+\end{equation}
+
+And boundary conditions when $t>0$:
+\begin{equation}
+ u(0,t) = 0,
+ u(L,t) = 1
+\end{equation}
+
+Here $L=1$.
+
+The steady state solution can be found easily by solving the laplace eqation wich are the harmonic solution. So we have to write our problem on 
+a form that is easier to solve. So we introduce:
+
+\begin{equation}
+ w(x,t) = u(x,t) - v(x)
+ \label{WritingEasier}
+\end{equation}
+Where $v(x)$ is the steady state solution.
+
+So this gives us:
+
+\begin{equation}
+ w(0,t) = 0 - 0 = 0
+\end{equation}
+\begin{equation}
+w(L,t) = u(L,t) - v((L) = 1 -1 = 0  
+\end{equation}
+\begin{equation}
+ w(x,0) = u(x,0) - v(x) = 0 -x = -x
+\end{equation}
+
+So then we can solve the equation:
+
+\begin{equation}
+ w_{xx}=w_t
  \label{eq:simpleDiff}
 \end{equation}
 
@@ -59,14 +94,14 @@ since there are no constant multiplied to the equation and x goes from zero to o
 
 To solve this equation we are looking for a solution by seperating the variables:
 \begin{equation}
-u(x,t) = X(x)T(t)
+w(x,t) = X(x)T(t)
 \label{eq:seperating}
 \end{equation}
 
 If we take the partiall derivatives of this expression we get:
 
 \begin{equation}
-u_{xx} = X''(x)T(t) ,and u_t = X(x)T'(t)
+w_{xx} = X''(x)T(t) ,and w_t = X(x)T'(t)
 \label{eq:deriv}
 \end{equation}
 
@@ -83,13 +118,14 @@ of convention.
 This gives uss the equations:
 
 \begin{equation}
-u(0,t) = X(0)T(t) = 0 
-u(1,t) = X(1)T(t) = 0
+w(0,t) = X(0)T(t) = 0 
+w(1,t) = X(1)T(t) = 0
 \label{eq:initialCond}
 \end{equation}
 
 If we let $T(t) = 0$ we get the trivial solution, which we are not interested int.
 
+In two dimensions we only look for at the steady state solution with the boundary conditions:
 In two dimensions the same initial conditions require
 
 \begin{equation}
@@ -291,7 +327,7 @@ void jakobi_solver (double dx, double dt) {
 To solve the equation (\ref{eq:PartDiff}) we need to look for seperable solutions on the form:
 
 \begin{equation}
- u(x,t) = X(x)T(t)
+ w(x,t) = X(x)T(t)
  \label{eq:u_xt}
 \end{equation}
 
@@ -325,11 +361,11 @@ to solve becomes:
 
 With the boundary conditions:
 \begin{equation}
- u(0,t) = X(0)T(t) = 0
+ w(0,t) = X(0)T(t) = 0
 \end{equation}
 
 \begin{equation}
- u(1,t) = X(1)T(t) = 0
+ w(1,t) = X(1)T(t) = 0
 \end{equation}
 
 From these boundary conditions we see that it must be $X(0) = X(1) = 0$ because if $T(t)=0$ we would only get the triviall solutions which we are not interested in.
@@ -377,10 +413,43 @@ Which is well known as
 So the the solution becomes:
 
 \begin{equation}
- u(x,t) \approx f(x)*sin(x)e^{-(\pi^2t)}
+ w(x,t) \sum_{n=1}^{\infinity} B_n*sin(n*\pi x)e^{-(n^2\pi^2t)}
  \end{equation}
+ 
+With the initial condition
 
- Where we have used that $f(x) = constant = 1$
+\begin{equation}
+ w(x,0) = \sum_{n=1}^{\infinity} B_n*sin(n*\pi x)
+\end{equation}
+multiply with $sin(m\pi x)$ on both sides and use the orthogonality of $sin(m\pi x)$  and $sin(n\pi x)$
+
+And this gives:
+\begin{equation}
+ \sum_{n=1}^{\infinity} b_n \int_0^1 sin(n\pi x)sin(m\pi x)dx = \frac{1}{2}b_n = -\int_0^1 sin(m\pi x)x dx
+\end{equation}
+
+This gives the integral
+
+\begin{equation}
+ b_n = -2\int_0^1 xsin(m\pi x)
+\end{equation}
+
+solving this by using partial integration and writing it to an easier form:
+
+\begin{equation}
+ b_n = (-1)^m(-\frac{1}{m\pi}, m=1,2,...
+\end{equation}
+Setting htis into the steady steady state solution
+
+So setting this into the whole solution from equation (\ref{WritingEasier}) we get:
+
+\begin{equation}
+ u(x,t) = v(x) + w(x,t) = 
+ x + \sum_{n=1}^{\infinity}(-1)^n(\frac{2}{n\pi}sin(n\pi*x)e^{-(n\pi)^2t}
+\end{equation}
+
+
+
  
  \subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
