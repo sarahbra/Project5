@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  29 DEC 2016 20:09
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 20:13
+>>>>>>> 754305108941538a25a18a76a02094160bf601b8
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,20 +554,26 @@ u(i+1);[]
  []
 
 [4]
-Overfull \hbox (17.13039pt too wide) in paragraph at lines 290--291
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 290--290
+[]\OT1/cmtt/m/n/10 void crank_Nicolson(int n, int t_steps, double alpha, double
+ dx, double dt) {[] 
+ []
+
+[5]
+Overfull \hbox (17.13039pt too wide) in paragraph at lines 325--326
 \OT1/cmr/m/n/10 Implementing the jacobi-algorithm is quite straight for-ward us
 -ing eq.(28[]). U(x,y,0)=
  []
 
-[5]
-Overfull \hbox (80.24629pt too wide) in paragraph at lines 309--309
+
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 344--344
 []                    \OT1/cmtt/m/n/10 + A_old(i-1,j) - 4*A_old(i,j) + A_old(i,
 j+1) + A_old(i,j-1));[] 
  []
 
-[6] [7]
+[6] [7] [8]
 ! Undefined control sequence.
-l.468 ...) = 0 \rightarrow X''(x) + (\lambda + \my
+l.503 ...) = 0 \rightarrow X''(x) + (\lambda + \my
                                                   )X(x) = 0
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -571,8 +581,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[8]
-Overfull \hbox (95.02618pt too wide) detected at line 531
+
+Overfull \hbox (95.02618pt too wide) detected at line 566
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
 /cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) + []\OML/c
 mm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm
@@ -586,8 +596,8 @@ mm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT1/cmr/m/n/10 (^^A\OML/cmm
 /m/it/10 t[]\OT1/cmr/m/n/10 )
  []
 
-
-Overfull \hbox (95.13728pt too wide) detected at line 537
+[9]
+Overfull \hbox (95.13728pt too wide) detected at line 572
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
 /cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) \OMS/cmsy/
 m/n/10 ^^@ []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/
@@ -601,109 +611,111 @@ OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT
 1/cmr/m/n/10 (^^A\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )
  []
 
-<alldt025analyticalt1.png, id=42, 578.16pt x 433.62pt>
+<alldt025analyticalt1.png, id=45, 578.16pt x 433.62pt>
 File: alldt025analyticalt1.png Graphic file (type png)
 
 <use alldt025analyticalt1.png>
-Package pdftex.def Info: alldt025analyticalt1.png used on input line 568.
+Package pdftex.def Info: alldt025analyticalt1.png used on input line 603.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-<alldt025analyticalt2.png, id=44, 578.16pt x 433.62pt>
+<alldt025analyticalt2.png, id=47, 578.16pt x 433.62pt>
 File: alldt025analyticalt2.png Graphic file (type png)
 
 <use alldt025analyticalt2.png>
-Package pdftex.def Info: alldt025analyticalt2.png used on input line 574.
+Package pdftex.def Info: alldt025analyticalt2.png used on input line 609.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 
-LaTeX Warning: Reference `tab:RelError' on page 9 undefined on input line 580.
+LaTeX Warning: Reference `tab:RelError' on page 10 undefined on input line 615.
 
 
-LaTeX Warning: Command \l invalid in math mode on input line 581.
 
-<num_dt00025_dx01_T025.png, id=45, 422.32782pt x 316.18124pt>
+LaTeX Warning: Command \l invalid in math mode on input line 616.
+
+<num_dt00025_dx01_T025.png, id=48, 422.32782pt x 316.18124pt>
 File: num_dt00025_dx01_T025.png Graphic file (type png)
 
 <use num_dt00025_dx01_T025.png>
-Package pdftex.def Info: num_dt00025_dx01_T025.png used on input line 587.
+Package pdftex.def Info: num_dt00025_dx01_T025.png used on input line 622.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt00025_dx01_T025.png, id=46, 422.32782pt x 316.18124pt>
+<ana_dt00025_dx01_T025.png, id=49, 422.32782pt x 316.18124pt>
 File: ana_dt00025_dx01_T025.png Graphic file (type png)
 
 <use ana_dt00025_dx01_T025.png>
-Package pdftex.def Info: ana_dt00025_dx01_T025.png used on input line 596.
+Package pdftex.def Info: ana_dt00025_dx01_T025.png used on input line 631.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt00025_dx01_T125.png, id=47, 422.32782pt x 316.18124pt>
+<num_dt00025_dx01_T125.png, id=50, 422.32782pt x 316.18124pt>
 File: num_dt00025_dx01_T125.png Graphic file (type png)
 
 <use num_dt00025_dx01_T125.png>
-Package pdftex.def Info: num_dt00025_dx01_T125.png used on input line 604.
+Package pdftex.def Info: num_dt00025_dx01_T125.png used on input line 639.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt00025_dx01_T125.png, id=48, 422.32782pt x 316.18124pt>
+<ana_dt00025_dx01_T125.png, id=51, 422.32782pt x 316.18124pt>
 File: ana_dt00025_dx01_T125.png Graphic file (type png)
 
 <use ana_dt00025_dx01_T125.png>
-Package pdftex.def Info: ana_dt00025_dx01_T125.png used on input line 612.
+Package pdftex.def Info: ana_dt00025_dx01_T125.png used on input line 647.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt00015_dx01_T003.png, id=49, 422.32782pt x 316.18124pt>
+<num_dt00015_dx01_T003.png, id=52, 422.32782pt x 316.18124pt>
 File: num_dt00015_dx01_T003.png Graphic file (type png)
 
 <use num_dt00015_dx01_T003.png>
-Package pdftex.def Info: num_dt00015_dx01_T003.png used on input line 620.
+Package pdftex.def Info: num_dt00015_dx01_T003.png used on input line 655.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt00015_dx01_T003.png, id=50, 422.32782pt x 316.18124pt>
+<ana_dt00015_dx01_T003.png, id=53, 422.32782pt x 316.18124pt>
 File: ana_dt00015_dx01_T003.png Graphic file (type png)
 
 <use ana_dt00015_dx01_T003.png>
-Package pdftex.def Info: ana_dt00015_dx01_T003.png used on input line 629.
+Package pdftex.def Info: ana_dt00015_dx01_T003.png used on input line 664.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt00004_dx004_T004.png, id=51, 422.32782pt x 316.18124pt>
+<num_dt00004_dx004_T004.png, id=54, 422.32782pt x 316.18124pt>
 File: num_dt00004_dx004_T004.png Graphic file (type png)
 
 <use num_dt00004_dx004_T004.png>
-Package pdftex.def Info: num_dt00004_dx004_T004.png used on input line 638.
+Package pdftex.def Info: num_dt00004_dx004_T004.png used on input line 673.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt00004_dx004_T004.png, id=52, 422.32782pt x 316.18124pt>
+<ana_dt00004_dx004_T004.png, id=55, 422.32782pt x 316.18124pt>
 File: ana_dt00004_dx004_T004.png Graphic file (type png)
 
 <use ana_dt00004_dx004_T004.png>
-Package pdftex.def Info: ana_dt00004_dx004_T004.png used on input line 646.
+Package pdftex.def Info: ana_dt00004_dx004_T004.png used on input line 681.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt0006_dx01_T0006.png, id=53, 422.32782pt x 316.18124pt>
+<num_dt0006_dx01_T0006.png, id=56, 422.32782pt x 316.18124pt>
 File: num_dt0006_dx01_T0006.png Graphic file (type png)
 
 <use num_dt0006_dx01_T0006.png>
-Package pdftex.def Info: num_dt0006_dx01_T0006.png used on input line 655.
+Package pdftex.def Info: num_dt0006_dx01_T0006.png used on input line 690.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt0006_dx01_T0006.png, id=54, 422.32782pt x 316.18124pt>
+<ana_dt0006_dx01_T0006.png, id=57, 422.32782pt x 316.18124pt>
 File: ana_dt0006_dx01_T0006.png Graphic file (type png)
 
 <use ana_dt0006_dx01_T0006.png>
-Package pdftex.def Info: ana_dt0006_dx01_T0006.png used on input line 664.
+Package pdftex.def Info: ana_dt0006_dx01_T0006.png used on input line 699.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt0006_dx01_T06.png, id=55, 422.32782pt x 316.18124pt>
+<num_dt0006_dx01_T06.png, id=58, 422.32782pt x 316.18124pt>
 File: num_dt0006_dx01_T06.png Graphic file (type png)
 
 <use num_dt0006_dx01_T06.png>
-Package pdftex.def Info: num_dt0006_dx01_T06.png used on input line 673.
+Package pdftex.def Info: num_dt0006_dx01_T06.png used on input line 708.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt0006_dx01_T06.png, id=56, 422.32782pt x 316.18124pt>
+<ana_dt0006_dx01_T06.png, id=59, 422.32782pt x 316.18124pt>
 File: ana_dt0006_dx01_T06.png Graphic file (type png)
 
 <use ana_dt0006_dx01_T06.png>
-Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 682.
+Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 717.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+<<<<<<< HEAD
  [9] [10 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>] [11 <./num_
 dt00025_dx01_T025.png (PNG copy)> <./ana_dt00025_dx01_T025.png (PNG copy)> <./n
 um_dt00025_dx01_T125.png (PNG copy)>] [12 <./ana_dt00025_dx01_T125.png (PNG cop
@@ -712,14 +724,38 @@ copy)>] [13 <./num_dt00004_dx004_T004.png (PNG copy)> <./ana_dt00004_dx004_T004
 .png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)>] [14 <./ana_dt0006_dx
 01_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_d
 x01_T06.png (PNG copy)>] [15] (./Partial_diff2.aux)
+=======
+ [10] [11 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>] [12 <./num
+_dt00025_dx01_T025.png (PNG copy)> <./ana_dt00025_dx01_T025.png (PNG copy)> <./
+num_dt00025_dx01_T125.png (PNG copy)>] [13 <./ana_dt00025_dx01_T125.png (PNG co
+py)> <./num_dt00015_dx01_T003.png (PNG copy)> <./ana_dt00015_dx01_T003.png (PNG
+ copy)>] [14 <./num_dt00004_dx004_T004.png (PNG copy)> <./ana_dt00004_dx004_T00
+4.png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)>] [15 <./ana_dt0006_d
+x01_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_
+dx01_T06.png (PNG copy)>]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 756--756
+[] \OT1/cmtt/m/n/10 http://hplgit.github.io/num-methods-for-PDEs/doc/pub/trunc/
+sphinx[] 
+ []
+
+[16] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
+
+>>>>>>> 754305108941538a25a18a76a02094160bf601b8
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  2527 strings out of 494953
+<<<<<<< HEAD
  33584 string characters out of 6180976
  99437 words of memory out of 5000000
+=======
+ 33584 string characters out of 6180977
+ 98437 words of memory out of 5000000
+>>>>>>> 754305108941538a25a18a76a02094160bf601b8
  5769 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -737,10 +773,14 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+<<<<<<< HEAD
 Output written on Partial_diff2.pdf (15 pages, 441189 bytes).
+=======
+Output written on Partial_diff2.pdf (16 pages, 445310 bytes).
+>>>>>>> 754305108941538a25a18a76a02094160bf601b8
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 129 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
