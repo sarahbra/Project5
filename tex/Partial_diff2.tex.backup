@@ -21,7 +21,7 @@
 
 
 \section{Theory}
-\subsection{Equation}
+\subsection{Equations}
 In this project we are solving the partial differencial equation:
 \begin{equation}
   \frac{\partial^2 u(x,t)}{\partial x^2} =\frac{\partial u(x,t)}{\partial t}, t> 0, x\in [0,1]
@@ -724,8 +724,12 @@ Explicit numeric solutions for different values of dx and dt are figured in plot
 \section{Discussion}
 \subsection{2D}
 We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange concidering it has only calculated approximately 10 timesteps.
+<<<<<<< HEAD
+But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the analytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
+=======
 But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the aalytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
 For these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
+>>>>>>> 754305108941538a25a18a76a02094160bf601b8
 So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
 Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
 But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are 
@@ -738,10 +742,12 @@ errors will accumulate with time but as we see all the round off errors are prop
 off will be approximately the same for the three methods.
 
 \subsection{3D}
-We see from the 3D-plots that the explicit method gives results very close to the analytical solution for closely defined $\alpha$'s. Because of the stability limitations care must be taken when choosing optimal resolution in the plots.
-A reduction in dx in order to increase accuracy means a $dx^2$ increase in the number of timesteps needed to analyse the time evolution of the solution up to a point T, meaning we are using a lot more computer power. 
+We see from the 3D-plots that the explicit method gives results very close to the analytical solution for closely defined $\alpha$'s. In anology to the one(two)-dimensional case, the algorithm provides an accurate solution because of the initial functions correspondence to the analytical solution for T=0. 
 
-Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requirements of the explicit scheme after only 100 timesteps.
+Because of the stability limitations care must be taken when choosing optimal resolution in the plots. A reduction in dx in order to increase accuracy means a $dx^2$ increase in the number of timesteps needed to analyse the time evolution of the solution up to a point T, meaning we are using a lot more computer power than we would have needed using an implicit scheme where dt is independent of dx.
+If we are to analyse the temperature evolution during a long timeframe we would therefore need to sacrifice spacial accuracy.
+
+Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requirements of the explicit scheme after only 100 timesteps. We would not even have needed this many steps, seeing as the results of even a few time-loops gives the wrong solution. $\alpha$ is here given as 0.6, not far from the upper limit of 0.5, meaning the stability limit is very strict.
 \section{Conclusion}
 
 \section{Codes}
@@ -749,9 +755,15 @@ Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requ
 \section{Sources}
 The sources we have used is:
 Computational Physics, Lecture notes Fall 2015 (Morten Hjort-Jensen)
+<<<<<<< HEAD
 
 Knut Mørken: Numerical Algorithms and Digital Representation, Kompendium 2012 (Knut Mørken)
 
+=======
+
+Knut Mørken: Numerical Algorithms and Digital Representation, Kompendium 2012 (Knut Mørken)
+
+>>>>>>> f649e14051d21776ee83465f1c95a08ab98bdc82
 \begin{verbatim}
  http://hplgit.github.io/num-methods-for-PDEs/doc/pub/trunc/sphinx
 	/._main_trunc001.html#example-the-backward-difference-for  

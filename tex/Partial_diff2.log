@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 20:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -633,111 +633,129 @@ LaTeX Warning: Command \l invalid in math mode on input line 629.
 File: num_dt00025_dx01_T025.png Graphic file (type png)
 
 <use num_dt00025_dx01_T025.png>
-Package pdftex.def Info: num_dt00025_dx01_T025.png used on input line 635.
+Package pdftex.def Info: num_dt00025_dx01_T025.png used on input line 637.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <ana_dt00025_dx01_T025.png, id=52, 422.32782pt x 316.18124pt>
 File: ana_dt00025_dx01_T025.png Graphic file (type png)
 
 <use ana_dt00025_dx01_T025.png>
-Package pdftex.def Info: ana_dt00025_dx01_T025.png used on input line 644.
+Package pdftex.def Info: ana_dt00025_dx01_T025.png used on input line 646.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <num_dt00025_dx01_T125.png, id=53, 422.32782pt x 316.18124pt>
 File: num_dt00025_dx01_T125.png Graphic file (type png)
 
 <use num_dt00025_dx01_T125.png>
-Package pdftex.def Info: num_dt00025_dx01_T125.png used on input line 652.
+Package pdftex.def Info: num_dt00025_dx01_T125.png used on input line 654.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <ana_dt00025_dx01_T125.png, id=54, 422.32782pt x 316.18124pt>
 File: ana_dt00025_dx01_T125.png Graphic file (type png)
 
 <use ana_dt00025_dx01_T125.png>
-Package pdftex.def Info: ana_dt00025_dx01_T125.png used on input line 660.
+Package pdftex.def Info: ana_dt00025_dx01_T125.png used on input line 662.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <num_dt00015_dx01_T003.png, id=55, 422.32782pt x 316.18124pt>
 File: num_dt00015_dx01_T003.png Graphic file (type png)
 
 <use num_dt00015_dx01_T003.png>
-Package pdftex.def Info: num_dt00015_dx01_T003.png used on input line 668.
+Package pdftex.def Info: num_dt00015_dx01_T003.png used on input line 670.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <ana_dt00015_dx01_T003.png, id=56, 422.32782pt x 316.18124pt>
 File: ana_dt00015_dx01_T003.png Graphic file (type png)
 
 <use ana_dt00015_dx01_T003.png>
-Package pdftex.def Info: ana_dt00015_dx01_T003.png used on input line 677.
+Package pdftex.def Info: ana_dt00015_dx01_T003.png used on input line 679.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <num_dt00004_dx004_T004.png, id=57, 422.32782pt x 316.18124pt>
 File: num_dt00004_dx004_T004.png Graphic file (type png)
 
 <use num_dt00004_dx004_T004.png>
-Package pdftex.def Info: num_dt00004_dx004_T004.png used on input line 686.
+Package pdftex.def Info: num_dt00004_dx004_T004.png used on input line 688.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 <ana_dt00004_dx004_T004.png, id=58, 422.32782pt x 316.18124pt>
 File: ana_dt00004_dx004_T004.png Graphic file (type png)
 
 <use ana_dt00004_dx004_T004.png>
-Package pdftex.def Info: ana_dt00004_dx004_T004.png used on input line 694.
+Package pdftex.def Info: ana_dt00004_dx004_T004.png used on input line 696.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt0006_dx01_T0006.png, id=59, 422.32782pt x 316.18124pt>
+<num_dt001_dx02_T10.png, id=59, 422.32782pt x 316.18124pt>
+File: num_dt001_dx02_T10.png Graphic file (type png)
+
+<use num_dt001_dx02_T10.png>
+Package pdftex.def Info: num_dt001_dx02_T10.png used on input line 705.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt001_dx02_T10.png, id=60, 422.32782pt x 316.18124pt>
+File: ana_dt001_dx02_T10.png Graphic file (type png)
+
+<use ana_dt001_dx02_T10.png>
+Package pdftex.def Info: ana_dt001_dx02_T10.png used on input line 714.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt0006_dx01_T0006.png, id=61, 422.32782pt x 316.18124pt>
 File: num_dt0006_dx01_T0006.png Graphic file (type png)
 
 <use num_dt0006_dx01_T0006.png>
-Package pdftex.def Info: num_dt0006_dx01_T0006.png used on input line 703.
+Package pdftex.def Info: num_dt0006_dx01_T0006.png used on input line 723.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt0006_dx01_T0006.png, id=60, 422.32782pt x 316.18124pt>
+<ana_dt0006_dx01_T0006.png, id=62, 422.32782pt x 316.18124pt>
 File: ana_dt0006_dx01_T0006.png Graphic file (type png)
 
 <use ana_dt0006_dx01_T0006.png>
-Package pdftex.def Info: ana_dt0006_dx01_T0006.png used on input line 712.
+Package pdftex.def Info: ana_dt0006_dx01_T0006.png used on input line 732.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<num_dt0006_dx01_T06.png, id=61, 422.32782pt x 316.18124pt>
+<num_dt0006_dx01_T06.png, id=63, 422.32782pt x 316.18124pt>
 File: num_dt0006_dx01_T06.png Graphic file (type png)
 
 <use num_dt0006_dx01_T06.png>
-Package pdftex.def Info: num_dt0006_dx01_T06.png used on input line 721.
+Package pdftex.def Info: num_dt0006_dx01_T06.png used on input line 741.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
-<ana_dt0006_dx01_T06.png, id=62, 422.32782pt x 316.18124pt>
+<ana_dt0006_dx01_T06.png, id=64, 422.32782pt x 316.18124pt>
 File: ana_dt0006_dx01_T06.png Graphic file (type png)
 
 <use ana_dt0006_dx01_T06.png>
-Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 730.
+Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 750.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
  [11 <./alldt025analyticalt1.png>] [12 <./alldt025analyticalt2.png> <./num_dt00
 025_dx01_T025.png (PNG copy)>] [13 <./ana_dt00025_dx01_T025.png (PNG copy)> <./
 num_dt00025_dx01_T125.png (PNG copy)> <./ana_dt00025_dx01_T125.png (PNG copy)>]
  [14 <./num_dt00015_dx01_T003.png (PNG copy)> <./ana_dt00015_dx01_T003.png (PNG
  copy)> <./num_dt00004_dx004_T004.png (PNG copy)>] [15 <./ana_dt00004_dx004_T00
-4.png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)> <./ana_dt0006_dx01_T
-0006.png (PNG copy)>] [16 <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_
-dx01_T06.png (PNG copy)>]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 770--770
+4.png (PNG copy)> <./num_dt001_dx02_T10.png (PNG copy)> <./ana_dt001_dx02_T10.p
+ng (PNG copy)>] [16 <./num_dt0006_dx01_T0006.png (PNG copy)> <./ana_dt0006_dx01
+_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)>] [17 <./ana_dt000
+6_dx01_T06.png (PNG copy)>]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 795--795
 [] \OT1/cmtt/m/n/10 http://hplgit.github.io/num-methods-for-PDEs/doc/pub/trunc/
 sphinx[] 
  []
 
-[17] [18] (./Partial_diff2.aux)
+[18] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 2527 strings out of 494953
- 33584 string characters out of 6180977
+ 2539 strings out of 494953
+ 33872 string characters out of 6180977
  95437 words of memory out of 5000000
- 5769 multiletter control sequences out of 15000+600000
+ 5779 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,10n,23p,459b,265s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,10n,23p,420b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
@@ -751,10 +769,10 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (18 pages, 446865 bytes).
+Output written on Partial_diff2.pdf (18 pages, 468293 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
+ 137 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
