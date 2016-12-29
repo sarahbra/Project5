@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  29 DEC 2016 21:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  29 DEC 2016 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -598,17 +598,7 @@ Overfull \hbox (17.13039pt too wide) in paragraph at lines 331--332
 -ing eq.(28[]). U(x,y,0)=
  []
 
-[6] [7] [8]
-! Undefined control sequence.
-l.510 ...) = 0 \rightarrow X''(x) + (\lambda + \my
-                                                  )X(x) = 0
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[9] [10] <alldt025analyticalt1.png, id=53, 578.16pt x 433.62pt>
+[6] [7] [8] [9] [10] <alldt025analyticalt1.png, id=53, 578.16pt x 433.62pt>
 File: alldt025analyticalt1.png Graphic file (type png)
 
 <use alldt025analyticalt1.png>
@@ -782,7 +772,7 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (18 pages, 513248 bytes).
+Output written on Partial_diff2.pdf (18 pages, 513219 bytes).
 PDF statistics:
  157 PDF objects out of 1000 (max. 8388607)
  99 compressed objects within 1 object stream
