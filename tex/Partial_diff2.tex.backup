@@ -22,9 +22,9 @@ In this project we have looked at the diffusion equation and solved it using dif
 and Crank Nicolson. We first solved it in 1D, compared the results with the analytical solution, and then did an error analysis. We then proceeded to 
 solve it explicitly for 2D and looked at the stability of our solution for different timesteps and positionsteps. 
 
-Our motivation to choose this project was our curiosity to learn different kinds of algorithms to solve different PDE equations, since PDE equations
-are so widespread in the natural sciences and specially in Physics. So wanted to get a better grasp on how to solve these equaitions and at the same time
-get a better handle on how the error in the solutions behave. Since many PDEs are impossible to solve analytical we thought this project
+Our motivation to choose this project was our curiosity to learn different kind of algorithms to solve different PDE equations, since PDE equations
+are so widespread in the natural sciences and especially in Physics. So wanted to get a better grasp on how to solve these equaitions and at the same time
+get a better handle on how the error in the solutions behave. Since many PDEs are impossible to solve analytical we thought that this project
 was the one we could benefit the most from.
 
 \section{Theory}
@@ -217,13 +217,13 @@ To solve this matrix equation we utilize the Gaussian elimination for tridiagona
 \subsubsection{Crank Nicolson}
 In Cranc-Nicolson we use a time centered scheme where 
 \begin{equation}
-u(x_i, t_{j+1/2}) \approx 
+u(x_i, t_{j+1}) \approx \frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t} 
 \end{equation}
 
 This gives the equation :
 
 \begin{equation}
- \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{1}{2}(\frac{u_{i+1,j+1} - 2u_{i,j+1} + 2u_{i-1,j+1}}{(\Delta x)^2} + \frac{u_{i+1,j} - 2u_{i,j}+u_{i-1,j}}{(\Delta x)^2}
+ \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{1}{2}(\frac{u_{i+1,j+1} - 2u_{i,j+1} + 2u_{i-1,j+1}}{(\Delta x)^2} + \frac{u_{i+1,j} - 2u_{i,j}+u_{i-1,j}}{(\Delta x)^2})
 \end{equation}
 
 We can write this as:
@@ -296,8 +296,8 @@ In the implicit Backward Euler scheme we use Gaussian elimination to advance in 
 Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 \begin{verbatim}
 
-void crank_Nicolson(int n, int t_steps, double alpha
-		, double dx, double dt) {
+void crank_Nicolson(int n, int t_steps, double alpha,
+                              double dx, double dt) {
     char* method = "crank_nicolson";
     initializePrint(method, n, dx, dt, t_steps);
     double a_value, c_value, b_value;
@@ -320,13 +320,13 @@ void crank_Nicolson(int n, int t_steps, double alpha
     
     //The algorithm for solving the system
     for (int t=1;t<=t_steps;t++) {
-	//One step with forward euler
+        //One step with forward euler
         v = forward_step(n,alpha,u,v);
         v(0) = 0.0;
         v(n) = 1.0;
         //Then gaussian elimination
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
-    ... Print to file method
+        ... Print to file method
     }
 }
 \end{verbatim}
@@ -781,6 +781,11 @@ Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requ
 
 The number of FLOPS required for the jacobi-algorithm is $\propto 2n^2$ for each timestep, meaning there's an even larger round-off error in the 3D-case.
 \section{Conclusion}
+We saw that the truncation error of the Crank-Nicolson scheme was in the order of $10^{(-3)}$ less than that of both the forward and backwards Euler schemes. In spite of this, we saw that for $\alpha$ = 0.25 and with an accurate initial condition which the explicit scheme builds on,
+the forward Euler solutions most closely resembled the analytical solutions for the timesteps analyzed.
+
+In the threedimensional case we saw the limits of the explicit schemes when we analyzed time- and positionsteps not as precicely defined. The stability requirements are strict and gives wrong results when not abided by.
+For long time frames a reduction in accuracy may also be necessary in order to reduce the number of computations needed (2n^2 $\times$ timesteps).
 
 \section{Codes and data}
 The following are all from the github-domain 
@@ -788,12 +793,12 @@ The following are all from the github-domain
  https://github.com/sarahbra/Project5:
 \end{verbatim}
 
-/PDE2dim (main)
-/PDESolver (main)
-/tex
+/PDE2dim (main) \\
+/PDESolver (main) \\
+/Results \\
 
 \section{Sources}
-The sources we have used is:
+The sources we have used are:
 Computational Physics, Lecture notes Fall 2015 (Morten Hjort-Jensen)
 
 Knut Mørken: Numerical Algorithms and Digital Representation, Kompendium 2012 (Knut Mørken)
