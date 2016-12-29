@@ -15,12 +15,16 @@
 
 \begin{abstract}
 This reseach looks at the diffusion equation in one and two dimensions and attempts to solve them using the explicit schemes Forward Euler and Jacobi and the implicit Backwards Euler and Crank Nicolson schemes.
-An error analysis showed that the truncation errors were respectively $\epsilon = 0.0025$ for the different Euler schemes and $\epsilon = 6.25*10^{-6}$ for Crak Nicolson.
+An error analysis showed that the truncation errors were respectively $\epsilon = 0.0025$ for the different Euler schemes and $\epsilon = 6.25*10^{-6}$ for Crank Nicolson. For carefully chosen initial conditions and time- and spacial steps the Forward Euler still provided the most accurate results.
+We found, however, that for $\frac{\Delta t}{\Delta x^2} > $ 0.5 the explicit schemes fell far short.
 \end{abstract}
 
 \section{Introduction}
+The diffusion equation can be solved analytically only for carefully chosen initial conditions. As with so many partial differential equations a far better approach is to adapt numerical methods.
+In this project we have done just that and look at the stability and accuracy of explicit and implicit schemes.
+
 Our motivation for choosing this project was our curiosity to learn different kind of algorithms to solve different PDE equations, since PDE equations
-are so widespread in the natural sciences and especially in Physics. So wanted to get a better grasp on how to solve these equaitions and at the same time
+are so widespread in the natural sciences and especially in Physics. We wanted to get a better grasp on how to solve these equaitions and at the same time
 get a better handle on how the error in the solutions behave. Since many PDEs are impossible to solve analytical we thought that this project
 was the one we could benefit the most from.
 
@@ -787,11 +791,12 @@ For long time frames a reduction in accuracy may also be necessary in order to r
 The following are all from the github-domain 
 \begin{verbatim}
  https://github.com/sarahbra/Project5:
-\end{verbatim}
+\end{verbatim}\\
 
 /PDE2dim (main) \\
 /PDESolver (main) \\
 /Results \\
+/tex \\
 
 \section{Sources}
 The sources we have used are:
