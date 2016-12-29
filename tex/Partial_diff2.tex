@@ -18,28 +18,9 @@
 \end{abstract}
 
 \section{Introduction}
---------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-----------------------
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-RING MEG FØR DU SKRIVER VIKTIG!
-
-SKAL EN TUR TIL PSYKOLOGEN SÅ SKAL JEG SKRIVE
---------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-----------------------
 
 
 \section{Theory}
-LEGG TIL TEORI PÅ 3D PDE OG BRUK LABEL eq:partDIFF3D
-VET IKKE HVOR JEG SKAL SETTE LIGNINGEN
-\begin{equation}
-u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2}.
-\label{eq:u_xx}
-\end{equation}
-
 \subsection{Equation}
 In this project we are solving the partial differencial equation:
 \begin{equation}
@@ -156,12 +137,19 @@ u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x
 \label{eq:forward_euler}
 \end{equation}
 
-We are also using a centered difference in space with the approximation as you can see in equation (\ref{eq:u_xx}). Setting these two equations equal to eachother
-gives:
+We are also using a centered difference in space with the approximation as you can see in equation (\ref{eq:u_xx}). 
+
+\begin{equation}
+u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2}.
+\label{eq:u_xx}
+\end{equation}
+
+Setting these two equations equal to eachother gives:
  
 \begin{equation}
 \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2} 
 \end{equation}
+
 \begin{equation}
  \Rightarrow u_{i,j+1} = \alpha u_{i-1,j} + (1 -2\alpha)u_{i,j} + \alpha u_{i+1,j}
  \label{eq:Forward_eulerScheme}
@@ -251,7 +239,7 @@ or
 where we find $V_{j+1}$ by using a forward euler and solving the matrix equation as in backward euler by using Gaussian elimination. 
 
 \subsection{Jacobi}
-For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining these results in the explicit Jakobi-algorithm (\ref{eq:jacobi}).
+For an explicit solution to the 2-dimensional problem, $U_{x,t}$ and $U_{y,t}$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining these results in the explicit Jakobi-algorithm (\ref{eq:jacobi}).
 
 \begin{equation}
   u(i,j,t+dt) = u(i,j,t) + \alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t))
@@ -455,41 +443,43 @@ So setting this into the whole solution from equation (\ref{WritingEasier}) we g
 
 \subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
-Here we have the equation (\ref{eq:twoDimDiffEq}) which we solve as the 2D equation by seperable solutions:
+The equation (\ref{eq:twoDimDiffEq}), as the 2D equation, is solved by assuming separation of solutions:
 
 \begin{equation}
  u(x,y,t) = X(x)Y(y)T(t)
 \end{equation}
 
 With the boundary conditions $u(0,y,t) = u(1,y,t) = 0$ and $u(x,0,t) = u(x,1,t) = 0$
-So when we set this in the equation we get:
+Using this, the equation takes the form:
 
 \begin{equation}
  \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = \frac{T'(t)}{T(t)} 
 \end{equation}
 
-So by the same logic as for 2D this becomes:
+By the same logic as in the 2D-case this becomes:
 
 \begin{equation}
  \frac{X''(x)}{X(x)} + \frac{Y''(y)}{Y(y)} = -\lambda
 \end{equation}
 
 If we first keep y constant and varies x we get the equation:
+
 \begin{equation}
  X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \rightarrow X''(x) + (\lambda + \my)X(x) = 0
 \end{equation}
 
-And this we can solve as we did in 2D the same for when we keep x constant:
+As in the 2D-case when we get the equations:
 
 \begin{equation}
  Y''(y) + (\lambda + \mu)Y(y) = 0
 \end{equation}
 
-These two equations become:
+in both dimensions, giving
 
 \begin{equation}
  X(x) = b_nsin(n\pi x)
 \end{equation}
+
 \begin{equation}
  Y(y) = c_msin(m\pi y)
 \end{equation}
@@ -591,7 +581,7 @@ and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at
 calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
 
 \subsection{2D PDE}
-Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Ana_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.2}), (\ref{fig:Ana_dx0.2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Ana_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Ana_dx0.04}), (\ref{fig:Num_feil1}), (\ref{fig:Ana_feil1}), (\ref{fig:Num_feil2}), (\ref{fig:Ana_feil2}).
+Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Ana_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Ana_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Ana_dx0.04}), (\ref{fig:Num_feil1}), (\ref{fig:Ana_feil1}), (\ref{fig:Num_feil2}), (\ref{fig:Ana_feil2}).
 \begin{figure}
   \begin{center}
     \includegraphics[scale=0.5]{num_dt00025_dx01_T025}
@@ -623,23 +613,6 @@ Explicit numeric solutions for different values of dx and dt are figured in plot
     \caption{Analytical solution for dx=0.1, $\alpha$ = 0.25, T=1.25}
     \label{fig:Ana_dx0.1_dt0.0025T2}
   \end{center}
-\end{figure}
-
-\begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.5]{num_dt00025_dx02_T001}
-    \caption{Explicit solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
-    \label{fig:Num_dx0.2}
-  \end{center}
-\end{figure}
-
-\begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.5]{ana_dt001_dx02_T10}
-    \caption{Analytical solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
-    \label{fig:Ana_dx0.2}
-  \end{center}
-
 \end{figure}
 
 \begin{figure}
@@ -715,15 +688,18 @@ Explicit numeric solutions for different values of dx and dt are figured in plot
 
 \section{Discussion}
 \subsection{2D}
-We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange since it has only calculated around 10 timesteps.
-But in figure (\ref{fig:NumAna065}) we see that the one that is most correct is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
+We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange concidering it has only calculated approximately 10 timesteps.
+But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the aalytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
 Yo can see the relative errors in the table (\ref{tab:RelError}), for these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
 So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
 Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
 But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are  
 
 \subsection{3D}
+We see from the 3D-plots that the explicit method gives results very close to the analytical solution for closely defined $\alpha$'s. Because of the stability limitations care must be taken when choosing optimal resolution in the plots.
+A reduction in dx in order to increase accuracy means a $dx^2$ increase in the number of timesteps needed to analyse the time evolution of the solution up to a point T, meaning we are using a lot more computer power. 
 
+Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requirements of the explicit scheme after only 100 timesteps.
 \section{Conclusion}
 
 \section{Codes}
