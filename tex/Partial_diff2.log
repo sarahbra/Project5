@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 19:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -505,36 +505,13 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Overfull \hbox (4.65355pt too wide) in paragraph at lines 21--30
-\OT1/cmr/m/n/10 --------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!----------------------- RING
- []
-
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (170.77289pt too wide) detected at line 137
-\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cm
-m/m/it/10 ; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (0)\OML/cmm/
-m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
- t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 ; \
-OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/
-cmr/m/n/10 (1)\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 T\OT1/cmr/m
-/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m/it/10 u\OT1/cmr/m/n/10
- (0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; t\OT1/cmr/m/n/10 ) = 
-\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (0)\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 (0)\OML/
-cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = 0\OML/cmm/m
-/it/10 u\OT1/cmr/m/n/10 (1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 
-; t\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 X\OT1/cmr/m/n/10 (1)\OML/cmm/m/it/10 Y\
-OT1/cmr/m/n/10 (1)\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr
-/m/n/10 ) = 0
- []
-
-[2]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.193 \begin{bmatrix}
+l.187 \begin{bmatrix}
                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -542,7 +519,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.199 \end{bmatrix}
+l.193 \end{bmatrix}
                    
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -551,103 +528,42 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 [3]
-Overfull \hbox (55.4913pt too wide) detected at line 250
+Overfull \hbox (34.60237pt too wide) detected at line 247
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j; t \OT1/cmr/m/n/10 + \
 OML/cmm/m/it/10 dt\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/c
-mm/m/it/10 i; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 alpha \OMS/cmsy/m/n/10 ^
-^C \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i \OT1/
-cmr/m/n/10 + 1\OML/cmm/m/it/10 ; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 u\OT1
-/cmr/m/n/10 (\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/
-m/it/10 ; j; t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 4 \OMS/cms
-y/m/n/10 ^^C \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j; t\OT1/cmr/m/n/10 ) + \OML/
-cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j \OT1/cmr/m/n/10 + 1\OML/cmm
-/m/it/10 ; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/i
-t/10 i; j \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; t\OT1/cmr/m/
-n/10 ));
+mm/m/it/10 i; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10  \OMS/cmsy/m/n/10 ^^C \
+OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i \OT1/cmr/
+m/n/10 + 1\OML/cmm/m/it/10 ; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 u\OT1/cmr
+/m/n/10 (\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it
+/10 ; j; t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 4 \OMS/cmsy/m/
+n/10 ^^C \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j; t\OT1/cmr/m/n/10 ) + \OML/cmm/
+m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 i; j \OT1/cmr/m/n/10 + 1\OML/cmm/m/i
+t/10 ; t\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ i; j \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; t\OT1/cmr/m/n/10
+ ))
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 260--260
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 257--257
 []        \OT1/cmtt/m/n/10 unew(i) = alpha*u(i-1) + (1-2*alpha) * u(i) + alpha*
 u(i+1);[] 
  []
 
 [4]
-Overfull \hbox (80.24629pt too wide) in paragraph at lines 311--311
+Overfull \hbox (17.13039pt too wide) in paragraph at lines 290--291
+\OT1/cmr/m/n/10 Implementing the jacobi-algorithm is quite straight for-ward us
+-ing eq.(28[]). U(x,y,0)=
+ []
+
+[5]
+Overfull \hbox (80.24629pt too wide) in paragraph at lines 309--309
 []                    \OT1/cmtt/m/n/10 + A_old(i-1,j) - 4*A_old(i,j) + A_old(i,
 j+1) + A_old(i,j-1));[] 
  []
 
-[5] [6]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.389 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Display math should end with $$.
-<to be read again> 
-                   \par 
-l.389 
-      
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.390  X(x) = Acos(\sqrt{
-                         \lamda x} + Bsin(\sqrt{\lambda x}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
+[6] [7]
 ! Undefined control sequence.
-l.390  X(x) = Acos(\sqrt{\lamda
-                                x} + Bsin(\sqrt{\lambda x}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.391 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.391 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Undefined control sequence.
-l.394 This means that $sin\lamda
-                                 = 0$ This gives us the eigenvalue $\lambda ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[7]
-
-LaTeX Warning: Reference `Putt inn' on page 8 undefined on input line 456.
-
-! Undefined control sequence.
-l.477 ...) = 0 \Rightarrow X''(x) + (\lambda + \my
+l.468 ...) = 0 \rightarrow X''(x) + (\lambda + \my
                                                   )X(x) = 0
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -655,29 +571,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! You can't use `\eqno' in math mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.499 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.499 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
 [8]
-Overfull \hbox (95.02618pt too wide) detected at line 539
+Overfull \hbox (95.02618pt too wide) detected at line 531
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
 /cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) + []\OML/c
 mm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )^^A\OML/cmm
@@ -692,7 +587,7 @@ mm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT1/cmr/m/n/10 (^^A\OML/cmm
  []
 
 
-Overfull \hbox (95.13728pt too wide) detected at line 545
+Overfull \hbox (95.13728pt too wide) detected at line 537
 \OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) = \OML
 /cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 ) \OMS/cmsy/
 m/n/10 ^^@ []\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t[]\OT1/cmr/
@@ -710,40 +605,129 @@ OT1/cmr/m/n/10 )^^A\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 + \OMS/cmsy/m/n/10 O\OT
 File: alldt025analyticalt1.png Graphic file (type png)
 
 <use alldt025analyticalt1.png>
-Package pdftex.def Info: alldt025analyticalt1.png used on input line 579.
+Package pdftex.def Info: alldt025analyticalt1.png used on input line 568.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 <alldt025analyticalt2.png, id=44, 578.16pt x 433.62pt>
 File: alldt025analyticalt2.png Graphic file (type png)
 
 <use alldt025analyticalt2.png>
-Package pdftex.def Info: alldt025analyticalt2.png used on input line 585.
+Package pdftex.def Info: alldt025analyticalt2.png used on input line 574.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 
-LaTeX Warning: Reference `tab:RelError' on page 9 undefined on input line 591.
+LaTeX Warning: Reference `tab:RelError' on page 9 undefined on input line 580.
 
 
-LaTeX Warning: Command \l invalid in math mode on input line 592.
+LaTeX Warning: Command \l invalid in math mode on input line 581.
 
-[9] [10 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>]
+<num_dt00025_dx01_T025.png, id=45, 422.32782pt x 316.18124pt>
+File: num_dt00025_dx01_T025.png Graphic file (type png)
 
-LaTeX Warning: Reference `tab:RelError' on page 11 undefined on input line 602.
+<use num_dt00025_dx01_T025.png>
+Package pdftex.def Info: num_dt00025_dx01_T025.png used on input line 587.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt00025_dx01_T025.png, id=46, 422.32782pt x 316.18124pt>
+File: ana_dt00025_dx01_T025.png Graphic file (type png)
+
+<use ana_dt00025_dx01_T025.png>
+Package pdftex.def Info: ana_dt00025_dx01_T025.png used on input line 596.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt00025_dx01_T125.png, id=47, 422.32782pt x 316.18124pt>
+File: num_dt00025_dx01_T125.png Graphic file (type png)
+
+<use num_dt00025_dx01_T125.png>
+Package pdftex.def Info: num_dt00025_dx01_T125.png used on input line 604.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt00025_dx01_T125.png, id=48, 422.32782pt x 316.18124pt>
+File: ana_dt00025_dx01_T125.png Graphic file (type png)
+
+<use ana_dt00025_dx01_T125.png>
+Package pdftex.def Info: ana_dt00025_dx01_T125.png used on input line 612.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt00015_dx01_T003.png, id=49, 422.32782pt x 316.18124pt>
+File: num_dt00015_dx01_T003.png Graphic file (type png)
+
+<use num_dt00015_dx01_T003.png>
+Package pdftex.def Info: num_dt00015_dx01_T003.png used on input line 620.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt00015_dx01_T003.png, id=50, 422.32782pt x 316.18124pt>
+File: ana_dt00015_dx01_T003.png Graphic file (type png)
+
+<use ana_dt00015_dx01_T003.png>
+Package pdftex.def Info: ana_dt00015_dx01_T003.png used on input line 629.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt00004_dx004_T004.png, id=51, 422.32782pt x 316.18124pt>
+File: num_dt00004_dx004_T004.png Graphic file (type png)
+
+<use num_dt00004_dx004_T004.png>
+Package pdftex.def Info: num_dt00004_dx004_T004.png used on input line 638.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt00004_dx004_T004.png, id=52, 422.32782pt x 316.18124pt>
+File: ana_dt00004_dx004_T004.png Graphic file (type png)
+
+<use ana_dt00004_dx004_T004.png>
+Package pdftex.def Info: ana_dt00004_dx004_T004.png used on input line 646.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt0006_dx01_T0006.png, id=53, 422.32782pt x 316.18124pt>
+File: num_dt0006_dx01_T0006.png Graphic file (type png)
+
+<use num_dt0006_dx01_T0006.png>
+Package pdftex.def Info: num_dt0006_dx01_T0006.png used on input line 655.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt0006_dx01_T0006.png, id=54, 422.32782pt x 316.18124pt>
+File: ana_dt0006_dx01_T0006.png Graphic file (type png)
+
+<use ana_dt0006_dx01_T0006.png>
+Package pdftex.def Info: ana_dt0006_dx01_T0006.png used on input line 664.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<num_dt0006_dx01_T06.png, id=55, 422.32782pt x 316.18124pt>
+File: num_dt0006_dx01_T06.png Graphic file (type png)
+
+<use num_dt0006_dx01_T06.png>
+Package pdftex.def Info: num_dt0006_dx01_T06.png used on input line 673.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
+
+<ana_dt0006_dx01_T06.png, id=56, 422.32782pt x 316.18124pt>
+File: ana_dt0006_dx01_T06.png Graphic file (type png)
+
+<use ana_dt0006_dx01_T06.png>
+Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 682.
+(pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
 
 
-[11] (./Partial_diff2.aux)
+LaTeX Warning: Reference `tab:RelError' on page 9 undefined on input line 693.
+
+[9] [10 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>] [11 <./num_d
+t00025_dx01_T025.png (PNG copy)> <./ana_dt00025_dx01_T025.png (PNG copy)> <./nu
+m_dt00025_dx01_T125.png (PNG copy)>] [12 <./ana_dt00025_dx01_T125.png (PNG copy
+)> <./num_dt00015_dx01_T003.png (PNG copy)> <./ana_dt00015_dx01_T003.png (PNG c
+opy)>] [13 <./num_dt00004_dx004_T004.png (PNG copy)> <./ana_dt00004_dx004_T004.
+png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)>] [14 <./ana_dt0006_dx0
+1_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_dx
+01_T06.png (PNG copy)>] [15] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2455 strings out of 494953
- 31636 string characters out of 6180977
- 94315 words of memory out of 5000000
- 5709 multiletter control sequences out of 15000+600000
+ 2527 strings out of 494953
+ 33584 string characters out of 6180977
+ 99437 words of memory out of 5000000
+ 5769 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,10n,23p,257b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,10n,23p,459b,265s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
@@ -757,10 +741,10 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (11 pages, 274889 bytes).
+Output written on Partial_diff2.pdf (15 pages, 441092 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
