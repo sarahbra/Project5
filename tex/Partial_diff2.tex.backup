@@ -615,8 +615,10 @@ In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical 
 and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
 calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
 
-\subsection{2D PDE}
-Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Ana_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Ana_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Ana_dx0.04}), (\ref{fig:Num_feil1}), (\ref{fig:Ana_feil1}), (\ref{fig:Num_feil2}), (\ref{fig:Ana_feil2}).
+\subsection{3D PDE}
+Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Num_feil1}) and (\ref{fig:Num_feil2})).
+The corresponding analytical solutions are shown in figures ((
+
 \begin{figure}
   \begin{center}
     \includegraphics[scale=0.5]{num_dt00025_dx01_T025}
@@ -687,6 +689,24 @@ Explicit numeric solutions for different values of dx and dt are figured in plot
 
 \begin{figure}
   \begin{center}
+    \includegraphics[scale=0.5]{num_dt001_dx02_T10}
+    \caption{Numeric solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
+    \label{fig:Num_dx0.2}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.5]{ana_dt001_dx02_T10}
+    \caption{Analytic solution for dx=0.2, $\alpha$ = 0.25, T=1.0}
+    \label{fig:Ana_dx0.2}
+  \end{center}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
     \includegraphics[scale=0.5]{num_dt0006_dx01_T0006}
     \caption{Explicit solution for dx=0.1, $\alpha$ = 0.6, T=0.006}
     \label{fig:Num_feil1}
@@ -724,20 +744,16 @@ Explicit numeric solutions for different values of dx and dt are figured in plot
 \section{Discussion}
 \subsection{2D}
 We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange concidering it has only calculated approximately 10 timesteps.
-<<<<<<< HEAD
-But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the analytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
-=======
 But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the aalytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
 For these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
->>>>>>> 754305108941538a25a18a76a02094160bf601b8
 So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
 Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
 But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are 
 tailored for the forward Euler method. But if we had choosen other timesteps then the forward Euler method would have failed miserable, while the
 two other method will be stable for all choosen timesteps and positionsteps. 
 
-Number of FLOPS in the forward Euler scheme is $\propto n$ for every timestep, and in backward euler which uses gaussian elimination on a tridiagonal matrix also have number of FLOPS
-$\propto n$. Crrank-Nicolson scheme is a combination of these two so number of FLOPS will be $\propto 2n$. These round off errors is for every timestep, so the
+The number of FLOPS in the forward Euler scheme is $\propto n$ for every timestep, and in backward euler which uses gaussian elimination on a tridiagonal matrix also have number of FLOPS
+$\propto n$. The Crank-Nicolson scheme is a combination of these two so number of FLOPS will be $\propto 2n$. These round off errors is for every timestep, so the
 errors will accumulate with time but as we see all the round off errors are proportional with $n$ for every timestep so the error coming from the round
 off will be approximately the same for the three methods.
 
@@ -748,6 +764,8 @@ Because of the stability limitations care must be taken when choosing optimal re
 If we are to analyse the temperature evolution during a long timeframe we would therefore need to sacrifice spacial accuracy.
 
 Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requirements of the explicit scheme after only 100 timesteps. We would not even have needed this many steps, seeing as the results of even a few time-loops gives the wrong solution. $\alpha$ is here given as 0.6, not far from the upper limit of 0.5, meaning the stability limit is very strict.
+
+The number of FLOPS required for the jacobi-algorithm is $\propto 2n^2$ for each timestep, meaning there's an even larger round-off error in the 3D-case.
 \section{Conclusion}
 
 \section{Codes}
