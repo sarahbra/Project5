@@ -418,7 +418,7 @@ This is an equation which we have solved nmany times before. First we have the c
   X(x) = Ae^{\sqrt{k}x} + Be^{-\sqrt{k}x}, \lambda=-k
 \end{equation}
 
-if we set in the boundary conditions we get that $X(0) = A+B$ and then $X(1) = Ae^{\sqrt{k}} - Ae^{\sqrt{k}} = A(e^{2*\sqrt{k}}$ and since k must
+if we set in the boundary conditions we get that $X(0) = A+B$ and then $X(1) = Ae^{\sqrt{k}} - Ae^{\sqrt{k}} = A(e^{2*\sqrt{k}})$ and since k must
 be positive this gives that $A=B=0$ which is the trivial solution which we are not interested in.
 
 When $\lambda = 0 $ this gives $A=B=0$ which are also trivial solutions.
@@ -510,7 +510,7 @@ By the same logic as in the 2D-case this becomes:
 If we first keep y constant and varies x we get the equation:
 
 \begin{equation}
- X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \rightarrow X''(x) + (\lambda + \my)X(x) = 0
+ X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \rightarrow X''(x) + (\lambda + \mu)X(x) = 0
 \end{equation}
 
 As in the 2D-case when we get the equations:
@@ -625,8 +625,7 @@ So the error in x is of the second order.
 \end{figure}
 
 In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical calculations against the analytical for two times $t_1 = 0.025$
-and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
-calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
+and $t_2 = 0.65$.
 
 \subsection{3D PDE}
 Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Num_feil1}) and (\ref{fig:Num_feil2})).
