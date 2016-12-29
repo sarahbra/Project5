@@ -66,6 +66,7 @@ a form that is easier to solve. So we introduce:
 
 \begin{equation}
  w(x,t) = u(x,t) - v(x)
+ \label{WritingEasier}
 \end{equation}
 Where $v(x)$ is the steady state solution.
 
@@ -423,6 +424,30 @@ With the initial condition
 multiply with $sin(m\pi x)$ on both sides and use the orthogonality of $sin(m\pi x)$  and $sin(n\pi x)$
 
 And this gives:
+\begin{equation}
+ \sum_{n=1}^{\infinity} b_n \int_0^1 sin(n\pi x)sin(m\pi x)dx = \frac{1}{2}b_n = -\int_0^1 sin(m\pi x)x dx
+\end{equation}
+
+This gives the integral
+
+\begin{equation}
+ b_n = -2\int_0^1 xsin(m\pi x)
+\end{equation}
+
+solving this by using partial integration and writing it to an easier form:
+
+\begin{equation}
+ b_n = (-1)^m(-\frac{1}{m\pi}, m=1,2,...
+\end{equation}
+Setting htis into the steady steady state solution
+
+So setting this into the whole solution from equation (\ref{WritingEasier}) we get:
+
+\begin{equation}
+ u(x,t) = v(x) + w(x,t) = 
+ x + \sum_{n=1}^{\infinity}(-1)^n(\frac{2}{n\pi}sin(n\pi*x)e^{-(n\pi)^2t}
+\end{equation}
+
 
 
  

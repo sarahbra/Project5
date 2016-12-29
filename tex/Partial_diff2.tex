@@ -413,19 +413,19 @@ Which is well known as
 So the the solution becomes:
 
 \begin{equation}
- w(x,t) \sum_{n=1}^{\infinity} B_n*sin(n*\pi x)e^{-(n^2\pi^2t)}
+ w(x,t) \sum_{n=1}^{\infty} B_n*sin(n*\pi x)e^{-(n^2\pi^2t)}
  \end{equation}
  
 With the initial condition
 
 \begin{equation}
- w(x,0) = \sum_{n=1}^{\infinity} B_n*sin(n*\pi x)
+ w(x,0) = \sum_{n=1}^{\infty} B_n*sin(n*\pi x)
 \end{equation}
 multiply with $sin(m\pi x)$ on both sides and use the orthogonality of $sin(m\pi x)$  and $sin(n\pi x)$
 
 And this gives:
 \begin{equation}
- \sum_{n=1}^{\infinity} b_n \int_0^1 sin(n\pi x)sin(m\pi x)dx = \frac{1}{2}b_n = -\int_0^1 sin(m\pi x)x dx
+ \sum_{n=1}^{\infty} b_n \int_0^1 sin(n\pi x)sin(m\pi x)dx = \frac{1}{2}b_n = -\int_0^1 sin(m\pi x)x dx
 \end{equation}
 
 This gives the integral
@@ -445,7 +445,7 @@ So setting this into the whole solution from equation (\ref{WritingEasier}) we g
 
 \begin{equation}
  u(x,t) = v(x) + w(x,t) = 
- x + \sum_{n=1}^{\infinity}(-1)^n(\frac{2}{n\pi}sin(n\pi*x)e^{-(n\pi)^2t}
+ x + \sum_{n=1}^{\infty}(-1)^n(\frac{2}{n\pi})sin(n\pi*x)e^{-(n\pi)^2t}
 \end{equation}
 
 
@@ -574,42 +574,24 @@ So the error on the x is of the second order.
 
 
 
-\begin{figure}
-  \includegraphics[scale=0.5]{Time_evolution}
-    \caption{The time evolution for the analytical solution}
-    \label{fig:time_evo}
-\end{figure}
 
 \begin{figure}
-  \includegraphics[scale=0.5]{numerical_analytcal_T0025}
+  \includegraphics[scale=0.5]{alldt025analyticalt1}
     \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.0025$}
     \label{fig:NumAna0025}
 \end{figure}
 
 \begin{figure}
-  \includegraphics[scale=0.5]{numerical_analytcal_T065}
+  \includegraphics[scale=0.5]{alldt025analyticalt2}
     \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.65$}
     \label{fig:NumAna065}
 \end{figure}
 
-In figure (\ref{fig:time_evo}) we see the time evolution for the analytical solution which we used to get the time points to analyze the numerical 
-calculations.
 In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical calculations against the analytical for two times $t_1 = 0.025$
 and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
 calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
 
-\begin{table}
-\centering
-\caption{Table with the relative error of the different schemes calculating it by using the max value and $\epsilon =|1-u_{num}/u_{anałytical}|$ }
-\label{tab:RelError}
-\begin{tabular}{|l|l|l|}
-\hline
- & $t_1=0.025$ & $t_2=0.065$ \\ \hline
-Forward Euler & $0.000023$ & $0.026$ \\ \hline
-Backward Euler & $0.000631$ & $0.4227$ \\ \hline
-Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
-\end{tabular}
-\end{table}
+
 
 \subsection{2D PDE}
 
