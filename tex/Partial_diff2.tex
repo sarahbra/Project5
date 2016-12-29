@@ -217,7 +217,7 @@ To solve this matrix equation we utilize the Gaussian elimination for tridiagona
 \subsubsection{Crank Nicolson}
 In Cranc-Nicolson we use a time centered scheme where 
 \begin{equation}
-u(x_i, t_{j+1/2}) \approx 
+u(x_i, t_{j+1}) \approx \frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t} 
 \end{equation}
 
 This gives the equation :
@@ -296,8 +296,8 @@ In the implicit Backward Euler scheme we use Gaussian elimination to advance in 
 Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 \begin{verbatim}
 
-void crank_Nicolson(int n, int t_steps, double alpha
-		, double dx, double dt) {
+void crank_Nicolson(int n, int t_steps, double alpha,
+                              double dx, double dt) {
     char* method = "crank_nicolson";
     initializePrint(method, n, dx, dt, t_steps);
     double a_value, c_value, b_value;
@@ -320,13 +320,13 @@ void crank_Nicolson(int n, int t_steps, double alpha
     
     //The algorithm for solving the system
     for (int t=1;t<=t_steps;t++) {
-	//One step with forward euler
+        //One step with forward euler
         v = forward_step(n,alpha,u,v);
         v(0) = 0.0;
         v(n) = 1.0;
         //Then gaussian elimination
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
-    ... Print to file method
+        ... Print to file method
     }
 }
 \end{verbatim}
