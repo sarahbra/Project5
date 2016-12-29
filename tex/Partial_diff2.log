@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.23)  29 DEC 2016 19:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.20)  29 DEC 2016 20:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -704,25 +704,21 @@ File: ana_dt0006_dx01_T06.png Graphic file (type png)
 <use ana_dt0006_dx01_T06.png>
 Package pdftex.def Info: ana_dt0006_dx01_T06.png used on input line 682.
 (pdftex.def)             Requested size: 211.16339pt x 158.09023pt.
-
-
-LaTeX Warning: Reference `tab:RelError' on page 9 undefined on input line 693.
-
-[9] [10 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>] [11 <./num_d
-t00025_dx01_T025.png (PNG copy)> <./ana_dt00025_dx01_T025.png (PNG copy)> <./nu
-m_dt00025_dx01_T125.png (PNG copy)>] [12 <./ana_dt00025_dx01_T125.png (PNG copy
-)> <./num_dt00015_dx01_T003.png (PNG copy)> <./ana_dt00015_dx01_T003.png (PNG c
-opy)>] [13 <./num_dt00004_dx004_T004.png (PNG copy)> <./ana_dt00004_dx004_T004.
-png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)>] [14 <./ana_dt0006_dx0
-1_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_dx
-01_T06.png (PNG copy)>] [15] (./Partial_diff2.aux)
+ [9] [10 <./alldt025analyticalt1.png> <./alldt025analyticalt2.png>] [11 <./num_
+dt00025_dx01_T025.png (PNG copy)> <./ana_dt00025_dx01_T025.png (PNG copy)> <./n
+um_dt00025_dx01_T125.png (PNG copy)>] [12 <./ana_dt00025_dx01_T125.png (PNG cop
+y)> <./num_dt00015_dx01_T003.png (PNG copy)> <./ana_dt00015_dx01_T003.png (PNG 
+copy)>] [13 <./num_dt00004_dx004_T004.png (PNG copy)> <./ana_dt00004_dx004_T004
+.png (PNG copy)> <./num_dt0006_dx01_T0006.png (PNG copy)>] [14 <./ana_dt0006_dx
+01_T0006.png (PNG copy)> <./num_dt0006_dx01_T06.png (PNG copy)> <./ana_dt0006_d
+x01_T06.png (PNG copy)>] [15] (./Partial_diff2.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
  2527 strings out of 494953
- 33584 string characters out of 6180977
+ 33584 string characters out of 6180976
  99437 words of memory out of 5000000
  5769 multiletter control sequences out of 15000+600000
  9798 words of font info for 36 fonts, out of 8000000 for 9000
@@ -741,7 +737,7 @@ s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Partial_diff2.pdf (15 pages, 441092 bytes).
+Output written on Partial_diff2.pdf (15 pages, 441189 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  78 compressed objects within 1 object stream
