@@ -18,11 +18,18 @@
 \end{abstract}
 
 \section{Introduction}
+In this project we have looked at the diffusion equation and solved it using different schemes: Forward Euler, Backward Euler
+and Crank Nicolson. We first solved it in 1D, compared the results with the analytical solution, and then did an error analysis. We then proceeded to 
+solve it explicitly for 2D and looked at the stability of our solution for different timesteps and positionsteps. 
 
+Our motivation to choose this project was our curiosity to learn different kinds of algorithms to solve different PDE equations, since PDE equations
+are so widespread in the natural sciences and specially in Physics. So wanted to get a better grasp on how to solve these equaitions and at the same time
+get a better handle on how the error in the solutions behave. Since many PDEs are impossible to solve analytical we thought this project
+was the one we could benefit the most from.
 
 \section{Theory}
 \subsection{Equations}
-In this project we are solving the partial differencial equation:
+We are solving the partial differencial equation:
 \begin{equation}
   \frac{\partial^2 u(x,t)}{\partial x^2} =\frac{\partial u(x,t)}{\partial t}, t> 0, x\in [0,1]
   \label{eq:PartDiff}
@@ -242,7 +249,9 @@ where we find $V_{j+1}$ by using a forward euler and solving the matrix equation
 For an explicit solution to the 2-dimensional problem, $U_{x,t}$ and $U_{y,t}$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining these results in the explicit Jakobi-algorithm (\ref{eq:jacobi}).
 
 \begin{equation}
-  u(i,j,t+dt) = u(i,j,t) + \alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t))
+  u(i,j,t+dt) = u(i,j,t) + \alpha(u(i+1,j,t) + u(i-1,j,t) - 4(i,j,t) + u(i,j+1,t) +
+      
+      u(i,j-1,t))
 \label{eq:jacobi}
 \end{equation}
 
@@ -287,7 +296,8 @@ In the implicit Backward Euler scheme we use Gaussian elimination to advance in 
 Crank-Nicolson, being a combination of the explicit and implicit schemes, first runs forward step and then uses this updated solution v in the gaussian elimination for each timestep T(i).
 \begin{verbatim}
 
-void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
+void crank_Nicolson(int n, int t_steps, double alpha
+		, double dx, double dt) {
     char* method = "crank_nicolson";
     initializePrint(method, n, dx, dt, t_steps);
     double a_value, c_value, b_value;
@@ -307,17 +317,16 @@ void crank_Nicolson(int n, int t_steps, double alpha, double dx, double dt) {
     b(0) = b(n) = b_value;
     u(0) = 0.0;
     u(n) = 1.0;
-
-    //GaussElim(a_value,b, b_value,c_value,u,n,v);
+    
+    //The algorithm for solving the system
     for (int t=1;t<=t_steps;t++) {
+	//One step with forward euler
         v = forward_step(n,alpha,u,v);
         v(0) = 0.0;
         v(n) = 1.0;
+        //Then gaussian elimination
         u = GaussElim(a_value,b, b_value,c_value,n,u,v);
-        if (t%10==0 || t==1) {
-            double time = t*dt;
-            printtofile(time,v,n);
-        }
+    ... Print to file method
     }
 }
 \end{verbatim}
@@ -341,7 +350,8 @@ void jakobi_solver (double dx, double dt) {
         for (int i=1;i<n;i++) {
             for (int j=1;j<n;j++) {
                 A_new(i,j) = A_old(i,j) + alpha*(A_old(i+1,j)
-                    + A_old(i-1,j) - 4*A_old(i,j) + A_old(i,j+1) + A_old(i,j-1));
+                    + A_old(i-1,j) - 4*A_old(i,j) +
+                     A_old(i,j+1) + A_old(i,j-1));
             }
         }
         A_old = A_new;
@@ -466,7 +476,7 @@ This gives the integral
 solving this by using partial integration and simplifying gives:
 
 \begin{equation}
- b_n = (-1)^m(-\frac{1}{m\pi}, m=1,2,...
+ b_n = (-1)^m(-\frac{1}{m\pi})		, m=1,2,...
 \end{equation}
 
 So setting this into the whole solution from equation (\ref{WritingEasier}) we get:
@@ -559,17 +569,20 @@ So the same as in the Forward Euler scheme
 
 In Crank-Nicolson we use a time centered scheme so we have to taylor expand $u_{n+ 1/2}$ and $u_{n-1/2}$ and combine these. 
 
-\begin{equation}
-u(t_{n+1/2}) = u(t_n) + \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 + \\
-\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 + \\
-\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
-\end{equation}
+\[u(t_{n+1/2}) = u(t_n) + \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 + \]
+
+\[ \frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 + \]
+
+\[ \frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6) \]
+
 and
-\begin{equation}
- u(t_{n-1/2}) = u(t_n) - \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 - \\
-\frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 - \\
-\frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6)
-\end{equation}
+
+\[ u(t_{n-1/2}) = u(t_n) - \frac{1}{2} u'(t_n)\Delta t + \frac{1}{4} u''(t_n) \Delta t^2 - \]
+
+\[  \frac{1}{12}u'''(t_n) \Delta t^3 + \frac{1}{48} u^{(4)}(t_n)\Delta t^4 - \]
+
+\[  \frac{1}{240} u^{(5)} (t_n) \Delta t^5 + \mathcal{O}(\Delta t^6) \]
+
 
 If we subtract the last from the first we get the error:
 \begin{equation}
@@ -612,12 +625,11 @@ So the error in x is of the second order.
 \end{figure}
 
 In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical calculations against the analytical for two times $t_1 = 0.025$
-and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
-calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
+and $t_2 = 0.65$.
 
 \subsection{3D PDE}
-Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Num_feil1}) and (\ref{fig:Num_feil2})).
-The corresponding analytical solutions are shown in figures ((
+Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{fig:Num_alpha0.15}), (\ref{fig:Num_dx0.04}), (\ref{fig:Num_dx0.2}), (\ref{fig:Num_feil1}) and (\ref{fig:Num_feil2})).
+The corresponding analytical solutions are shown in figures ((\ref{fig:Ana_dx0.1_dt0.0025T1}), (\ref{fig:Ana_dx0.1_dt0.0025T2}), (\ref{fig:Ana_alpha0.15}), (\ref{fig:Ana_dx0.04}), (\ref{fig:Ana_dx0.04}), (\ref{fig:Ana_dx0.2}), (\ref{fig:Ana_feil1}) and (\ref{fig:Ana_feil2}).
 
 \begin{figure}
   \begin{center}
@@ -744,13 +756,15 @@ The corresponding analytical solutions are shown in figures ((
 \section{Discussion}
 \subsection{2D}
 We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange concidering it has only calculated approximately 10 timesteps.
-But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the aalytical solution is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
+But in figure (\ref{fig:NumAna065}) we see that the one that most closely resembles the analytical solution is Forward Euler, followed by Crank-Nicolson and lastly Backward Euler. 
 For these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
+
 So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
 Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
 But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are 
 tailored for the forward Euler method. But if we had choosen other timesteps then the forward Euler method would have failed miserable, while the
 two other method will be stable for all choosen timesteps and positionsteps. 
+
 
 The number of FLOPS in the forward Euler scheme is $\propto n$ for every timestep, and in backward euler which uses gaussian elimination on a tridiagonal matrix also have number of FLOPS
 $\propto n$. The Crank-Nicolson scheme is a combination of these two so number of FLOPS will be $\propto 2n$. These round off errors is for every timestep, so the
@@ -761,14 +775,22 @@ off will be approximately the same for the three methods.
 We see from the 3D-plots that the explicit method gives results very close to the analytical solution for closely defined $\alpha$'s. In anology to the one(two)-dimensional case, the algorithm provides an accurate solution because of the initial functions correspondence to the analytical solution for T=0. 
 
 Because of the stability limitations care must be taken when choosing optimal resolution in the plots. A reduction in dx in order to increase accuracy means a $dx^2$ increase in the number of timesteps needed to analyse the time evolution of the solution up to a point T, meaning we are using a lot more computer power than we would have needed using an implicit scheme where dt is independent of dx.
-If we are to analyse the temperature evolution during a long timeframe we would therefore need to sacrifice spacial accuracy.
+If we are to analyse the temperature evolution during a long timeframe we would therefore need to sacrifice spacial accuracy. And looking at figures (\ref{fig:Num_dx0.2}) and (\ref{fig:Ana_dx0.2}) we see that the numeric solutions diverges from the analytical solution when the spacial resolution reduces.
 
 Figure (\ref{fig:Num_feil2}) shows the results of not obeying the stability requirements of the explicit scheme after only 100 timesteps. We would not even have needed this many steps, seeing as the results of even a few time-loops gives the wrong solution. $\alpha$ is here given as 0.6, not far from the upper limit of 0.5, meaning the stability limit is very strict.
 
 The number of FLOPS required for the jacobi-algorithm is $\propto 2n^2$ for each timestep, meaning there's an even larger round-off error in the 3D-case.
 \section{Conclusion}
 
-\section{Codes}
+\section{Codes and data}
+The following are all from the github-domain 
+\begin{verbatim}
+ https://github.com/sarahbra/Project5:
+\end{verbatim}
+
+/PDE2dim (main)
+/PDESolver (main)
+/tex
 
 \section{Sources}
 The sources we have used is:
