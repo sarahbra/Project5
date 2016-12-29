@@ -18,8 +18,18 @@
 \end{abstract}
 
 \section{Introduction}
+--------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-----------------------
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
+RING MEG FØR DU SKRIVER VIKTIG!
 
-
+SKAL EN TUR TIL PSYKOLOGEN SÅ SKAL JEG SKRIVE
+--------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-----------------------
 
 
 \section{Theory}
@@ -37,26 +47,62 @@ In this project we are solving the partial differencial equation:
   \label{eq:PartDiff}
 \end{equation}
 
-which can also be written
+We have the initial condition:
 
 \begin{equation}
- u_{xx}=u_t
+ u(x,0) = 0
+\end{equation}
+
+And boundary conditions when $t>0$:
+\begin{equation}
+ u(0,t) = 0,
+ u(L,t) = 1
+\end{equation}
+
+Here $L=1$.
+
+The steady state solution can be found easily by solving the laplace equation which is the harmonic solution. So we have to write our problem on 
+a form that is easier to solve. We introduce:
+
+\begin{equation}
+ w(x,t) = u(x,t) - v(x)
+ \label{WritingEasier}
+\end{equation}
+Where $v(x)$ is the steady state solution.
+
+This gives us:
+
+\begin{equation}
+ w(0,t) = 0 - 0 = 0
+\end{equation}
+\begin{equation}
+w(L,t) = u(L,t) - v(L) = 1 -1 = 0  
+\end{equation}
+\begin{equation}
+ w(x,0) = u(x,0) - v(x) = 0 -x = -x
+\end{equation}
+
+We can then solve the equation:
+
+\begin{equation}
+ w_{xx}=w_t
  \label{eq:simpleDiff}
 \end{equation}
 
-This partial differencial equation can be seen as the temperature gradient in a rod of lenght $L$. This equation can be seen as being dimensionless
+This partial differencial equation can be seen as the temperature gradient in a rod of lenght $L$. It is also dimensionless in our case
 since there are no constant multiplied to the equation and x goes from zero to one.
 
-To solve this equation we are looking for a solution by seperating the variables:
+To solve this equation we are looking for a solution by separating the variables:
+
 \begin{equation}
-u(x,t) = X(x)T(t)
+w(x,t) = X(x)T(t)
 \label{eq:seperating}
 \end{equation}
 
-If we take the partiall derivatives of this expression we get:
+If we take the partial derivatives of this expression we get:
 
 \begin{equation}
-u_{xx} = X''(x)T(t) ,and u_t = X(x)T'(t)
+w_{xx} = X''(x)T(t) ,and w_t = X(x)T'(t)
 \label{eq:deriv}
 \end{equation}
 
@@ -67,20 +113,27 @@ So if we set put this in the equation (\ref{eq:simpleDiff}) we get:
 \label{eq:eigValue}
 \end{equation}
 
-We see that this must be equal to a constant and we see that this is an eigenvalue problem. We put a minus sign infront of the eigenvalue because
-of convention.
+We see that this must be equal to a constant and that it therefore is an eigenvalue problem. We put a minus sign infront of the eigenvalue for convention.
 
-This gives uss the equations:
+This gives us the equations:
 
 \begin{equation}
-u(0,t) = X(0)T(t) = 0 
-u(1,t) = X(1)T(t) = 0
+w(0,t) = X(0)T(t) = 0 
+w(1,t) = X(1)T(t) = 0
 \label{eq:initialCond}
 \end{equation}
 
-If we let $T(t) = 0$ we get the trivial solution, which we are not interested int.
+If we let $T(t) = 0$ we get the trivial solution, which we are not interested in.
 
-In two dimensions the same initial conditions require
+The two-dimensional diffusion equation is given by eq(\ref{eq:twoDimDiffEq}).
+
+\begin{equation}
+  \frac{\partial^2 u(x,y,t)}{\partial x^2} + \frac{\partial^2 u(x,y,t)}{\partial y^2} = \frac{\partial u(x,y,t)}{\partial t}
+\label{eq:twoDimDiffEq}
+\end{equation}
+with t > 0 and x=y=[0,1].
+
+We choose to only look for the steady state solution with the boundary conditions:
 
 \begin{equation}
 u(0,0,t) = X(0)Y(0)T(t) = 0
@@ -90,10 +143,12 @@ u(1,1,t) = X(1)Y(1)T(t) = 0
 \label{eq:initialCondTwoDim}
 \end{equation}
 
+The initial conditions are chosen for simplicity.
+
 \subsection{Algorithms}
-For solving PDE's we have to different kind of algorithms we have explicit and implicit. An example of an explicit algorithm is Forward Euler.
+For solving PDE's we have to different kind of algorithms: explicit and implicit. An example of an explicit algorithm is the Forward Euler.
 What defines an explicit algorithm is that it takes basis in the forward timestep when differentiating and is therefore straightforward to program.
-While the implicit scheme we calculate the differencial by using the previous timestep so it becomes a series of matrix equations which can be solved 
+In the implicit scheme, however, we calculate the differential by using the previous timestep and it becomes a series of matrix equations which can be solved 
 using for example Gaussian elimination or LU-decomposition. Examples of implicit schemes are backward Euler and Crank-Nicolson.
 
 \subsubsection{Forward Euler}
@@ -104,10 +159,8 @@ u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x
 \label{eq:forward_euler}
 \end{equation}
 
-This is an explicit scheme because it finds the current time step by looking at the (LES MER PÅ FORSKJELLEN AV IMPLICIT OG EXPLICIT)
-
-We are also using a centered difference in space with the approximation as you can see in equation (\ref{eq:u_xx}). So setting these to equtions equal to eachother
- gives:
+We are also using a centered difference in space with the approximation as you can see in equation (\ref{eq:u_xx}). Setting these two equations equal to eachother
+gives:
  
 \begin{equation}
 \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2} 
@@ -126,22 +179,24 @@ And this is the form we choose for solving this. By looking at this equation we 
 
 Else the second term vanishes, and our solution for the new time step is wrong.
 
-We can implement this as a algorithm just by looping over the timesteps, for so to loop over the 
+We can implement this just by looping over the timesteps, followed by looping over the 
 x values where $x \in [0,1]$.
 
 \subsubsection{Backward Euler}
 
 This is an implicit scheme where we approximating the time derivative by:
+
 \begin{equation}
 u_t\approx \frac{u(x,t)-u(x,t-\Delta t)}{\Delta t}=\frac{u(x_i,t_j)-u(x_i,t_j-\Delta t)}{\Delta t}
 \label{eq:bacward_Euler}
 \end{equation}
 
-And by setting $u_t$ = $u_xx$ we get the equation:
+By setting $u_t$ = $u_xx$ we get the equation:
 \begin{equation}
 u_{i,j-1} = \alpha u_{i-1,j} + (1-2\alpha)u_{i,j} - \alpha u_{j+1,i}
 \label{eq:Backward_eulerScheme}
 \end{equation}
+
 We then introduce the matrix:
 
 \begin{bmatrix}
@@ -152,13 +207,13 @@ We then introduce the matrix:
     0 & 0 & 0 & \dots  & & 1 + 2\alpha
 \end{bmatrix}
 
-Then we see that we can formulate this as a matrix multiplication problem:
+We see that we can formulate this as a matrix multiplication problem:
 
 \begin{equation}
 \hat{A}V_j = V_{j-i}
 \end{equation}
 
-Which means we can rewrite our differential equation problem to:
+which means we can rewrite our differential equation problem to:
 
 \begin{equation}
 V_j = \hat{A}^{-1}V_{j_1}  = \hat{A}^{-1}(\hat{A}^{-1}V_{j_2})= ... = \hat{A}^{-j}V_0
@@ -173,34 +228,36 @@ In Cranc-Nicolson we use a time centered scheme where
 u(x_i, t_{j+1/2}) \approx 
 \end{equation}
 
-This gives us the equation :
+This gives the equation :
 
 \begin{equation}
  \frac{u_{i,j+1} - u_{i,j}}{\Delta t} = \frac{1}{2}(\frac{u_{i+1,j+1} - 2u_{i,j+1} + 2u_{i-1,j+1}}{(\Delta x)^2} + \frac{u_{i+1,j} - 2u_{i,j}+u_{i-1,j}}{(\Delta x)^2}
 \end{equation}
 
-This we can write as:
+We can write this as:
 \begin{equation}
  -\alpha u_{i+1,j+1} + (1+2\alpha)u_{i,j+1} - \alpha u_{i-1,j-1} =  \alpha u_{i+1,j} + (1-2\alpha)u_{i,j} + \alpha u_{i-1,j}
 \end{equation}
 
-This we can write as an matrix equation:
+Giving the matrix equation:
 
 \begin{equation}
  \hat{A}V_{j+1} = \hat{B}V_{i}
 \end{equation}
 
-Dette kan vi skrive som :
+or
+
 \begin{equation}
  \hat{A}V_{j+1} = b_{j}
 \end{equation}
 
-Where we find $V_{j+1}$ by using forward euler and then solve the matrix equation as in backward euler by using Gaussian elimination. 
+where we find $V_{j+1}$ by using a forward euler and solving the matrix equation as in backward euler by using Gaussian elimination. 
 
 \subsection{Jacobi}
-For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining this results in the Jakobi-algorithm (eq.SETT INN)
+For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are given by eq(\ref{eq:Forward_eulerScheme}). Combining these results in the explicit Jakobi-algorithm (\ref{eq:jacobi}).
+
 \begin{equation}
-  u(i,j,t+dt) = u(i,j,t) + alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t));
+  u(i,j,t+dt) = u(i,j,t) + alpha*(u(i+1,j,t) + u(i-1,j,t) - 4*(i,j,t) + u(i,j+1,t) + u(i,j-1,t))
 \label{eq:jacobi}
 \end{equation}
 
@@ -208,7 +265,7 @@ For an explicit solution to the 2-dimensional problem, $U_xx$ and $U_yy$ are giv
 
 \subsubsection{Forward Euler}
 For the forward Euler algorithm we start by solving U(x,0), hereby referenced as U0, and define $\alpha$ as given by eq(\ref{eq:Forward_eulerScheme}) with dx=0.1 and dt=dx*dx*0.25, as dictated by the
-restrictions for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
+restrictions for the stability for the explicit scheme (eq(\ref{eq:alpha}). We then call the forward step method (see below) for a given number of timesteps, each run increasing the total time T by dt.
 \begin{verbatim}
 vec forward_step(double n, double alpha, vec u, vec unew) {
     for (int i=1; i<n; i++) {
@@ -280,7 +337,7 @@ void jakobi_solver (double dx, double dt) {
 To solve the equation (\ref{eq:PartDiff}) we need to look for seperable solutions on the form:
 
 \begin{equation}
- u(x,t) = X(x)T(t)
+ w(x,t) = X(x)T(t)
  \label{eq:u_xt}
 \end{equation}
 
@@ -300,7 +357,7 @@ Which we can write:
  \frac{T'(t)}{T(t)} = \frac{X''(x)}{X(x)}
 \end{equation}
 
-We see that each side depends on a different variable R.H.S depends on $x$ and L.H.S depends on $t$, so therefor this mus be equal to a constant.
+We see that each side depends on a different variable R.H.S depends on $x$ and L.H.S depends on $t$, so therefore this mus be equal to a constant.
 This is because if we change one and keep the other fixed the value must be the same. This constant we set to $-\lambda$ by convention so the equations
 to solve becomes:
 
@@ -314,37 +371,36 @@ to solve becomes:
 
 With the boundary conditions:
 \begin{equation}
- u(0,t) = X(0)T(t) = 0
+ w(0,t) = X(0)T(t) = 0
 \end{equation}
 
 \begin{equation}
- u(1,t) = X(1)T(t) = 0
+ w(1,t) = X(1)T(t) = 0
 \end{equation}
 
-From these boundary conditions we see that it must be $X(0) = X(1) = 0$ because if $T(t)=0$ we would only get the triviall solutions which we are not interested in.
+From these boundary conditions we see that $X(0) = X(1) = 0$ because if $T(t)=0$ we would only get the trivial solutions which we are not interested in.
 
 So we solve the $X(x)$ equation first.
 
-This is a equation which we have solved nmany times before. First we have the case $\lambda < 0$ which gives the solution:
+This is an equation which we have solved nmany times before. First we have the case $\lambda < 0$ which gives the solution:
 
 \begin{equation}
- X(x) = Ae^{\sqrt{k}x} + Be^{-\sqrt{k}x}, \lambda=-k
+  X(x) = Ae^{\sqrt{k}x} + Be^{-\sqrt{k}x}, \lambda=-k
 \end{equation}
 
 if we set in the boundary conditions we get that $X(0) = A+B$ and then $X(1) = Ae^{\sqrt{k}} - Ae^{\sqrt{k}} = A(e^{2*\sqrt{k}}$ and since k must
 be positive this gives that $A=B=0$ which is the trivial solution which we are not interested in.
 
-When $\lambda = 0 $ this gives $A=B=0$ which also is the trivial solutions.
+When $\lambda = 0 $ this gives $A=B=0$ which are also trivial solutions.
 
 The last possibility is the harmonic equation which is:
 
 \begin{equation}
-
- X(x) = Acos(\sqrt{\lamda x} + Bsin(\sqrt{\lambda x}
+  X(x) = Acos(\sqrt{\lambda x}) + Bsin(\sqrt{\lambda x})
 \end{equation}
 
-And with our boundary conditions it gives $X(0) = A = 0$ and $X(1) = Bsin(\sqrt{\lambda}) = 0$
-This means that $sin\lamda = 0$ This gives us the eigenvalue $\lambda = (n\pi)^2$ for any positive integer.
+And with our boundary conditions it gives $X(0) = A = 0$ and $X(1) = Bsin(\sqrt{\lambda}) = 0$.
+This means that $sin\lambda = 0$ This gives us the eigenvalue $\lambda = (n\pi)^2$ for any positive integer.
 This gives the solution:
 
 \begin{equation}
@@ -366,14 +422,43 @@ Which is well known as
 So the the solution becomes:
 
 \begin{equation}
- u(x,t) \approx f(x)*sin(x)e^{-(\pi^2t)}
+ w(x,t) \sum_{n=1}^{\infty} B_n*sin(n*\pi x)e^{-(n^2\pi^2t)}
  \end{equation}
-
- Where we have used that $f(x) = constant = 1$
  
- \subsection{3D- Heat equation}
+With the initial condition
+
+\begin{equation}
+ w(x,0) = \sum_{n=1}^{\infty} B_n*sin(n*\pi x)
+\end{equation}
+multiply with $sin(m\pi x)$ on both sides and use the orthogonality of $sin(m\pi x)$  and $sin(n\pi x)$
+
+And this gives:
+\begin{equation}
+ \sum_{n=1}^{\infty} b_n \int_0^1 sin(n\pi x)sin(m\pi x)dx = \frac{1}{2}b_n = -\int_0^1 sin(m\pi x)x dx
+\end{equation}
+
+This gives the integral
+
+\begin{equation}
+ b_n = -2\int_0^1 xsin(m\pi x)
+\end{equation}
+
+solving this by using partial integration and simplifying gives:
+
+\begin{equation}
+ b_n = (-1)^m(-\frac{1}{m\pi}, m=1,2,...
+\end{equation}
+
+So setting this into the whole solution from equation (\ref{WritingEasier}) we get:
+
+\begin{equation}
+ u(x,t) = v(x) + w(x,t) = 
+ x + \sum_{n=1}^{\infty}(-1)^n(\frac{2}{n\pi})sin(n\pi*x)e^{-(n\pi)^2t}
+\end{equation}
+
+\subsection{3D- Heat equation}
 \subsubsection{Analytical Solution}
-Here we have the equation (\ref{Putt inn}) which we solve as the 2D equation by seperable solutions:
+Here we have the equation (\ref{eq:twoDimDiffEq}) which we solve as the 2D equation by seperable solutions:
 
 \begin{equation}
  u(x,y,t) = X(x)Y(y)T(t)
@@ -394,7 +479,7 @@ So by the same logic as for 2D this becomes:
 
 If we first keep y constant and varies x we get the equation:
 \begin{equation}
- X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \Rightarrow X''(x) + (\lambda + \my)X(x) = 0
+ X''(x) + (\lambda + \frac{Y''(y)}{Y(y)})X(x) = 0 \rightarrow X''(x) + (\lambda + \my)X(x) = 0
 \end{equation}
 
 And this we can solve as we did in 2D the same for when we keep x constant:
@@ -403,7 +488,7 @@ And this we can solve as we did in 2D the same for when we keep x constant:
  Y''(y) + (\lambda + \mu)Y(y) = 0
 \end{equation}
 
-These two equations becomes:
+These two equations become:
 
 \begin{equation}
  X(x) = b_nsin(n\pi x)
@@ -474,12 +559,12 @@ But to get the full error we have to take in consideration the standard arithmet
 \begin{equation}
  \frac{1}{2}(u(t_{n+1/2}) + u(t_{n - 1/2}) 
 \end{equation}
-This have the error term:
+This has the error term:
 \begin{equation}
  R = \frac{1}{8}u''(t_{n+1/2})\Delta + \frac{1}{384}u''''(t_n)\Delta t^4 + \mathcal{O}(\Delta t^6)
 \end{equation}
 
-If we add these to we get the total error in the time as:
+If we add these two we get the total error in time as:
 \begin{equation}
  R = (\frac{1}{24} u'''(t_{n+1/2}) + \frac{1}{8}u''(t_n)) \Delta t^2 + \mathcal{O}\Delta t^4 
 \end{equation}
@@ -490,49 +575,26 @@ And the error in spatial differencial for all three is equal to by usin taylor e
  R_x = \frac{1}{12}u''''(x_n) \Delta x^2 + \mathcal{O}(\Delta x^4)
 \end{equation}
 
-So the error on the x is of the second order.
-
-
+So the error in x is of the second order.
 
 \begin{figure}
-  \includegraphics[scale=0.5]{Time_evolution}
-    \caption{The time evolution for the analytical solution}
-    \label{fig:time_evo}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[scale=0.5]{numerical_analytcal_T0025}
+  \includegraphics[scale=0.5]{alldt025analyticalt1}
     \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.0025$}
     \label{fig:NumAna0025}
 \end{figure}
 
 \begin{figure}
-  \includegraphics[scale=0.5]{numerical_analytcal_T065}
+  \includegraphics[scale=0.5]{alldt025analyticalt2}
     \caption{The three schemes with the analytical solutiion for when $T = 0.025$ and $dt = 0.65$}
     \label{fig:NumAna065}
 \end{figure}
 
-In figure (\ref{fig:time_evo}) we see the time evolution for the analytical solution which we used to get the time points to analyze the numerical 
-calculations.
 In figure (\ref{fig:NumAna0025}) and (\ref{fig:NumAna065}) we see the numerical calculations against the analytical for two times $t_1 = 0.025$
 and $t_2 = 0.65$. And in table (\ref{tab:RelError}) we see the realtive error at the different time points. Where the relative error is
 calculated with the max value and $\epsilon = |1-u_{num}/u_{anałytical}|$.
 
-\begin{table}
-\centering
-\caption{Table with the relative error of the different schemes calculating it by using the max value and $\epsilon =|1-u_{num}/u_{anałytical}|$ }
-\label{tab:RelError}
-\begin{tabular}{|l|l|l|}
-\hline
- & $t_1=0.025$ & $t_2=0.065$ \\ \hline
-Forward Euler & $0.000023$ & $0.026$ \\ \hline
-Backward Euler & $0.000631$ & $0.4227$ \\ \hline
-Crank Nicolson & $0.01261$  & $0.1341$ \\ \hline
-\end{tabular}
-\end{table}
-
 \subsection{2D PDE}
-Plots of both analytical and explicit numeric solutions
+Explicit numeric solutions for different values of dx and dt are figured in plots ((\ref{fig:Num_dx0.1_dt0.0025T1}), (\ref{fig:Num_dx0.1_dt0.0025T2}), (\ref{
 \begin{figure}
   \begin{center}
     \includegraphics[scale=0.5]{num_dt00025_dx01_T025}
@@ -655,7 +717,20 @@ Plots of both analytical and explicit numeric solutions
 \end{figure}
 
 \section{Discussion}
+\subsection{2D}
+We see in figure (\ref{fig:NumAna0025}) that all the solutions are very correct which is not strange since it has only calculated around 10 timesteps.
+But in figure (\ref{fig:NumAna065}) we see that the one that is most correct is Forward Euler, followed by Crank Nicolson and lastly Backward Euler. 
+Yo can see the relative errors in the table (\ref{tab:RelError}), for these plots we have used as stated before the timestep: $\Delta t = 0.0025$.
+So the truncation error in Forward and Backward euler is both $\epsilon = 0.0025$ and in Crank Nicolson it is $\epsilon = 6.25*10^{-6}$. 
+Since the truncation error is the error committed by one step of the method, and it assumes the earlier step is the exact solution it will be an accumulated error.
+But in our plot (figure (\ref{fig:NumAna065}) we see that the Forward Euler method is incredible correct. This is because of the initial values are  
+
+\subsection{3D}
 
 \section{Conclusion}
+
+\section{Codes}
+
+\section{Sources}
 
 \end{document}
